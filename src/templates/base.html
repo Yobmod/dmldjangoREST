@@ -1,25 +1,28 @@
 {% load staticfiles %}
-<!--DOCTYPE html -->
-<html>
-<head>
-<title>{% block head_title %}Advancing the Blog{% endblock head_title %}</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block head_title %}Resting the Blog + chartjs{% endblock head_title %}</title>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
+<!--  CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
-
-
 <link rel='stylesheet' href='{% static "css/base.css" %}' />
 <style>
 {% block style %}{% endblock style %}
 </style>
 
+{% include 'base/css.html' %}
+{% include 'base/bootstrap_defaults.html' %}
 {% block head_extra %} {% endblock head_extra %}
 </head>
+
 <body>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
 var js, fjs = d.getElementsByTagName(s)[0];
@@ -32,7 +35,7 @@ fjs.parentNode.insertBefore(js, fjs);
 
 
 {% include "messages_display.html" %}
-<div class='container'> 
+<div class='container'>
     <ol class='breadcrumb'>
         <li><a href='{% url "posts:list" %}'>Home</a></li>
         {% block post_detail_link %}
@@ -45,18 +48,21 @@ fjs.parentNode.insertBefore(js, fjs);
         <li class='pull-right'><a href='{% url "logout" %}'>Logout</a></li>
         {% endif %}
     </ol>
-{% block content %}{% endblock content %}
+
+	<div class='container'>
+	{% block content %}
+	{% endblock content %}
+	</div>
 </div>
 
 
-
-<!-- Latest compiled and minified JavaScript -->
-<script   src="http://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+{% include 'base/js.html' %}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js'></script>
+<script>
+$(document).ready(function(){
+  {% block jquery %}{% endblock %}
+})
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -69,7 +75,7 @@ $(document).ready(function(){
             $(this).addClass("img-responsive");
     })
 
-    
+
 
     var contentInput = $("#id_content");
 
@@ -88,7 +94,7 @@ $(document).ready(function(){
     })
 
     var titleInput = $("#id_title");
-    
+
 
 
     function setTitle(value) {
@@ -116,7 +122,3 @@ $(document).ready(function(){
 
 </body>
 </html>
-
-
-
-

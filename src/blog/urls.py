@@ -19,11 +19,13 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from accounts.views import (login_view, register_view, logout_view)
+from accounts.views import (login_view, register_view, logout_view, main_view)
 
 urlpatterns = [
 
+	url(r'^$', main_view, name='main'),
     url(r'^admin/', admin.site.urls),
+	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^comments/', include("comments.urls", namespace='comments')),
 
     url(r'^register/', register_view, name='register'),

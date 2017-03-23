@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_extra %}<titlel>DML Linecharts</title>{% endblock %}
+
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-12'>
+    	<h1>Line charts</h1>
+
+		<div class='col-sm-6'>
+            <canvas id="lineChart1" width="400" height="400" url-endpoint="{url 'charts:chart_line_data'}"></canvas>
+			<script type="text/javascript" src="{% static 'js/charts_line_1.js' %}" defer></script>
+        </div>
+
+		<div class='col-sm-6'>
+			<canvas id="lineChart2" width="400" height="400"></canvas>
+			<script type="text/javascript" src="{% static 'js/charts_line_2.js' %}" defer></script>
+		</div>
+
+    </div>
+</div>
+
+{% endblock content %}

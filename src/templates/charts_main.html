@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-12'>
+    	<h1>Charts:</h1>
+		<ul>
+			<li><a href='{% url "charts:chart1" %}'>Examples: Polar, Bar, Line, Radar</a></li>
+			<li><a href='{% url "charts:chart2" %}'>Examples: Pi, Donut, Bubble</a></li>
+			<li><a href='{% url "charts:chart_line" %}'>Examples: Lines</a></li>
+			<!--li><a href='{% url "charts:chart_Bars_Radar" %}'>Examples: Bars and Radars</a></li>
+			<li><a href='{% url "charts:chart_Pi_Donut_Polar" %}'>Examples: Pi, Donut, Polar area</a></li>
+			<li><a href='{% url "charts:chart_scatter_bubble" %}'>Examples: Scatter and Bubble</a></li>
+			<li><a href='{% url "charts:chart_humidity" %}'>Examples: Pi, Donut, Bubble</a></li>
+			<li><a href='{% url "charts:chart_temparature" %}'>Examples: Pi, Donut, Bubble</a></li>
+			-->
+		</ul>
+    </div>
+</div>
+
+{% endblock content %}

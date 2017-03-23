@@ -13,7 +13,7 @@ class HomeView(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
 		data = {"customers": User.objects.all().count(),} #can use database info as the data
 		context = {'data':data}
-		return render(request, 'charts.html', context)
+		return render(request, 'charts_main.html', context)
 
 # def get_data(request, *args, **kwargs): #data is url, js on page finds it there
 # 	data = {
@@ -21,6 +21,9 @@ class HomeView(View):   #use context in html js tags
 # 		"customers": 10,
 # 	}
 # 	return JsonResponse(data) # http response
+class ChartView(View):   #use context in html js tags
+	def get(self, request, *args, **kwargs):
+		return render(request, 'charts.html')
 
 class ChartData(APIView):
 	authentication_classes = []
@@ -56,18 +59,52 @@ class ChartData(APIView):
 
 class ChartViewTwo(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
-		return render(request, 'charts2.html', context)
+		return render(request, 'charts2.html')
 
 class ChartDataTwo(APIView):
 	authentication_classes = []
 	permission_classes = []
-
 	def get(self, request, format=None):
 		qs_count = User.objects.all().count()
 		labels = ["Users", "Blue", "Yellow", "Green", "Purple", "Orange"]
 		default_items = [qs_count, 23, 2, 3, 12, 2]
 		data = {
 				"labels": labels,
-				"default": default_items,
-		}
+				"default": default_items,		}
+		return Response(data)
+
+
+class ChartViewLine(View):   #use context in html js tags
+	def get(self, request, *args, **kwargs):
+		return render(request, 'charts_line.html')
+
+class ChartDataLineOne(APIView):
+	authentication_classes = []
+	permission_classes = []
+	def get(self, request, format=None):
+		labels = [0, 1, 2, 3, 4, 5]
+		line1 = [29, 23, 2, 3, 12, 2]
+		data = {
+				"labels": labels,
+				"line1": line1,		}
+		return Response(data)
+
+class ChartDataLineTwo(APIView):
+	authentication_classes = []
+	permission_classes = []
+	def get(self, request, format=None):
+		#labels = [0, 1, 2, 3, 4, 5]
+		line1 = [{
+				-10,
+				0
+			}, {
+				 0,
+				10
+			}, {
+				10,
+				5
+			}]
+		data = {
+				#"labels": labels,
+				"line1": line1,		}
 		return Response(data)

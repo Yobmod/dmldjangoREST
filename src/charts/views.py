@@ -89,22 +89,18 @@ class ChartDataLineOne(APIView):
 				"line1": line1,		}
 		return Response(data)
 
+#from rest_framework.views import RetrieveAPIView
 class ChartDataLineTwo(APIView):
 	authentication_classes = []
 	permission_classes = []
 	def get(self, request, format=None):
 		#labels = [0, 1, 2, 3, 4, 5]
-		line1 = [{
-				-10,
-				0
-			}, {
-				 0,
-				10
-			}, {
-				10,
-				5
-			}]
+		x = 'x'
+		y = 'y'
+		line1 = "[{x:-10, y:10}, {x:7, y:5}, {x:-3, y:7}]"
+
 		data = {
 				#"labels": labels,
 				"line1": line1,		}
 		return Response(data)
+		#return JsonResponse(data)

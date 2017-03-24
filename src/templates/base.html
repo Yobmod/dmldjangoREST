@@ -16,6 +16,13 @@
 {% include 'base/css.html' %}
 {% include 'base/bootstrap_defaults.html' %}
 {% block head_extra %} {% endblock head_extra %}
+
+{% include 'base/js.html' %}
+<script>
+$(document).ready(function(){
+  {% block jquery %}{% endblock %}
+})
+</script>
 </head>
 
 <body>
@@ -44,12 +51,7 @@
 </div>
 
 
-{% include 'base/js.html' %}
-<script>
-$(document).ready(function(){
-  {% block jquery %}{% endblock %}
-})
-</script>
+
 
 
 

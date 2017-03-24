@@ -1,4 +1,9 @@
-//backgrounds, tranparent
+// Chart.defaults.global.animation = true;
+// Chart.defaults.global.animationSteps = 160;
+//
+// Chart.defaults.global.responsive = true;
+// Chart.defaults.global.elements.responsive = true;
+
 
 var pinktr = 'rgba(255, 99, 132, 0.2)';
 var bluetr = 'rgba(54, 162, 235, 0.2)';

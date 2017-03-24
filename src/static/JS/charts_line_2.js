@@ -18,15 +18,21 @@ var black = 'rgba(255, 255, 255, 1)';
 //var data = "{{ customers }}"		//django renders data on pageload
 //var defaultData = []
 //var labels = [];
+
 var chart_line_2 = '/charts/api/chart_line2/data/'  //'{% url "charts:chart_line_data" %}'
 $.ajax({
     method: "GET",
     url: chart_line_2,
     success: function(data){			//takes data from the url specified in var endpoint
         //labels = data.labels			//get from REST api view
-        data1 = data.line1
-		console.log(data)
-        setChart2()						//if GETs data then does setchart function
+		//const data1String = JSON.stringify(data.line1)
+	//	const data1 = JSON.stringify(data.line1).replace(/\"/g, "");
+		//const data2 = JSON.parse(data1);
+		var data1 = data.line1
+		console.log(data1)
+		//console.log(data1String)
+		setChart2()
+
     },
     error: function(error_data){
         console.log("error")
@@ -42,16 +48,7 @@ function setChart2(){
 	        //labels: labels,					//x axis labels, from server or []
 	        datasets: [
 				{
-				data: [{
-                x: -13,
-                y: 0
-            }, {
-                x: 0,
-                y: 7
-            }, {
-                x: 10,
-                y: 5
-            }],
+				data: data1,
 	            label: 'Number of things',		//legend for that dataset
 	          	fill : false,
 				//yAxisID: ''
@@ -67,8 +64,24 @@ function setChart2(){
 	    },
 	    options: {
 	        scales: {
-	            yAxes: [{           ticks: {     beginAtZero:true      }       }],
-				xAxes: [{         	type: 'linear',     	position: 'bottom'     	}]
+	            yAxes: [{
+					display: true,
+					position: 'right',
+					ticks: {
+							min: -1, 	//beginAtZero:true,
+							steps: 10,
+                            stepValue: 1,
+                            max: 10 },
+					scaleLabel: {display: true,	labelString: 'Number'},
+				}],
+				xAxes: [{
+					display: true,
+					type: 'linear',
+					position: 'bottom',
+					ticks: {min: -20,
+							max: 20 },
+					scaleLabel: {display: true,	labelString: 'Month'},
+				}]
 	        }
 	    }
 	});

@@ -1,19 +1,21 @@
+
+var redtr = 'rgba(214, 13, 13, 0.2)';
 var pinktr = 'rgba(255, 99, 132, 0.2)';
-var bluetr = 'rgba(54, 162, 235, 0.2)';
+var bluetr = 'rgba(54, 105, 235, 0.2)';
 var yellowtr = 'rgba(255, 206, 86, 0.2)';
-var greentr = 'rgba(75, 192, 192, 0.2)';
+var greentr = 'rgba(30, 184, 59, 0.2)';
 var purpletr = 'rgba(153, 102, 255, 0.2)';
 var orangetr = 'rgba(255, 159, 64, 0.2)';
 var greytr = 'rgba(255, 255, 255, 0.2)';
 
+var red = 'rgba(214, 13, 13, 1)';
 var pink = 'rgba(255,99,132,1)';
-var blue = 'rgba(54, 162, 235, 1)';
+var blue = 'rgba(54, 105, 235, 1)';
 var yellow = 'rgba(255, 206, 86, 1)';
-var green = 'rgba(75, 192, 192, 1)';
+var green = 'rgba(30, 184, 59, 1)';
 var purple = 'rgba(153, 102, 255, 1)';
 var orange = 'rgba(255, 159, 64, 1)';
 var black = 'rgba(255, 255, 255, 1)';
-
 
 //var data = "{{ customers }}"		//django renders data on pageload
 //var defaultData = []
@@ -24,15 +26,12 @@ $.ajax({
     method: "GET",
     url: chart_line_2,
     success: function(data){			//takes data from the url specified in var endpoint
-        //labels = data.labels			//get from REST api view
-		//const data1String = JSON.stringify(data.line1)
-	//	const data1 = JSON.stringify(data.line1).replace(/\"/g, "");
-		//const data2 = JSON.parse(data1);
-		var data1 = data.line1
-		console.log(data1)
-		//console.log(data1String)
+		//labels = data.labels			//get from REST api view
+        data1 = eval(data.line1)
+		data2 = eval(data.line2)
+		data3 = eval(data.line3)
+		console.log(data)
 		setChart2()
-
     },
     error: function(error_data){
         console.log("error")
@@ -49,16 +48,49 @@ function setChart2(){
 	        datasets: [
 				{
 				data: data1,
-	            label: 'Number of things',		//legend for that dataset
+	            label: 'Things',		//legend for that dataset
 	          	fill : false,
 				//yAxisID: ''
-				pointStyle: 'circle', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
-	            backgroundColor: 'rgba(0, 0, 0 ,0)',	//if fill: true
-	            borderColor: 'rgba(0, 0, 0 ,0)',
+				pointStyle: 'rectRounded', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
+	            backgroundColor: bluetr,	//if fill: true
+	            borderColor: blue,
 	            borderWidth: 2,
 				pointBorderColor: blue,
 				pointBackgroundColor: bluetr,
-	        	}
+				pointRadius: 4,
+				pointBorderWidth: 2,
+				showLine: false
+			},
+			{
+			data: data2,
+			label: 'Mongs',		//legend for that dataset
+			fill : false,
+			//yAxisID: ''
+			pointStyle: 'rectRounded', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
+			backgroundColor: redtr,	//if fill: true
+			borderColor: red,
+			borderWidth: 2,
+			pointBorderColor: red,
+			pointBackgroundColor: redtr,
+			pointRadius: 4,
+			pointBorderWidth: 2,
+			showLine: false
+			},
+			{
+			data: data3,
+			label: 'Frogs',		//legend for that dataset
+			fill : false,
+			//yAxisID: ''
+			pointStyle: 'rectRounded', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
+			backgroundColor: greentr,	//if fill: true
+			borderColor: green,
+			borderWidth: 2,
+			pointBorderColor: green,
+			pointBackgroundColor: greentr,
+			pointRadius: 4,
+			pointBorderWidth: 2,
+			showLine: false
+			}
 			]
 
 	    },
@@ -68,10 +100,10 @@ function setChart2(){
 					display: true,
 					position: 'right',
 					ticks: {
-							min: -1, 	//beginAtZero:true,
+							min: -20, 	//beginAtZero:true,
 							steps: 10,
                             stepValue: 1,
-                            max: 10 },
+                            max: 20 },
 					scaleLabel: {display: true,	labelString: 'Number'},
 				}],
 				xAxes: [{
@@ -82,7 +114,10 @@ function setChart2(){
 							max: 20 },
 					scaleLabel: {display: true,	labelString: 'Month'},
 				}]
-	        }
+	        },
+			legend: {
+				labels: {usePointStyle: true}
+			}
 	    }
 	});
 

@@ -94,13 +94,14 @@ class ChartDataLineTwo(APIView):
 	authentication_classes = []
 	permission_classes = []
 	def get(self, request, format=None):
-		#labels = [0, 1, 2, 3, 4, 5]
-		x = 'x'
-		y = 'y'
-		line1 = "[{x:-10, y:10}, {x:7, y:5}, {x:-3, y:7}]"
+		line1 = "[{x:-10, y:10}, {x:7, y:5}, {x:-3, y:7}, {x:-8, y:9}, {x:6, y:6}, {x:-5, y:8}]"
+		line2 = "[{x:0, y:-10}, {x:7, y:2}, {x:-3, y:-7},{x:-5, y:-9}, {x:-15, y:-1}, {x:-1, y:-7}]"
+		line3 = "[{x:-10, y:-10}, {x:-7, y:-2}, {x:-3, y:0},{x:5, y:9}, {x:15, y:1}, {x:16, y:7}]"
 
 		data = {
 				#"labels": labels,
-				"line1": line1,		}
+				"line1": line1,
+				"line2": line2,
+				"line3": line3,		}
 		return Response(data)
 		#return JsonResponse(data)

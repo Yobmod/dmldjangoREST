@@ -25,3 +25,11 @@ var purple = 'rgba(153, 102, 255, 1)';
 var orange = 'rgba(255, 159, 64, 1)';
 var red = 'rgba(210, 0, 0, 1)';
 var black = 'rgba(255, 255, 255, 1)';
+
+var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+gradient.addColorStop(0, 'rgba(250,174,50,1)');
+gradient.addColorStop(1, 'rgba(250,174,50,0)');
+
+var gradient2 = ctx.createLinearGradient(0, 0, 400, 0);
+gradient2.addColorStop(0, 'rgba(174,250,50,1)');
+gradient2.addColorStop(1, 'rgba(174,50,250,1)');

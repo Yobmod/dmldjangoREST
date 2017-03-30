@@ -30,19 +30,19 @@ function setChart1(){
 				{
 				data: data1,
 	            label: 'Number of things',		//legend for that dataset
-	          	fill : true,
+	          	fill : false,
 				yAxisID: 'y-axis-01',
 				pointStyle: 'circle', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
 	            backgroundColor: bluetr,	//if fill: true
 	            borderColor: blue,
 	            borderWidth: 1,
 				fillBetweenSet: 1,   //number of dataset to fill too [0,1,2....]
-				fillBetweenColor: redtr
+				fillBetweenColor: gradient
 			},
 			{
 				data: data2,
 				label: 'Other things',		//legend for that dataset
-				fill : true,
+				fill : false,
 				yAxisID: 'y-axis-01',
 				pointStyle: 'circle', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
 				backgroundColor: orangetr,	//if fill: true

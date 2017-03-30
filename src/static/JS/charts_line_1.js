@@ -20,6 +20,15 @@ $.ajax({
     }
 })
 
+const ctx = document.getElementById("lineChart1").getContext("2d");
+var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+gradient.addColorStop(0, 'rgba(250,174,50,1)');
+gradient.addColorStop(1, 'rgba(250,174,50,0)');
+
+var gradient2 = ctx.createLinearGradient(0, 0, 400, 0);
+gradient2.addColorStop(0, 'rgba(174,250,50,1)');
+gradient2.addColorStop(1, 'rgba(174,50,250,1)');
+
 function setChart1(){
 	const ctx = document.getElementById("lineChart1");
 	var lineChart1 = new Chart(ctx, {
@@ -33,11 +42,11 @@ function setChart1(){
 	          	fill : true,
 				yAxisID: 'y-axis-01',
 				pointStyle: 'circle', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
-	            backgroundColor: bluetr,	//if fill: true
+	            backgroundColor: gradient2,	//if fill: true
 	            borderColor: blue,
 	            borderWidth: 1,
 				fillBetweenSet: 1,   //number of dataset to fill too [0,1,2....]
-				fillBetweenColor: redtr
+				fillBetweenColor: gradient
 			},
 			{
 				data: data2,

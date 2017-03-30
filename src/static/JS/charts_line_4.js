@@ -28,7 +28,7 @@ var XPData = {
   borderColor: "rgba(0,0,0,1)",
   //pointBorderColor: "#444",
   //pointBackgroundColor: "#444",
-  pointStyle: yourImage,
+  pointStyle: XPImage,
   //pointRadius: 5,
   data: [],
   //showLine: false,

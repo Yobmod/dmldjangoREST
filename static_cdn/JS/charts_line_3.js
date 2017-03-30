@@ -1,20 +1,4 @@
-<!doctype html>
-<html>
 
-<head>
-    <title>Scatter Chart</title>
-    <script src="../Chart.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-</head>
-
-<body>
-    <div style="width:50%">
-        <div>
-            <canvas id="canvas" height="450" width="600"></canvas>
-        </div>
-    </div>
-    <button id="randomizeData">Randomize Data</button>
-    <script>
     var randomScalingFactor = function() {
         return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
     };
@@ -78,23 +62,40 @@
         dataset.pointBorderColor = randomColor(0.7);
         dataset.pointBackgroundColor = randomColor(0.5);
         dataset.pointBorderWidth = 1;
+		dataset.pointStyle = "star";
     });
     console.log(scatterChartData);
     window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myScatter = new Chart(ctx).Scatter({
+        var ctx3 = document.getElementById("canvas").getContext("2d");
+        myScatter = new Chart(ctx3, {
+			type: 'line',
         	data: scatterChartData,
+			plugins: [{}],
         	options: {
 	            responsive: true,
+				showLines: false,
 	            hoverMode: 'single', // should always use single for a scatter chart
 	            scales: {
-	            	xAxes: [{
-	            		gridLines: {
-	            			zeroLineColor: "rgba(0,0,0,1)"
-	            		}
+						yAxes: [{
+							id: 'y-axis-05',
+							ticks: {min: -100,
+									max: 100	},
+					}],
+	            		xAxes: [{
+							display: true,
+							id: 'x-axis-05',
+							ticks:{
+								min: -100,
+								max: 100
+						},
+						type: 'linear',
+						position: 'bottom',
+	            		gridLines: {//zeroLineColor: "rgba(0,0,0,1)",
+						}
 	            	}]
-	            }
-            }
+	            },
+
+	         }
         });
     };
     $('#randomizeData').click(function() {
@@ -144,7 +145,3 @@
 		}]
         window.myScatter.update();
     });
-    </script>
-</body>
-
-</html>

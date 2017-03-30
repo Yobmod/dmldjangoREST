@@ -1,22 +1,5 @@
 //Line chart regular interval y-axis data
 
-var pinktr = 'rgba(255, 99, 132, 0.2)';
-var bluetr = 'rgba(54, 162, 235, 0.2)';
-var yellowtr = 'rgba(255, 206, 86, 0.2)';
-var greentr = 'rgba(75, 192, 192, 0.2)';
-var purpletr = 'rgba(153, 102, 255, 0.2)';
-var orangetr = 'rgba(255, 159, 64, 0.2)';
-var greytr = 'rgba(255, 255, 255, 0.2)';
-
-var pink = 'rgba(255,99,132,1)';
-var blue = 'rgba(54, 162, 235, 1)';
-var yellow = 'rgba(255, 206, 86, 1)';
-var green = 'rgba(75, 192, 192, 1)';
-var purple = 'rgba(153, 102, 255, 1)';
-var orange = 'rgba(255, 159, 64, 1)';
-var black = 'rgba(255, 255, 255, 1)';
-
-
 //var data = "{{ customers }}"		//django renders data on pageload
 //var defaultData = []
 //var labels = [];
@@ -27,6 +10,7 @@ $.ajax({
     success: function(data){			//takes data from the url specified in var endpoint
         labels = data.labels			//get from REST api view
         data1 = data.line1
+		data2 = data.line2
 		console.log(data)
         setChart1()						//if GETs data then does setchart function
     },
@@ -47,23 +31,91 @@ function setChart1(){
 				data: data1,
 	            label: 'Number of things',		//legend for that dataset
 	          	fill : true,
-				//yAxisID: ''
+				yAxisID: 'y-axis-01',
 				pointStyle: 'circle', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
 	            backgroundColor: bluetr,	//if fill: true
 	            borderColor: blue,
-	            borderWidth: 1
-	        	}
+	            borderWidth: 1,
+				fillBetweenSet: 1,   //number of dataset to fill too [0,1,2....]
+				fillBetweenColor: redtr
+			},
+			{
+				data: data2,
+				label: 'Other things',		//legend for that dataset
+				fill : true,
+				yAxisID: 'y-axis-01',
+				pointStyle: 'circle', 		//'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'crossRot', 'star', 'line', 'dash', Image, Array.
+				backgroundColor: orangetr,	//if fill: true
+				borderColor: orange,
+				borderWidth: 1,
+				//fillBetweenSet: 0,
+				//fillBetweenColor: 'pinktr'
+			}
 			]
 
 	    },
 	    options: {
 	        scales: {
 	            yAxes: [{
+					id: 'y-axis-01',
 	                ticks: {
 	                    beginAtZero:true
-	                }
-	            }]
-	        }
+	                },
+					scaleLabel: {
+          				display: true,
+          				labelString: 'Number'
+        			}
+	            }],
+				xAxes: [{
+					id: 'x-axis-01',
+					ticks: {
+						min: 0
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Item'
+					}
+				}],
+	        },
+			tooltips : {
+    			mode : 'index' // 'index'
+  			},
+			hover: {
+  				mode: 'nearest',
+  				intersect: true,
+			},
+			annotation: {
+				annotations: [{
+						id: 'h-line-01', // optional
+						type: 'line',
+						mode: 'horizontal',
+						scaleID: 'y-axis-01',
+						value: '125',
+						borderColor: 'red',
+						borderDash: [2, 2],
+						borderWidth: 2,
+						label: {
+								enabled: true,
+								backgroundColor: 'rgba(255,255,255,1)', // Background color of label, default below
+								//fontFamily: "sans-serif", // Font family of text, inherits from global
+								//fontStyle: "normal", // Font style of text, default "bold"
+								fontSize: 12, // Font size of text, inherits from global
+								fontColor: "red",// Font color of text, default below
+								xPadding: 6,// Padding of label to add top/bottom, default below
+								yPadding: 6,// Radius of label rectangle, default below
+								cornerRadius: 6, // Anchor position of label on line, can be one of: top, bottom, left, right, center. Default below.
+								position: "left",	// Adjustment along x-axis (left-right) of label relative to above number (can be negative)
+													// For horizontal lines positioned left or right, negative values move the label toward the edge, and negative values toward the center.
+								xAdjust: 175,			// Adjustment along y-axis (top-bottom) of label relative to above number (can be negative)
+													// For vertical lines positioned top or bottom, negative values move the label toward the edge, and negative values toward the center.
+								yAdjust: 0,			// Whether the label is enabled and should be displayed
+									// Text to display in label - default is null
+								content: "Max"
+							},
+							onClick: function(e) { // Fires when the user clicks this annotation on the chart (be sure to enable the event in the events array below).
+							}
+				}],
+			},
 	    }
 	});
 

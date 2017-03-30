@@ -28,7 +28,7 @@ $(document).ready(function(){
 <body>
 
 {% include "messages_display.html" %}
-<div class='container'>
+<div class='container-fluid' style="width:100%">
     <ol class='breadcrumb'>
         <li><a href='{% url "main" %}'>Home</a></li>
 		<li><a href='{% url "posts:list" %}'>Blog</a></li>
@@ -44,7 +44,7 @@ $(document).ready(function(){
         {% endif %}
     </ol>
 
-	<div class='container'>
+	<div class='container-fluid'>
 	{% block content %}
 	{% endblock content %}
 	</div>

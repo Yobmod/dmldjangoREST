@@ -83,10 +83,12 @@ class ChartDataLineOne(APIView):
 	permission_classes = []
 	def get(self, request, format=None):
 		labels = [0, 1, 2, 3, 4, 5]
-		line1 = [29, 23, 2, 3, 12, 2]
+		line1 = [89, 43, 2, 3, 22, 2]
+		line2 = [9, 3, 12, 43, 112, 32]
 		data = {
 				"labels": labels,
-				"line1": line1,		}
+				"line1": line1,
+				"line2": line2,			}
 		return Response(data)
 
 #from rest_framework.views import RetrieveAPIView

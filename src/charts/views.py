@@ -15,6 +15,9 @@ class HomeView(View):   #use context in html js tags
 		context = {'data':data}
 		return render(request, 'charts_main.html', context)
 
+def brython(request):
+    return render(request, 'brython.html')
+
 # def get_data(request, *args, **kwargs): #data is url, js on page finds it there
 # 	data = {
 # 		"sales": 100,

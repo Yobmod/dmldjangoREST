@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-
+from . import views 
 from .views import (HomeView, #get_data,
 					ChartView, ChartData,
 					ChartViewTwo, ChartDataTwo,
@@ -44,5 +44,8 @@ urlpatterns = [
 	url(r'^chart_scatter_bubble/$', ChartViewTwo.as_view(), name='chart_scatter_bubble'),
 	url(r'^chart_humidity/$', ChartViewTwo.as_view(), name='chart_humidity'),
 	url(r'^chart_temparature/$', ChartViewTwo.as_view(), name='chart_temparature'),
+
+	url(r'^brython/$', views.brython, name='brython'),
+
 
 	]

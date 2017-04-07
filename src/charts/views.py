@@ -110,3 +110,6 @@ class ChartDataLineTwo(APIView):
 				"line3": line3,		}
 		return Response(data)
 		#return JsonResponse(data)
+
+def deck_slidesOne(request):
+	return render(request, 'deck_slidesOne.html')

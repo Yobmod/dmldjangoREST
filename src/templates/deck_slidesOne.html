@@ -1,0 +1,124 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My deck.js Presentation</title>
+
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/core/deck.core.css" %}'>
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/extensions/goto/deck.goto.css" %}'>
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/extensions/menu/deck.menu.css" %}'>
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/extensions/navigation/deck.navigation.css" %}'>
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/extensions/status/deck.status.css" %}'>
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/extensions/scale/deck.scale.css" %}'>
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/themes/style/slides1.css" %}'>
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/themes/transition/fade.css" %}'>
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href='{% static "vendor/deckjs/core/print.css" %}'>
+  <style>
+  div.container {
+      width: 100%;
+	  height: 92%;
+      border: 1px solid gray;
+  }
+
+  header, footer {
+      padding: 0.01em;
+      color: white;
+      background-color: powderblue;
+      clear: left;
+      text-align: center;
+  }
+  </style>
+</head>
+<body>
+<div class="container">
+	<header>
+		<nav><span><h1>
+				parp
+				<a href='{% url "charts:chart2" %}'>Getting Started</a>
+				<a href='{% url "charts:chart1" %}'>charts</a></li>
+				<a href="http://github.com/imakewebthings/deck.js">GitHub</a>
+		</h1></span></nav>
+	</header>
+
+  <div class="deck-container">
+
+    <section class="slide">
+      <h1>Slide 1</h1>
+	  <p>This is a slide, woooo</p>
+    </section>
+
+    <section class="slide">
+      <h1>Content</h1>
+	  <p>This is another slide</p>
+    </section>
+
+    <section class="slide">
+      <div><h1>Here</h1></div>
+	  <div><p>This is a third slide, with optional nested child</p></div>
+    </section>
+
+	{% include 'slides/slide4.html' %}
+
+	<section class="slide">
+		<h1>End</h1>
+		<p>optional child slide</p>
+		<a href='{% url "charts:chart2" %}'>Examples: Pi, Donut, Bubble</a>
+		<img src="http://placekitten.com/600/375" alt="Kitties">
+	</section>
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+  </div>
+
+<!-- Required JS files. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src='{% static "vendor/modernizr.custom.js" %}'></script>
+<script src='{% static "vendor/deckjs/core/deck.core.js" %}'></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src='{% static "vendor/deckjs/extensions/menu/deck.menu.js" %}'></script>
+<script src='{% static "vendor/deckjs/extensions/goto/deck.goto.js" %}'></script>
+<script src='{% static "vendor/deckjs/extensions/status/deck.status.js" %}'></script>
+<script src='{% static "vendor/deckjs/extensions/navigation/deck.navigation.js" %}'></script>
+<script src='{% static "vendor/deckjs/extensions/scale/deck.scale.js" %}'></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+	$.deck('showGoTo')
+  });
+</script>
+</body>
+</html>

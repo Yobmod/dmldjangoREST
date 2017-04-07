@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from . import views 
+from . import views
 from .views import (HomeView, #get_data,
 					ChartView, ChartData,
 					ChartViewTwo, ChartDataTwo,

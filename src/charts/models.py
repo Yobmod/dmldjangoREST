@@ -1,4 +1,4 @@
-#import qrcode
+import qrcode
 from io import StringIO
 
 from django.db import models

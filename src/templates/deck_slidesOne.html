@@ -21,7 +21,17 @@
   <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/themes/transition/fade.css" %}'>
   <!-- Basic black and white print styles -->
   <link rel="stylesheet" media="print" href='{% static "vendor/deckjs/core/print.css" %}'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='{% static "vendor/modernizr.custom.js" %}'></script>
+  <script src='{% static "vendor/deckjs/core/deck.core.js" %}'></script>
   <style>
+
+  body {
+	  font-family: arial;
+  }
+
   div.container {
       width: 100%;
 	  height: 92%;
@@ -31,7 +41,7 @@
   header, footer {
       padding: 0.01em;
       color: white;
-      background-color: powderblue;
+      background-color: steelblue;
       clear: left;
       text-align: center;
   }
@@ -61,8 +71,10 @@
     </section>
 
     <section class="slide">
-      <div><h1>Here</h1></div>
-	  <div><p>This is a third slide, with optional nested child</p></div>
+      <h1>Here</h1>
+	  <p>This is a third slide, with optional nested child</p>
+	  <canvas></canvas>
+	  <a href='{% url "charts:chart2" %}'>Examples: Pi, Donut, Bubble</a>
     </section>
 
 	{% include 'slides/slide4.html' %}
@@ -70,7 +82,6 @@
 	<section class="slide">
 		<h1>End</h1>
 		<p>optional child slide</p>
-		<a href='{% url "charts:chart2" %}'>Examples: Pi, Donut, Bubble</a>
 		<img src="http://placekitten.com/600/375" alt="Kitties">
 	</section>
 
@@ -82,9 +93,7 @@
 
     <!-- deck.status snippet -->
     <p class="deck-status" aria-role="status">
-      <span class="deck-status-current"></span>
-      /
-      <span class="deck-status-total"></span>
+      <span class="deck-status-current"></span> / <span class="deck-status-total"></span>
     </p>
 
     <!-- deck.goto snippet -->
@@ -95,16 +104,10 @@
       <input type="submit" value="Go">
     </form>
 
-    <!-- End extension snippets. -->
   </div>
   </div>
 
-<!-- Required JS files. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src='{% static "vendor/modernizr.custom.js" %}'></script>
-<script src='{% static "vendor/deckjs/core/deck.core.js" %}'></script>
+
 
 <!-- Extension JS files. Add or remove as needed. -->
 <script src='{% static "vendor/deckjs/extensions/menu/deck.menu.js" %}'></script>
@@ -116,7 +119,7 @@
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
   $(function() {
-    $.deck('.slide');
+    $.deck('.slide', {countNested: false});
 	$.deck('showGoTo')
   });
 </script>

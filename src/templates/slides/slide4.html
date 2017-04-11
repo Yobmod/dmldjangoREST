@@ -1,61 +1,25 @@
 <section class="slide" id="pie">
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
 	<script>
-	$(document).ready(function(){
-	var endpoint = '/charts/api/chart/data/'
-	var defaultData = []
-	var labels = [];
-	$.ajax({
-	    method: "GET",
-	    url: endpoint,
-	    success: function(data){
-	        labels = data.labels
-	        defaultData = data.default
-	        //setChart()
-	    },
-	    error: function(error_data){
-	        console.log("error")
-	        console.log(error_data)
-	    }
-	})
+	// $(document).ready(function(){
+	// var endpoint = '/charts/api/chart/data/'
+	// var defaultData = []
+	// var labels = [];
+	// $.ajax({
+	//     method: "GET",
+	//     url: endpoint,
+	//     success: function(data){
+	//         labels = data.labels
+	//         defaultData = data.default
+	//         //setChart()
+	//     },
+	//     error: function(error_data){
+	//         console.log("error")
+	//         console.log(error_data)
+	//     }
+	// })
 	Chart.defaults.global.maintainAspectRatio = false;
-	var ctx1 = $("#NestedChart").get(0).getContext("2d");
-	var myChart1 = new Chart(ctx1, {
-		type: 'doughnut',
-		data: {
-			labels: [1,2,3,4,5],		//labels chart (legends for pie / radial)
-			datasets: [{
-				//label: '# of Votes',		//nothing?
-				data: [10,89,4,34,33],
-				//borderWidth: 2,
-				//datasetStroke: 2,
-			},
-			{
-				//label: '# of Votes',		//nothing?
-				data: [10,89,4,34,33],
-				//backgroundColor: 'rgba(0,0,0,0)',
-			//	borderWidth: 2,
-			},
-			{
-				//label: '# of Votes',		//nothing?
-				data: [101,2,14,44,60],
-				//borderWidth: 2,
-					}
-				]
-		},
-		options: {
-			cutoutPercentage: 0,
-			//segmentStrokeColor: 'rgba(2,56,56,1)',
-		//	segmentStrokeWidth: 10,
-			segmentShowStroke: false,
-	    animation: {
-	        duration:2000
-	    },
-	     responsive:true,
-	    maintainAspectRatio: true
-	}
-		});
-})
+	
 	</script>
 
 	<div class='row'>

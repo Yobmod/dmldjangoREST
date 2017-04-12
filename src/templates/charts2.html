@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 <script>
 {% block jquery %}
 var endpoint = '/charts/api/chart/data/'
@@ -84,8 +84,7 @@ var myChart1 = new Chart(ctx1, {
 {% block content %}
 
 <div class='row'>
-    <div class='col-sm-12'>
-        <h1>Hello World</h1>
+    <div class='col-sm-4'>
         <div style="position: relative; height: 500px; width:500px" class='col-sm-6'>
             <canvas style="position:absolute; top: 0px; left: 0px" id="NestedChart" width="400" height="400"></canvas>
 			<canvas style="position:absolute; top: 18%; left: 20%" id="NestedChart2" width="200" height="200"></canvas>
@@ -94,6 +93,54 @@ var myChart1 = new Chart(ctx1, {
 
 
     </div>
+
+
+	<div id="canvas-holder" class='col-sm-4'>
+			<canvas id="chart-area" width="500" height="500"/>
+	</div>
 </div>
+
+<script type="text/javascript" src="{% static 'js/chartjs/Chart.smith.js' %}" defer></script>
+	<script>
+		window.onload = function() {
+			var ctx = document.getElementById("chart-area").getContext("2d");
+			window.mySmith = new Chart(ctx, {
+				type: 'smith',
+				options: {
+					elements: {
+						point: {
+							pointStyle: '',
+							radius: 0,
+							hoverRadius: 10,
+							borderColor: 'black'
+						}
+					}
+				},
+				data: {
+					datasets: [{
+						label: 'My Dataset1',
+						data: [ { real : 1.0, imag : 2.0},
+								{ real : 1.0, imag : 1.0},
+								{ real : 1.0, imag : -1.0}
+						],
+						borderColor: "red",
+						backgroundColor: "pink",
+					},
+					{
+						label: 'My Dataset2',
+						data: [ { real : 11.0, imag : 1.5},
+								{ real : 1.0, imag : 1.5},
+								{ real : 2.0, imag : -1.0}
+						],
+						borderColor: "blue",
+						backgroundColor: "lightblue",
+					}
+
+
+					]
+				}
+			})
+		};
+	</script>
 
 {% endblock content %}

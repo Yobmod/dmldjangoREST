@@ -15,15 +15,21 @@
 	<div class='col-sm-12'>
     	<h1>Line charts</h1>
 
+
+		<div class='col-sm-4'>
+			<canvas id="lineChart2" width="500" height="500" style="z-axis: 0; position:absolute"></canvas>
+			<canvas id="crosshair" width="500" height="500" style="z-axis: 1; position:absolute; left: 1; top: 1; display: inline-block;"></canvas>
+
+			<script type="text/javascript" src="{% static 'js/charts/charts_line_2.js' %}" defer></script>
+		</div>
+
+
 		<div class='col-sm-4'>
             <canvas style:'position:relative' id="lineChart1" width="500" height="500" url-endpoint="{url 'charts:chart_line_data'}"></canvas>
 			<script type="text/javascript" src="{% static 'js/charts/charts_line_1.js' %}" defer></script>
         </div>
 
-		<div class='col-sm-4'>
-			<canvas id="lineChart2" width="500" height="500"></canvas>
-			<script type="text/javascript" src="{% static 'js/charts/charts_line_2.js' %}" defer></script>
-		</div>
+
 
 		<div class='col-sm-4'>
 			<div>

@@ -1,44 +1,53 @@
+{% load staticfiles %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
+<script type="text/javascript" src="{% static 'js/chartjs/patternomaly.js' %}"></script>
+
 <section class="slide" id="pie">
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+	<div class='row'>
+	    <div class='col-sm-12'>
+	        <h1>Hello World</h1>
+	        <div style="position: relative; height: 500px; width:500px" class='col-sm-6'>
+	            <canvas style="position:absolute; top: 0px; left: 0px" id="NestedChart" width="400" height="400"></canvas>
+	        </div>
+		</div>
+	</div>
+</section>
+
 	<script>
-	$(document).ready(function(){
-	var endpoint = '/charts/api/chart/data/'
-	var defaultData = []
-	var labels = [];
-	$.ajax({
-	    method: "GET",
-	    url: endpoint,
-	    success: function(data){
-	        labels = data.labels
-	        defaultData = data.default
-	        //setChart()
-	    },
-	    error: function(error_data){
-	        console.log("error")
-	        console.log(error_data)
-	    }
-	})
-	Chart.defaults.global.maintainAspectRatio = false;
-	var ctx1 = $("#NestedChart").get(0).getContext("2d");
-	var myChart1 = new Chart(ctx1, {
-		type: 'doughnut',
-		data: {
-			labels: [1,2,3,4,5],		//labels chart (legends for pie / radial)
+	FillPatterns = [
+            pattern.draw('square', 'blue'),
+            pattern.draw('circle', 'red'),
+            pattern.draw('diamond', 'green'),
+            pattern.draw('triangle', 'yellow'),
+			pattern.draw('dot', 'pink')
+        ]
+Chart.defaults.global.animation.duration = 2040
+	$("#pie").bind('deck.becameCurrent', function(ev, direction) {
+		const ctx1 = document.getElementById("NestedChart").getContext("2d");
+		var myChart1 = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+			labels: ['blue', 'red', 'green', 'yellow', 'pink'],	//labels chart (legends for pie / radial)
 			datasets: [{
 				//label: '# of Votes',		//nothing?
-				data: [10,89,4,34,33],
+				data: [22,69,44,14,33],
+				backgroundColor: ['blue', 'red', 'green', 'yellow', 'pink'],
+				hoverBackgroundColor: ['darkblue', 'darkred', 'darkgreen', 'orange', 'magenta'],
 				//borderWidth: 2,
 				//datasetStroke: 2,
 			},
 			{
 				//label: '# of Votes',		//nothing?
 				data: [10,89,4,34,33],
-				//backgroundColor: 'rgba(0,0,0,0)',
+				backgroundColor: FillPatterns,
+				hoverBackgroundColor: ['darkblue', 'darkred', 'darkgreen', 'orange', 'magenta'],
 			//	borderWidth: 2,
 			},
 			{
 				//label: '# of Votes',		//nothing?
 				data: [101,2,14,44,60],
+				backgroundColor: ['blue', 'red', 'green', 'yellow', 'pink'],
+				hoverBackgroundColor: ['darkblue', 'darkred', 'darkgreen', 'orange', 'magenta'],
 				//borderWidth: 2,
 					}
 				]
@@ -46,28 +55,35 @@
 		options: {
 			cutoutPercentage: 0,
 			//segmentStrokeColor: 'rgba(2,56,56,1)',
-		//	segmentStrokeWidth: 10,
+			//segmentStrokeWidth: 10,
 			segmentShowStroke: false,
-	    animation: {
-	        duration:2000
-	    },
-	     responsive:true,
-	    maintainAspectRatio: true
+		animation: {
+			easing: "linear",
+			duration: 2040,  //min 17 ms per step, 60 steps = 1020ms
+			animateScale: true,
+			animateRotate: true,
+		},
+		responsive:true,
+		maintainAspectRatio: true
 	}
 		});
-})
+
+
+	if(direction == "forward"){
+		console.log("forward");
+						}
+	else{
+	  console.log("backward");
+	  //myChart1.destroy();
+	  //myChart1.update();
+	  //myChart1.reset();
+	  //myChart1.clear();
+	  myChart1.stop();  //doesn't animate
+	  //myChart1.update();
+	  //myChart1.render()
+	}
+	});
+
+
+
 	</script>
-
-	<div class='row'>
-	    <div class='col-sm-12'>
-	        <h1>Hello World</h1>
-	        <div style="position: relative; height: 500px; width:500px" class='col-sm-6'>
-	            <canvas style="position:absolute; top: 0px; left: 0px" id="NestedChart" width="400" height="400"></canvas>
-				<canvas style="position:absolute; top: 18%; left: 20%" id="NestedChart2" width="200" height="200"></canvas>
-	        </div>
-
-
-
-	    </div>
-	</div>
-</section>

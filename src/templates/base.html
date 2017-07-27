@@ -33,6 +33,8 @@ $(document).ready(function(){
         <li><a href='{% url "main" %}'>Home</a></li>
 		<li><a href='{% url "posts:list" %}'>Blog</a></li>
 		<li><a href='{% url "charts:home" %}'>Charts</a></li>
+		<li><a href='{% url "charts:deck_slidesOne" %}'>Slides</a></li>
+		
         {% block post_detail_link %}
         {% endblock %}
 

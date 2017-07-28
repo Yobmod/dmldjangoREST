@@ -13,7 +13,7 @@ class HomeView(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
 		data = {"customers": User.objects.all().count(),} #can use database info as the data
 		context = {'data':data}
-		return render(request, 'charts_main.html', context)
+		return render(request, 'charts/charts_main.html', context)
 
 def brython(request):
     return render(request, 'brython.html')
@@ -26,7 +26,7 @@ def brython(request):
 # 	return JsonResponse(data) # http response
 class ChartView(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
-		return render(request, 'charts.html')
+		return render(request, 'charts/charts.html')
 
 class ChartData(APIView):
 	authentication_classes = []
@@ -62,7 +62,7 @@ class ChartData(APIView):
 
 class ChartViewTwo(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
-		return render(request, 'charts2.html')
+		return render(request, 'charts/charts2.html')
 
 class ChartDataTwo(APIView):
 	authentication_classes = []
@@ -79,7 +79,7 @@ class ChartDataTwo(APIView):
 
 class ChartViewLine(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
-		return render(request, 'charts_line.html')
+		return render(request, 'charts/charts_line.html')
 
 class ChartDataLineOne(APIView):
 	authentication_classes = []
@@ -111,5 +111,9 @@ class ChartDataLineTwo(APIView):
 		return Response(data)
 		#return JsonResponse(data)
 
+class ChartViewBarFunnel(View):   #use context in html js tags
+	def get(self, request, *args, **kwargs):
+		return render(request, 'charts/chart_bar_funnel.html')
+
 def deck_slidesOne(request):
-	return render(request, 'deck_slidesOne.html')
+	return render(request, 'slides1/deck_slidesOne.html')

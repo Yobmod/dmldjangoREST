@@ -5,6 +5,7 @@ from .views import (HomeView, #get_data,
 					ChartView, ChartData,
 					ChartViewTwo, ChartDataTwo,
 					ChartViewLine, ChartDataLineOne, ChartDataLineTwo,
+					ChartViewBarFunnel,
 					)
 
 
@@ -22,6 +23,8 @@ urlpatterns = [
 	url(r'^chart_line/$', ChartViewLine.as_view(), name='chart_line'),
 	url(r'^api/chart_line1/data/$', ChartDataLineOne.as_view(), name='chart_line_data1'),
 	url(r'^api/chart_line2/data/$', ChartDataLineTwo.as_view(), name='chart_line_data2'),
+
+	url(r'^chart_bar_funnel/$', ChartViewBarFunnel.as_view(), name='chart_bar_funnel'),
 
 	url(r'^chart_Bars_Radar/$', ChartViewTwo.as_view(), name='chart_Bars_Radar'),
 	url(r'^chart_Pi_Donut_Polar/$', ChartViewTwo.as_view(), name='chart_Pi_Donut_Polar'),

@@ -1,25 +1,18 @@
-<!doctype html>
-<html>
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-<head>
-    <title>Bar Chart</title>
-	<script src="../node_modules/chart.js/dist/Chart.bundle.js"></script>
-    <script src="../Chart.BarFunnel.js"></script>
-    <style>
-    canvas {
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
-    </style>
-</head>
+{% block head_extra %}
+<script type="text/javascript" src="{% static 'js/chartjs/Chart.BarFunnel.js' %}" defer></script>
+<script type="text/javascript" src="{% static 'js/charts/charts.config.js' %}" defer></script>
+{% endblock head_extra %}
 
-<body>
+{% block content %}
+
     <div id="container" style="width: 75%;">
         <canvas id="canvas"></canvas>
     </div>
-    <script>
 
+	<script>
         var barChartData = {
             labels: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"],
             datasets: [{
@@ -54,7 +47,7 @@
                     region: {
                       display: true
                     },
-                    responsive: true,
+                    responsive: true,  //funnels dont work on resize
                     legend: {
                         position: 'top',
                     },
@@ -75,6 +68,4 @@
         };
 
     </script>
-</body>
-
-</html>
+{% endblock content %}

@@ -1,4 +1,9 @@
 static_cdn/*  linguist-vendored
+media_cdn/*  linguist-vendored
+
+chartjs/*  linguist-vendored
+deckjs/*  linguist-vendored
+
 
 jquery-3.1.1.min.js linguist-vendored
 bootstrap.min.js linguist-vendored

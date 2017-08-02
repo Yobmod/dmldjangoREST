@@ -18,6 +18,8 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 from accounts.views import (login_view, register_view, logout_view, main_view)
 
@@ -26,6 +28,9 @@ urlpatterns = [
 	url(r'^$', main_view, name='main'),
     url(r'^admin/', admin.site.urls),
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	url(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'), permanent=False), name="favicon"),
+
+
     url(r'^comments/', include("comments.urls", namespace='comments')),
 
     url(r'^register/', register_view, name='register'),
@@ -35,6 +40,7 @@ urlpatterns = [
 	url(r'^charts/', include("charts.urls", namespace='charts')),
 
 	url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
+	url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
 ]
 
 if settings.DEBUG:

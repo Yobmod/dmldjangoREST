@@ -13,10 +13,10 @@ class PostListAPIView(ListAPIView):
 		#pass
 
 class PostDetailAPIView(RetrieveAPIView):
-		queryset = Post.objects.all()
-		serializer_class = PostDetailSerializer
-		permission_classes = [AllowAny]
-		lookup_field = 'slug'
+	queryset = Post.objects.all()
+	serializer_class = PostDetailSerializer
+	permission_classes = [AllowAny]
+	lookup_field = 'slug'
 
 class PostUpdateAPIView(RetrieveUpdateAPIView):
 		queryset = Post.objects.all()

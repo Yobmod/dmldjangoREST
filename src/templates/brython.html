@@ -1,28 +1,13 @@
+{% extends "base/base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block head_title %}Resting the Blog + chartjs{% endblock head_title %}</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
-<link rel='stylesheet' href='{% static "css/base.css" %}' />
-<style>{% block style %}{% endblock style %}</style>
-
-{% include 'base/css.html' %}
-{% include 'base/js.html' %}
+{% block head_title %}Resting the Blog + brython{% endblock head_title %}
+{% block style %}{% endblock style %}
 {% block head_extra %} {% endblock head_extra %}
 
-</head>
 
-
+{% block content %}
 <body onload="brython({debug:1, cache:'none'})">
-
-
 <div id="clockdiv">
 <canvas width="400" height="400" id="clock"></canvas>
 </div>
@@ -132,4 +117,4 @@ else:
 </script>
 
 </body>
-</html>
+{% endblock content %}

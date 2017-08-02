@@ -8,7 +8,7 @@ from django.db.models import Q
 from comments.models import Comment
 from posts.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
 from posts.api.permissions import IsOwnerOrReadOnly
-from .serializers import CommentSerializer, CommentDetailSerializer, CommentChildSerializer
+from .serializers import CommentSerializer, CommentDetailSerializer, CommentChildSerializer, create_comment_serializer
 
 class CommentListAPIView(ListAPIView):
 	serializer_class = CommentSerializer
@@ -45,13 +45,22 @@ class CommentDetailAPIView(RetrieveAPIView):
 # 			#serializer.save(editor=self.request.user)   if had editor model
 # 			pass
 #
-# class CommentCreateAPIView(CreateAPIView):
-# 		queryset = Comment.objects.all()
-# 		serializer_class = PostCreateUpdateSerializer
-# 		permission_classes = [IsAuthenticated, IsAdminUser]
-#
-# 		def perform_create(self, serializer):
-# 			serializer.save(user=self.request.user)
+class CommentCreateAPIView(CreateAPIView):
+		queryset = Comment.objects.all()
+		#serializer_class = CommentCreateSerializer
+		permission_classes = [IsAuthenticated, IsAdminUser]
+
+		def get_serializer_class(self):
+			model_type = self.request.GET.get("type")
+			slug = self.request.GET.get("slug")
+			parent_id = self.request.GET.get("parent_id", None)
+			return create_comment_serializer(model_type=model_type,
+											slug=slug,
+											parent_id=parent_id,
+											user=self.request.user)
+
+		# def perform_create(self, serializer):
+		# 	serializer.save(user=self.request.user)
 #
 # class CommentDeleteAPIView(DestroyAPIView):
 # 		queryset = Comment.objects.all()

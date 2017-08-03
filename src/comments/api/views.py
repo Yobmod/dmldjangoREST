@@ -6,8 +6,10 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django.db.models import Q
 
 from comments.models import Comment
-from posts.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
-from posts.api.permissions import IsOwnerOrReadOnly
+#from posts.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
+from utilities.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
+from utilities.api.permissions import IsOwnerOrReadOnly
+#from posts.api.permissions import IsOwnerOrReadOnly
 from .serializers import CommentSerializer, CommentDetailSerializer, CommentChildSerializer, create_comment_serializer
 
 class CommentListAPIView(ListAPIView):

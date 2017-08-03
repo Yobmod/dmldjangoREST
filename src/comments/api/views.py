@@ -1,22 +1,24 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
+
 #from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
 
 from django.db.models import Q
 
 from comments.models import Comment
-#from posts.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
-from utilities.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
-from utilities.api.permissions import IsOwnerOrReadOnly
-#from posts.api.permissions import IsOwnerOrReadOnly
-from .serializers import CommentSerializer, CommentDetailSerializer, CommentChildSerializer, create_comment_serializer
+from posts.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
+#from utilities.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
+#from utilities.api.permissions import IsOwnerOrReadOnly
+from posts.api.permissions import IsOwnerOrReadOnly
+from .serializers import (CommentSerializer, CommentDetailSerializer, CommentChildSerializer, create_comment_serializer, CommentEditSerializer,)
 
 class CommentListAPIView(ListAPIView):
 	serializer_class = CommentSerializer
 	permission_classes = [AllowAny]
 	filter_backends = [SearchFilter, OrderingFilter]
-	search_fields = ['parent', 'content', 'user__first_name' ]
+	search_fields = ['parent', 'content', 'user__first_name']
 	pagination_class = PostPageNumberPagination
 
 	def get_queryset(self, *args, **kwargs):
@@ -37,19 +39,20 @@ class CommentDetailAPIView(RetrieveAPIView):
 		lookup_field = 'id'
 		#lookup_url_kwarg = "zzz"
 #
-# class CommentUpdateAPIView(RetrieveUpdateAPIView):
-# 		queryset = Comment.objects.all()
-# 		serializer_class = PostCreateUpdateSerializer
-# 		permission_classes = [IsOwnerOrReadOnly, IsAdminUser]
-# 		lookup_field = 'slug'
-#
-# 		def perform_update(self, serializer):
-# 			#serializer.save(editor=self.request.user)   if had editor model
-# 			pass
+class CommentEditAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
+		queryset = Comment.objects.filter(id__gte=0)
+		serializer_class = CommentEditSerializer
+		permission_classes = [IsOwnerOrReadOnly, IsAdminUser]
+		lookup_field = 'id'
+
+		def put(self, request, *args, **kwargs):
+			return self.update(request, *args, **kwargs)
+
+		def delete(self, request, *args, **kwargs):
+			return self.destroy(request, *args, **kwargs)
 #
 class CommentCreateAPIView(CreateAPIView):
 		queryset = Comment.objects.all()
-		#serializer_class = CommentCreateSerializer
 		permission_classes = [IsAuthenticated, IsAdminUser]
 
 		def get_serializer_class(self):
@@ -62,10 +65,10 @@ class CommentCreateAPIView(CreateAPIView):
 											user=self.request.user)
 
 		# def perform_create(self, serializer):
-		# 	serializer.save(user=self.request.user)
+		#     serializer.save(user=self.request.user)
 #
 # class CommentDeleteAPIView(DestroyAPIView):
-# 		queryset = Comment.objects.all()
-# 		serializer_class = PostDetailSerializer
-# 		permission_classes = [IsOwnerOrReadOnly, IsAdminUser]
-# 		lookup_field = 'slug'
+#         queryset = Comment.objects.all()
+#         serializer_class = PostDetailSerializer
+#         permission_classes = [IsOwnerOrReadOnly, IsAdminUser]
+#         lookup_field = 'slug'

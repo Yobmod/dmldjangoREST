@@ -9,6 +9,7 @@ from .views import (
 	PostCreateAPIView
 	)
 
+app_name = 'posts-api'
 urlpatterns = [
 	url(r'^$', PostListAPIView.as_view(), name='list'),
     url(r'^create/$', PostCreateAPIView.as_view(), name='create'),

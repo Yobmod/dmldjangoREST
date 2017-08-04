@@ -8,7 +8,7 @@ from .views import (HomeView, #get_data,
 					ChartViewBarFunnel,
 					)
 
-
+app_name = 'charts'
 urlpatterns = [
 	url(r'^$', HomeView.as_view(), name='home'),
 #	url(r'^api/data/$', get_data, name='api-data'), in html can use <url-endpoint="{url 'api-data'}">

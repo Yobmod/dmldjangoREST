@@ -1,41 +1,44 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block head_title %}Resting the Blog + chartjs{% endblock head_title %}</title>
+<!--DOCTYPE html -->
+<html>
+<head>
+<title>{% block head_title %}Advancing the Blog{% endblock head_title %}</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+
+
 <link rel='stylesheet' href='{% static "css/base.css" %}' />
-<style>{% block style %}{% endblock style %}</style>
+<style>
+{% block style %}{% endblock style %}
+</style>
 
-{% include 'base/css.html' %}
-{% include 'base/bootstrap_defaults.html' %}
 {% block head_extra %} {% endblock head_extra %}
-
-{% include 'base/js.html' %}
-<script>
-$(document).ready(function(){
-  {% block jquery %}{% endblock %}
-})
-</script>
 </head>
-
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 
 {% include "messages_display.html" %}
-<div class='container-fluid' style="width:100%">
+<div class='container'>
     <ol class='breadcrumb'>
-        <li><a href='{% url "main" %}'>Home</a></li>
-		<li><a href='{% url "posts:list" %}'>Blog</a></li>
+		<li><a href='{% url "main" %}'>Home</a></li>
+        <li><a href='{% url "posts:list" %}'>Posts</a></li>
 		<li><a href='{% url "charts:home" %}'>Charts</a></li>
-		<li><a href='{% url "charts:deck_slidesOne" %}'>Slides</a></li>
+		<li><a href='{% url "charts:deck_slidesOne" %}'>Deck</a></li>
 		<li><a href='{% url "charts:brython" %}'>Brython</a></li>
-
         {% block post_detail_link %}
         {% endblock %}
 
@@ -46,17 +49,74 @@ $(document).ready(function(){
         <li class='pull-right'><a href='{% url "logout" %}'>Logout</a></li>
         {% endif %}
     </ol>
-
-	<div class='container-fluid'>
-	{% block content %}
-	{% endblock content %}
-	</div>
+{% block content %}{% endblock content %}
 </div>
 
 
 
+<!-- Latest compiled and minified JavaScript -->
+<script   src="http://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
 
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js'></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".content-markdown").each(function(){
+            var content = $(this).text()
+            var markedContent = marked(content)
+            $(this).html(markedContent)
+    })
+    $(".post-detail-item img").each(function(){
+            $(this).addClass("img-responsive");
+    })
+
+
+
+    var contentInput = $("#id_content");
+
+    function setContent(value){
+        var markedContent = marked(value)
+        $("#preview-content").html(markedContent)
+        $("#preview-content img").each(function(){
+            $(this).addClass("img-responsive")
+        })
+    }
+    setContent(contentInput.val())
+
+    contentInput.keyup(function(){
+        var newContent = $(this).val()
+        setContent(newContent)
+    })
+
+    var titleInput = $("#id_title");
+
+
+
+    function setTitle(value) {
+        $("#preview-title").text(value)
+    }
+    setTitle(titleInput.val())
+
+    titleInput.keyup(function(){
+        var newContent = $(this).val()
+        setTitle(newContent)
+    })
+
+    $(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+        $(this).parent().next(".comment-reply").fadeToggle();
+    })
+
+
+    // preview-title
+    // preview-content
+
+})
+
+</script>
 
 </body>
 </html>

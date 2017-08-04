@@ -7,6 +7,7 @@ from .views import (
 	CommentEditAPIView,
 	)
 
+app_name='comments-api'
 urlpatterns = [
 	url(r'^$', CommentListAPIView.as_view(), name='list'),
 	url(r'^(?P<id>\d+)/$', CommentDetailAPIView.as_view(), name='thread'),

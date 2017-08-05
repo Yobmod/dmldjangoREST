@@ -2,7 +2,8 @@ from rest_framework.serializers import ModelSerializer, HyperlinkedIdentityField
 #from django.shortcuts import render
 from posts.models import Post
 from comments.models import Comment
-from comments.api.serializers import CommentSerializer
+from comments.api.serializers import CommentListSerializer
+from rest_framework import request
 
 post_detail_url = HyperlinkedIdentityField(view_name = 'posts-api:detail', lookup_field = 'slug',)# context={'request':request})
 post_update_url = HyperlinkedIdentityField(view_name = 'posts-api:update', lookup_field = 'slug',)
@@ -83,7 +84,7 @@ class PostDetailSerializer(ModelSerializer):
 		#content_type = obj.get_content_type
 		#object_id = obj.id
 		comment_queryset = Comment.objects.filter_by_instance(obj)
-		comments = CommentSerializer(comment_queryset, many=True).data
+		comments = CommentListSerializer(comment_queryset, many=True).data
 		return comments
 
 class PostCreateUpdateSerializer(ModelSerializer):

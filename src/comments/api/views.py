@@ -12,17 +12,17 @@ from posts.api.pagination import PostLimitOffsetPagination, PostPageNumberPagina
 #from utilities.api.pagination import PostLimitOffsetPagination, PostPageNumberPagination
 #from utilities.api.permissions import IsOwnerOrReadOnly
 from posts.api.permissions import IsOwnerOrReadOnly
-from .serializers import (CommentSerializer, CommentDetailSerializer, CommentChildSerializer, create_comment_serializer, CommentEditSerializer,)
+from .serializers import (CommentListSerializer, CommentDetailSerializer, CommentChildSerializer, create_comment_serializer, CommentEditSerializer,)
 
 class CommentListAPIView(ListAPIView):
-	serializer_class = CommentSerializer
+	serializer_class = CommentListSerializer
 	permission_classes = [AllowAny]
 	filter_backends = [SearchFilter, OrderingFilter]
 	search_fields = ['parent', 'content', 'user__first_name']
 	pagination_class = PostPageNumberPagination
 
 	def get_queryset(self, *args, **kwargs):
-		queryset_list = Comment.objects.all()
+		queryset_list = Comment.objects.filter(id__gte=0)
 		query = self.request.GET.get("q")
 		if query:
 			queryset_list = queryset_list.filter(
@@ -42,7 +42,7 @@ class CommentDetailAPIView(RetrieveAPIView):
 class CommentEditAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
 		queryset = Comment.objects.filter(id__gte=0)
 		serializer_class = CommentEditSerializer
-		permission_classes = [IsOwnerOrReadOnly, IsAdminUser]
+		permission_classes = [AllowAny]#, IsOwnerOrReadOnly, IsAdminUser]
 		lookup_field = 'id'
 
 		def put(self, request, *args, **kwargs):
@@ -50,7 +50,7 @@ class CommentEditAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
 
 		def delete(self, request, *args, **kwargs):
 			return self.destroy(request, *args, **kwargs)
-#
+
 class CommentCreateAPIView(CreateAPIView):
 		queryset = Comment.objects.all()
 		permission_classes = [IsAuthenticated, IsAdminUser]
@@ -63,12 +63,3 @@ class CommentCreateAPIView(CreateAPIView):
 											slug=slug,
 											parent_id=parent_id,
 											user=self.request.user)
-
-		# def perform_create(self, serializer):
-		#     serializer.save(user=self.request.user)
-#
-# class CommentDeleteAPIView(DestroyAPIView):
-#         queryset = Comment.objects.all()
-#         serializer_class = PostDetailSerializer
-#         permission_classes = [IsOwnerOrReadOnly, IsAdminUser]
-#         lookup_field = 'slug'

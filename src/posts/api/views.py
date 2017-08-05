@@ -2,6 +2,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdate
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter, OrderingFilter
 #from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
+from rest_framework import request
 
 from django.db.models import Q
 
@@ -11,7 +12,7 @@ from .pagination import PostLimitOffsetPagination, PostPageNumberPagination
 from .permissions import IsOwnerOrReadOnly
 
 from .serializers import PostListSerializer, PostDetailSerializer, PostCreateUpdateSerializer
-from comments.api.serializers import CommentSerializer
+from comments.api.serializers import CommentListSerializer
 
 class PostListAPIView(ListAPIView):
 	serializer_class = PostListSerializer
@@ -38,6 +39,8 @@ class PostDetailAPIView(RetrieveAPIView):
 		serializer_class = PostDetailSerializer
 		permission_classes = [AllowAny]
 		lookup_field = 'slug'
+
+
 
 class PostUpdateAPIView(RetrieveUpdateAPIView):
 		queryset = Post.objects.all()

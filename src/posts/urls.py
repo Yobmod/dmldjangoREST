@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^create/$', post_create),
     url(r'^(?P<slug>[\w-]+)/$', post_detail, name='detail'),
     url(r'^(?P<slug>[\w-]+)/edit/$', post_update, name='update'),
-    url(r'^(?P<slug>[\w-]+)/delete/$', post_delete_req),
-	url(r'^(?P<slug>[\w-]+)/delete/confirm/$', post_delete_confirm),
+    url(r'^(?P<slug>[\w-]+)/delete/$', post_delete_req, name='delete'),
+	url(r'^(?P<slug>[\w-]+)/delete/confirm/$', post_delete_confirm, name='delete_confirm'),
     #url(r'^posts/$', "<appname>.views.<function_name>"),
 ]

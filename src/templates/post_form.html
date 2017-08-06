@@ -1,4 +1,5 @@
 {% extends "base/base.html" %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
 {% block head_extra %}
@@ -26,4 +27,6 @@
 <input type='submit' class='btn btn-default' value='Create Post' />
 </form>
 </div>
+
+<script type="text/javascript" src='{% static "js/marksafe.js" %}'></script>
 {% endblock content %}

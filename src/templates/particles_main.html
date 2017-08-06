@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}Resting the Blog + particles{% endblock head_title %}
+{% block style %}{% endblock style %}
+{% block head_extra %}
+<link rel='stylesheet' href='{% static "vendor/particles/particles.css" %}' />
+{% endblock head_extra %}
+
+
+{% block content %}
+<body>
+<div id="particles-js">
+<div class="particles-overlay"><p> Done with particles.js. Check out particleground.js (uses jquery) and snowfallcanvas</p> </div>
+</div>
+
+<div id="particles-jsB">
+</div>
+
+<script src='https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
+<!--<script type="text/javascript" src='{% static "vendor/particles/particles.js" %}'></script>-->
+<script>
+particlesJS.load('particles-js', '{% static "vendor/particles/particles.json" %}',
+function(){console.log("nldd")})</script>
+<script>
+particlesJS.load('particles-jsB', '{% static "vendor/particles/particlesB.json" %}',
+function(){console.log("nldd")})</script>
+
+</body>
+{% endblock content %}

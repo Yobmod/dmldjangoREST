@@ -101,7 +101,7 @@ Linkedin
         {% endfor %}
     </div>
 
-
+<a href='{% url "posts:update" slug=instance.slug %}' class='btn btn-primary'>Edit</a>
 <a href='{% url "posts:delete" slug=instance.slug %}' class='btn btn-danger'>Delete</a>
 
 </div>

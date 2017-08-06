@@ -117,3 +117,6 @@ class ChartViewBarFunnel(View):   #use context in html js tags
 
 def deck_slidesOne(request):
 	return render(request, 'slides1/deck_slidesOne.html')
+
+def particles_main(request):
+	return render(request, 'particles_main.html')

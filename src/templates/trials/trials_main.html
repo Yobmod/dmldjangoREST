@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-12'>
+    	<h2>Trials:</h2>
+		<ul>
+			<li><a href='{% url "trials:brython" %}'>Brython</a></li>
+			<li><a href='{% url "trials:particles" %}'>ParticlesJS</a></li>
+			<li><a href='{% url "trials:deck_slidesOne" %}'>DeckJS</a></li>
+
+			<li><a href="http://gijsroge.github.io/tilt.js/">TiltJS</a></li>
+			<li><a href='{% url "trials:progressbar" %}'>ProgressbarJS</a> <a href='https://kimmobrunfeldt.github.io/progressbar.js/'>(link)</a></li>
+
+			<li><a href="http://letteringjs.com/>LetteringJS"</a></li>
+			<li><a href="http://textillate.js.org/"/>TextillateJS</a></li>
+			<li><a href="http://www.mattboldt.com/demos/typed-js/">TypedJS</a></li>
+
+			<li><a href="http://qrohlf.com/trianglify/">TrianglifyJS</a></li>
+			<li><a href="https://briangonzalez.github.io/jquery.adaptive-backgrounds.js/">AdaptiveBackgroundsJS (JQuery)</a></li>
+			<li><a href="http://gka.github.io/chroma.js/">ChromaJS</a></li>
+
+			<li><a href="https://atomiks.github.io/tippyjs/">TippyJS</a></li>
+			<li><a href="http://riteshkr.com/embed.js/">EmbedJS</a></li>
+			<li><a href="http://leafo.net/sticky-kit/">StickyKitJS (JQuery)</a></li>
+
+			<h2>Assets:</h2>
+			<li><a href="https://simpleicons.org/">SimpleIcons</a></li>
+
+
+		</ul>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^logout/', logout_view, name='logout'),
     url(r'^posts/', include("posts.urls", namespace='posts')),
 	url(r'^charts/', include("charts.urls", namespace='charts')),
-
+	url(r'^trials/', include("trials.urls", namespace='trials')),
 	url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
 	url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
 ]

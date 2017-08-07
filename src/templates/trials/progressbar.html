@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}progressbar{% endblock head_title %}
+{% block style %}{% endblock style %}
+{% block head_extra %} {% endblock head_extra %}
+
+
+{% block content %}
+<body>
+	<div class='row row-eq-height'>
+		<div class='col-sm-12'>
+
+			<div class='col-sm-12' id="progressbar_line">
+			</div>
+
+		</div>
+		<br />
+		<br />
+	</div>
+
+	<div class='row row-eq-height'>
+		<div class='col-sm-12'>
+
+			<div class='col-sm-6' id="progressbar_circle" style="height:200px">
+			</div>
+
+			<div class='col-sm-6' id="progressbar_semi" style= "height:200px">
+			</div>
+		</div>
+	</div>
+
+
+
+
+<script type="text/javascript" src='{% static "vendor/progressbar.js" %}'></script>
+<script>
+var p_line = new ProgressBar.Line('#progressbar_line', {
+	strokeWidth: 2,
+	easing: 'easeInOut',
+	duration: 2400,
+	color: '#FFEA82',
+	trailColor: 'white',
+	trailWidth: 1,
+	svgStyle: {width: '100%', height: '100%'},
+	from: {color: '#FFEA82'},
+	to: {color: '#ED6A5A'},
+	step: function(state, p_line){
+  		p_line.path.setAttribute('stroke', state.color);
+  	}
+  			})
+p_line.animate(1);
+</script>
+<script>
+var circle = new ProgressBar.Circle('#progressbar_circle', {
+        color: '#555',
+        trailColor: '#eee',
+        strokeWidth: 3,
+		svgStyle: {width: '100%', height: '100%'},
+        duration: 2500,
+        easing: 'easeInOut'
+    });
+
+    circle.set(0.05);
+
+    setTimeout(function() {
+        circle.animate(0.3);
+    }, 1000);
+
+    setTimeout(function() {
+        circle.animate(0.4);
+    }, 3500);
+
+    setTimeout(function() {
+        circle.animate(0.8);
+    }, 5500);
+
+    setTimeout(function() {
+        circle.animate(1);
+    }, 8000);
+</script><!--see example to add rotation and bounce-->
+<script>
+var p_semi = new ProgressBar.SemiCircle('#progressbar_semi', {
+	easing: 'easeIn',
+	svgStyle: {width: '100%', height: '100%'},
+});
+p_semi.animate(1);
+</script>
+</body>
+{% endblock content %}

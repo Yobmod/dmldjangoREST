@@ -15,9 +15,6 @@ class HomeView(View):   #use context in html js tags
 		context = {'data':data}
 		return render(request, 'charts/charts_main.html', context)
 
-def brython(request):
-    return render(request, 'brython.html')
-
 # def get_data(request, *args, **kwargs): #data is url, js on page finds it there
 # 	data = {
 # 		"sales": 100,
@@ -114,9 +111,3 @@ class ChartDataLineTwo(APIView):
 class ChartViewBarFunnel(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
 		return render(request, 'charts/chart_bar_funnel.html')
-
-def deck_slidesOne(request):
-	return render(request, 'slides1/deck_slidesOne.html')
-
-def particles_main(request):
-	return render(request, 'particles_main.html')

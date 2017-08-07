@@ -33,9 +33,4 @@ urlpatterns = [
 	url(r'^chart_humidity/$', ChartViewTwo.as_view(), name='chart_humidity'),
 	url(r'^chart_temparature/$', ChartViewTwo.as_view(), name='chart_temparature'),
 
-	url(r'^deck_slides1/$', views.deck_slidesOne, name='deck_slidesOne'),
-	url(r'^particles/$', views.particles_main, name='particles_main'),
-	url(r'^brython/$', views.brython, name='brython'),
-
-
 	]

@@ -1,12 +1,5 @@
-try:
-    from urllib import quote_plus #python 2
-except:
-    pass
 
-try:
-    from urllib.parse import quote_plus #python 3
-except:
-    pass
+from urllib.parse import quote_plus #python 3
 
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
@@ -161,7 +154,7 @@ def post_delete_confirm(request, slug=None):
 	if not request.user.is_staff or not request.user.is_superuser:
 		raise Http404
 	instance = get_object_or_404(Post, slug=slug)
-	
+
 	instance.delete()
 	messages.success(request, "Successfully deleted")
 	return redirect("posts:list")

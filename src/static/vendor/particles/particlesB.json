@@ -40,7 +40,7 @@
     },
     "move":{
       "enable":true,
-      "speed":2,
+      "speed":5,
       "direction":"none",
       "straight":false,
 	  "out_mode": "bounce",
@@ -73,8 +73,8 @@
           "speed": 3
         },
         "repulse": {
-          "distance": 200,
-          "duration": 0.4
+          "distance": 150,
+          "duration": 0.3
         },
         "push": {
           "particles_nb": 4

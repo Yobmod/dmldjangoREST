@@ -19,11 +19,15 @@
   <link rel="stylesheet" media="screen" href='{% static "vendor/deckjs/themes/transition/fade.css" %}'> <!-- Transition theme. More available in /themes/transition/ or create your own. -->
   <link rel="stylesheet" media="print" href='{% static "vendor/deckjs/core/print.css" %}'> <!-- Basic black and white print styles -->
 
+  <!--
+  <script src='{% static "vendor/jquery/jquery-3.2.1.min.js" %}'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src='{% static "vendor/modernizr.custom.js" %}'></script>
-  <script src='{% static "vendor/deckjs/core/deck.core.js" %}'></script>
+-->
+
+<script src='{% static "vendor/deckjs/modernizr.custom.js" %}'></script> <!--needed for ie11 and FF-->
+<script src='{% static "vendor/deckjs/core/deck.core.js" %}'></script>
 
 </head>
 

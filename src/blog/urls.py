@@ -41,6 +41,7 @@ urlpatterns = [
 	url(r'^trials/', include("trials.urls", namespace='trials')),
 	url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
 	url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
+	url(r'^api/accounts/', include("accounts.api.urls", namespace='accounts-api')),
 ]
 
 if settings.DEBUG:

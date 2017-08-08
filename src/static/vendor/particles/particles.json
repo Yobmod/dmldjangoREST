@@ -36,7 +36,7 @@
       }
     },
     "size": {
-      "value": 25,
+      "value": 125,
       "random": true,
       "anim": {
         "enable": false,
@@ -61,7 +61,7 @@
       "out_mode": "out",
       "bounce": false,
       "attract": {
-        "enable": true,
+        "enable": false,
         "rotateX": 600,
         "rotateY": 1200
       }

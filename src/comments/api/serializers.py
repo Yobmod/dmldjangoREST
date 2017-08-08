@@ -90,6 +90,7 @@ class CommentChildSerializer(ModelSerializer):
 					'id',
 					#'url',
 					'content',
+					'user',
 					'timestamp',
 								]
 

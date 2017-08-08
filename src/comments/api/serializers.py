@@ -3,8 +3,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import get_user_model
 #from django.core.exceptions import ValidationError﻿
 from comments.models import Comment
+from accounts.api.serializers import UserDetailSerializer
 
-#comment_detail_url = HyperlinkedIdentityField(view_name = 'comments-api:thread', lookup_field = 'id',)
 User = get_user_model()
 
 def create_comment_serializer(model_type='post', slug=None, parent_id=None, user=None):
@@ -60,7 +60,7 @@ comment_detail_url = HyperlinkedIdentityField(view_name='comments-api:thread', l
 
 class CommentListSerializer(ModelSerializer):
 	url = comment_detail_url
-	user = SerializerMethodField()
+	user = UserDetailSerializer(read_only=True)
 	reply_count = SerializerMethodField()
 	class Meta:
 		model = Comment
@@ -84,6 +84,7 @@ class CommentListSerializer(ModelSerializer):
 
 class CommentChildSerializer(ModelSerializer):
 	#url = comment_detail_url
+	user = UserDetailSerializer(read_only=True)
 	class Meta:
 		model = Comment
 		fields = [
@@ -96,7 +97,7 @@ class CommentChildSerializer(ModelSerializer):
 
 class CommentDetailSerializer(ModelSerializer):
 	#url = comment_detail_url
-	user = SerializerMethodField()
+	user = UserDetailSerializer(read_only=True)
 	replies = SerializerMethodField()
 	reply_count = SerializerMethodField()
 	content_object_url = SerializerMethodField() #getting the post/comment comment is on
@@ -118,8 +119,6 @@ class CommentDetailSerializer(ModelSerializer):
 								'reply_count',
 							]
 
-	def get_user(self, obj):
-		return str(obj.user.username)
 
 	def get_replies(self, obj):
 		if obj.is_parent:
@@ -140,7 +139,7 @@ class CommentDetailSerializer(ModelSerializer):
 
 class CommentEditSerializer(ModelSerializer):
 	#url = comment_detail_url
-	user = SerializerMethodField()
+	UserDetailSerializer(read_only=True)
 	replies = SerializerMethodField()
 	reply_count = SerializerMethodField()
 	class Meta:

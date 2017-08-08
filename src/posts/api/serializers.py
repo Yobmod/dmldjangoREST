@@ -2,7 +2,8 @@ from rest_framework.serializers import ModelSerializer, HyperlinkedIdentityField
 #from django.shortcuts import render
 from posts.models import Post
 from comments.models import Comment
-from comments.api.serializers import CommentListSerializer
+from comments.api.serializers import CommentListSerializer, CommentDetailSerializer
+from accounts.api.serializers import UserDetailSerializer
 #from rest_framework.request import Request
 
 post_detail_url = HyperlinkedIdentityField(view_name = 'posts-api:detail', lookup_field = 'slug',)# context={'request':request})
@@ -11,7 +12,7 @@ post_delete_url = HyperlinkedIdentityField(view_name = 'posts-api:delete', looku
 
 class PostListSerializer(ModelSerializer):
 	url = post_detail_url
-	user = SerializerMethodField()
+	user = UserDetailSerializer(read_only=True)
 	comment_count = SerializerMethodField()
 	class Meta:
 		model = Post
@@ -45,9 +46,10 @@ class PostDetailSerializer(ModelSerializer):
 	url = post_detail_url
 	update_url = post_update_url
 	delete_url = post_delete_url
-	user = SerializerMethodField()
+	user = UserDetailSerializer(read_only=True)
 	image = SerializerMethodField()
 	html = SerializerMethodField()
+	#comments = CommentDetailSerializer(comment_qs)
 	#comments = SerializerMethodField()
 	comment_count = SerializerMethodField()
 
@@ -88,7 +90,6 @@ class PostDetailSerializer(ModelSerializer):
 		comment_queryset = Comment.objects.filter_by_instance(obj)
 		comments = CommentListSerializer(comment_queryset, many=True).data
 		return comments
-
 
 	def get_comment_count(self, obj):
 		comment_queryset = Comment.objects.filter_by_instance(obj)

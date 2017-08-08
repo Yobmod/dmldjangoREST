@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 from django.contrib.staticfiles.storage import staticfiles_storage
+from rest_framework_jwt.views import obtain_jwt_token
 
 from accounts.views import (login_view, register_view, logout_view, main_view)
 
@@ -28,6 +29,8 @@ urlpatterns = [
 	url(r'^$', main_view, name='main'),
     url(r'^admin/', admin.site.urls),
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	url(r'^api/auth/token/', obtain_jwt_token),
+
 	url(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'), permanent=False), name="favicon"),
 
 
@@ -42,6 +45,7 @@ urlpatterns = [
 	url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
 	url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
 	url(r'^api/accounts/', include("accounts.api.urls", namespace='accounts-api')),
+
 ]
 
 if settings.DEBUG:

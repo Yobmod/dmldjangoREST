@@ -69,8 +69,8 @@ REST_FRAMEWORK = {
     	#'rest_framework.authentication.BasicAuthentication',
 	),
 	'DEFAULT_PERMISSION_CLASSES': (
-		 'rest_framework.permissions.AllowAny', #all views will be this unless has permission class added
-		 #'rest_framework.permissions.IsAuthenticated',
+		 #'rest_framework.permissions.AllowAny', #all views will be this unless has permission class added
+		 'rest_framework.permissions.IsAuthenticated',
 		 #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
 	)
 }

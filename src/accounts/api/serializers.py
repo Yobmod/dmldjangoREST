@@ -100,3 +100,14 @@ class UserLoginSerializer(ModelSerializer):
 				raise ValidationError("Password is incorrect, please try again.")
 		data["token"] = 34543342
 		return data
+
+class UserDetailSerializer(ModelSerializer):
+	#url = user_detail_url
+	class Meta:
+		model = User
+		fields = [
+					'username',
+					'email',
+					'first_name',
+					'last_name',
+								]

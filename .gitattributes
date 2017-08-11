@@ -5,6 +5,8 @@ static_cdn/vendor/*  linguist-vendored=true
 static_cdn/vendor/deckjs/*  linguist-vendored
 vendor/deckjs/*  linguist-vendored
 
+*.js linguist-vendored
+
 src/static/vendor/* linguist-vendored
 waypoints/* linguist-vendored
 src/static/vendor/waypoints/jquery.waypoints.min.js linguist-vendored

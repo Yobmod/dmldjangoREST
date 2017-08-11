@@ -1,7 +1,7 @@
-static_cdn/*  linguist-vendored
+static_cdn/*  linguist-vendored=true
 media_cdn/*  linguist-vendored
-*/vendor/* linguist-vendored
-static_cdn/vendor/*  linguist-vendored
+*/vendor/* linguist-vendored=true
+static_cdn/vendor/*  linguist-vendored=true
 static_cdn/vendor/deckjs/*  linguist-vendored
 vendor/deckjs/*  linguist-vendored
 

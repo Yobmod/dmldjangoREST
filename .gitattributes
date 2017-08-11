@@ -1,6 +1,6 @@
-static_cdn/  linguist-vendored
+static_cdn/*/*  linguist-vendored
 media_cdn/*  linguist-vendored
-vendor/ linguist-vendored
+vendor/*/* linguist-vendored
 
 chartjs/*  linguist-vendored
 deckjs/*  linguist-vendored

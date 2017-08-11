@@ -3,6 +3,7 @@ media_cdn/*  linguist-vendored
 vendor/* linguist-vendored
 static_cdn/vendor/*  linguist-vendored
 static_cdn/vendor/deckjs/*  linguist-vendored
+vendor/deckjs/*  linguist-vendored
 
 chartjs/*  linguist-vendored
 deckjs/*  linguist-vendored

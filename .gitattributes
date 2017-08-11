@@ -5,7 +5,8 @@ static_cdn/vendor/*  linguist-vendored
 static_cdn/vendor/deckjs/*  linguist-vendored
 vendor/deckjs/*  linguist-vendored
 
-src/static/vendor/*
+src/static/vendor/* linguist-vendored
+waypoints/* linguist-vendored
 
 
 chartjs/*  linguist-vendored

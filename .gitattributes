@@ -8,6 +8,7 @@ vendor/deckjs/*  linguist-vendored
 src/static/vendor/* linguist-vendored
 waypoints/* linguist-vendored
 src/static/vendor/waypoints/jquery.waypoints.min.js linguist-vendored
+src/static/vendor/waypoints/*
 
 chartjs/*  linguist-vendored
 deckjs/*  linguist-vendored

@@ -39,8 +39,27 @@ $.ajax({
     }
 })
 
+var canvas = document.getElementById("crosshair");
+var context = canvas.getContext("2d");
+context.setLineDash([3, 5]);
+
+canvas.addEventListener("mousemove", function(event) {
+    var x = event.pageX - canvas.offsetLeft;
+    var y = event.pageY - canvas.offsetTop;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+    context.moveTo(0,y);
+    context.lineTo(500,y);
+    context.moveTo(x,0);
+    context.lineTo(x,500);
+    context.strokeStyle = "black";
+    context.stroke();
+    context.closePath();
+});
+
 function setChart2(){
-	const ctx2 = document.getElementById("lineChart2");
+	const ctx2 = document.getElementById("lineChart2").getContext("2d");
+
 	var lineChart2 = new Chart(ctx2, {
 	    type: 'line',
 		data: {

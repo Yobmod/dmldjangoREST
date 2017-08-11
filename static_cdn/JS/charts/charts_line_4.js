@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
+function setmyChart(){
 
-var ctx4 = document.getElementById("myChart");
+const ctx4 = document.getElementById("myChart").getContext("2d");
 
 var XPImage = new Image();
     XPImage.src ='http://www.lespaulforum.com/forum/images/smilies/feiertag-smiley-018.gif';
@@ -181,8 +182,12 @@ var data = {
   ]
 };
 
+
 var myChart = new Chart(ctx4, {
   type: 'line',
   data: data,
   options: options,
 });
+
+}
+setmyChart()

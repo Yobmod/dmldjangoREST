@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
+<script type="text/javascript" src="{% static 'js/chartjs/patternomaly.js' %}"></script>
+
+<section class="slide" id="pie">
+	<div class='row'>
+	    <div class='col-sm-12'>
+	        <h1>Hello World</h1>
+	        <div style="position: relative; height: 500px; width:500px" class='col-sm-6'>
+	            <canvas data-chart="pie" style="position:absolute; top: 0px; left: 0px" id="NestedChart" width="400" height="400"></canvas>
+	        </div>
+		</div>
+	</div>
+</section>
+
+  <script src='{% static "vendor/revealjs/reveal.js" %}'></script>
+	<script>
+
+	FillPatterns = [
+            pattern.draw('square', 'blue'),
+            pattern.draw('circle', 'red'),
+            pattern.draw('diamond', 'green'),
+            pattern.draw('triangle', 'yellow'),
+			pattern.draw('dot', 'pink')
+        ]
+Chart.defaults.global.animation.duration = 2040
+Reveal.addEventListener( 'slidechanged', function( event ) {
+		const ctx1 = document.getElementById("NestedChart").getContext("2d");
+		var myChart1 = new Chart(ctx1, {
+			type: 'doughnut',
+			data: {
+			labels: ['blue', 'red', 'green', 'yellow', 'pink'],	//labels chart (legends for pie / radial)
+			datasets: [{
+				//label: '# of Votes',		//nothing?
+				data: [22,69,44,14,33],
+				backgroundColor: ['blue', 'red', 'green', 'yellow', 'pink'],
+				hoverBackgroundColor: ['darkblue', 'darkred', 'darkgreen', 'orange', 'magenta'],
+				//borderWidth: 2,
+				//datasetStroke: 2,
+			},
+			{
+				//label: '# of Votes',		//nothing?
+				data: [10,89,4,34,33],
+				backgroundColor: FillPatterns,
+				hoverBackgroundColor: ['darkblue', 'darkred', 'darkgreen', 'orange', 'magenta'],
+			//	borderWidth: 2,
+			},
+			{
+				//label: '# of Votes',		//nothing?
+				data: [101,2,14,44,60],
+				backgroundColor: ['blue', 'red', 'green', 'yellow', 'pink'],
+				hoverBackgroundColor: ['darkblue', 'darkred', 'darkgreen', 'orange', 'magenta'],
+				//borderWidth: 2,
+					}
+				]
+		},
+		options: {
+			cutoutPercentage: 0,
+			//segmentStrokeColor: 'rgba(2,56,56,1)',
+			//segmentStrokeWidth: 10,
+			segmentShowStroke: false,
+		animation: {
+			easing: "linear",
+			duration: 2040,  //min 17 ms per step, 60 steps = 1020ms
+			animateScale: true,
+			animateRotate: true,
+		},
+		responsive:true,
+		maintainAspectRatio: true
+	}
+		});
+		myChart1.render()
+})
+
+	</script>

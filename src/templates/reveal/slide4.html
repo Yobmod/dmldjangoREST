@@ -1,12 +1,19 @@
 {% load staticfiles %}
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
-<script type="text/javascript" src="{% static 'vendor/chartjs/patternomaly.js' %}"></script>
+
 
 <section class="slide" id="pie">
-	<div class="row">
-	        <h1>Hello World</h1>
-			<canvas id="NestedChart"></canvas>
-	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">ffbfdbd</div><div class="col-md-6">ffbfdbd</div>
+			<div class="" style="border: 5px solid red; float: left; width: 45%">
+				<canvas id="NestedChart" data-chart="doughnut" height="100%"></canvas>
+			</div>
+			<div class="" style="border: 5px solid blue; float: right; width: 45%"><p>fjhfj</p>
+			</div>
+
+</div>
+</div>
+
 </section>
 
   <script src='{% static "vendor/revealjs/reveal.js" %}'></script>
@@ -58,7 +65,7 @@ Reveal.addEventListener( 'slidechanged', function( event ) {
 			segmentShowStroke: false,
 		animation: {
 			easing: "linear",
-			duration: 2040,  //min 17 ms per step, 60 steps = 1020ms
+			duration: 1040,  //min 17 ms per step, 60 steps = 1020ms
 			animateScale: true,
 			animateRotate: true,
 		},

@@ -13,7 +13,7 @@ def reveal_demo(request):
 	return render(request, 'reveal/index.html')
 
 def distinctive_slides(request):
-	return render(request, 'distinctive/slides_base.html')
+	return render(request, 'distinctive/_slides_base.html')
 
 def brython(request):
     return render(request, 'trials/brython.html')

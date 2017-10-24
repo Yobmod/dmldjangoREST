@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 
-<section class="slide" id="pie">
+<section class="slide" id="slide4">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">ffbfdbd</div><div class="col-md-6">ffbfdbd</div>
@@ -30,6 +30,8 @@ Chart.defaults.global.animation.duration = 2040
 const ctx1 = document.getElementById("NestedChart").getContext("2d");
 
 Reveal.addEventListener( 'slidechanged', function( event ) {
+		var prevslide = event.previousSlide.id
+		var currslide = event.currentSlide.id
 		var myChart1 = new Chart(ctx1, {
 			type: 'doughnut',
 			data: {
@@ -73,6 +75,23 @@ Reveal.addEventListener( 'slidechanged', function( event ) {
 		maintainAspectRatio: true
 	}
 		});
-})
+
+		if(prevslide < currslide){
+			var direction = "forward"
+								}
+		else{
+			var direction = "backward"
+		 //myChart1.destroy();
+		  //myChart1.update();
+		  //myChart1.reset();
+		  //myChart1.clear();
+		  myChart1.stop();  //doesn't animate
+		  //myChart1.update();
+		  //myChart1.render()
+
+	  	}
+		console.log(currslide)
+		console.log(direction);
+	  })
 
 	</script>

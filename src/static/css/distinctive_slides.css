@@ -4,6 +4,28 @@ html, body {
 	padding:0;
 }
 
+header, footer {
+	color: white;
+	background-color: steelblue;
+	font-size: 1rem;
+	padding:0.05em;
+	clear: left;
+	text-align: center;
+	width: 100%;
+}
+
+header {
+	grid-area: hd;
+}
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	grid-area: ft;
+
+}
+
 .wrapper3x3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -56,15 +78,7 @@ html, body {
   background-color: lightblue;
 }
 
-header, footer {
-	color: white;
-	background-color: steelblue;
-	font-size: 1rem;
-	padding:0.05em;
-	clear: left;
-	text-align: center;
-	grid-area: hd;
-}
+
 
 .reveal h1 {
 

@@ -8,10 +8,12 @@
   <title>Distinctive Presentation</title>
 
 <link rel="stylesheet" media="screen" href='{% static "vendor/revealjs/reveal.css" %}'>
-<link rel="stylesheet" media="screen" href='{% static "css/slides1.css" %}'>   <!-- Style theme. More available in /themes/style/ or create your own. -->
+<link rel="stylesheet" media="screen" href='{% static "vendor/revealjs/theme/simple.css" %}' id="theme">
+<link rel="stylesheet" media="screen" href='{% static "css/distinctive_slides.css" %}'>   <!-- Style theme. More available in /themes/style/ or create your own. -->
 
-<script src='{% static "vendor/jquery/jquery-3.2.1.min.js" %}'> </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--
+<script defer src='{% static "vendor/jquery/jquery-3.2.1.min.js" %}'> </script>
+<script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 <script src='{% static "vendor/revealjs/head.min.js" %}'></script>
 <script src='{% static "vendor/revealjs/reveal.js" %}'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
@@ -30,11 +32,11 @@
 
 		  <div class="slides">
 			  {% include 'distinctive/_slideTitle.html' %}
-			  {% include 'distinctive/slide1.html' %}
 			  {% include 'distinctive/slide2.html' %}
 			  {% include 'distinctive/slide3.html' %}
 			  {% include 'distinctive/slide4.html' %}
 			  {% include 'distinctive/slide5.html' %}
+			  {% include 'distinctive/slide6.html' %}
 			  {% include 'distinctive/slideAcknowledgments.html' %}
 			</div><!--slides-->
 
@@ -47,17 +49,42 @@
   	Reveal.initialize({
 		width: '100%',
    		height: '100%',
-		margin: 0.05,
-		slideNumber: true,
+		margin: 0.00,
+		display: 'block',
+		slideNumber: "h.v" + 1, //true, "h.v", "h/v", "c", "c/t"
 
-		autoSlide: 5000,
-		defaultTiming: true,
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+		transitionSpeed: 'default', // default/fast/slow
+		//backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+		//autoSlide: 5000, //miliseconds per slide
+		//parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+		//parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px" "ifr ifr?"
+		defaultTiming: 60, //seconds per slide in notes
+		help: true,
+
+		menu: {
+			side: 'right',
+			numbers: true,
+			useTextContentForMissingTitles: false,
+			transitions: true, //showpanel
+			themes: false,
+			openSlideNumber: true, //click number for menu
+			openButton: false, //show menu button
+		},
+
+		// keyboard: {
+	    //   13: 'next', // go to the next slide when the ENTER key is pressed
+	    //   27: function() {}, // do something custom when ESC is pressed
+	    //   32: null // don't do anything when SPACE is pressed (i.e. disable a reveal.js default binding)
+	    // }
+
   		dependencies: [
 					{ src: '{% static "vendor/revealjs/plugin/notes/notes.js" %}', async: true },
 					{ src: '{% static "vendor/revealjs/plugin/math/math.js" %}', async: true },
+					{ src: '{% static "vendor/revealjs/plugin/chalkboard/chalkboard.js" %}', async: true },
+					{ src: '{% static "vendor/revealjs/plugin/menu/menu.js" %}', async: true },
 
-		]
-  	});
+		]  	});
 </script>
 
 </body>

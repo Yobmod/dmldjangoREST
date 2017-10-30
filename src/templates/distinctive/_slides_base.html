@@ -16,7 +16,7 @@
 <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 <script src='{% static "vendor/revealjs/head.min.js" %}'></script>
 <script src='{% static "vendor/revealjs/reveal.js" %}'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js'></script>
 <script type="text/javascript" src="{% static 'vendor/chartjs/patternomaly.js' %}"></script>
 
 </head>
@@ -28,9 +28,9 @@
 			</h1></nav></header>-->
 
 	  <div class="reveal">
-		  <header></header>
+		  <header style="border-bottom: 5px solid steelblue; height: 2.5rem"></header>
 
-		  <div class="slides">
+		  <div class="slides" style="">
 			  {% include 'distinctive/_slideTitle.html' %}
 			  {% include 'distinctive/slide2.html' %}
 			  {% include 'distinctive/slide3.html' %}
@@ -40,7 +40,7 @@
 			  {% include 'distinctive/slideAcknowledgments.html' %}
 			</div><!--slides-->
 
-		  <footer></footer>
+		  <!--<footer style="border-top: 5px solid steelblue; height: 5%"></footer>-->
 
 	</div><!--reveal-->
 

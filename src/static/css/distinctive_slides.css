@@ -1,5 +1,5 @@
 html, body {
-	font-family: arial;
+	font-family: ;
 	font-size: 16px;
 	margin:0;
 	padding:0;
@@ -25,6 +25,11 @@ footer {
 	grid-area: ft;
 
 }
+
+.reveal header {
+	line-height: 0.7rem;
+	}
+
 
 .reveal .slides .slide ul {
 	list-style: none;
@@ -87,53 +92,53 @@ div, .reveal div, .slides div, .slide div {
 .one3x3 {
   grid-column: 1;
   grid-row: 1;
-  background-color: pink;
+  background-color: ;
 }
 .two3x3 {
   grid-column: 2;
   grid-row: 1;
-  background-color: yellow;
+  background-color: ;
 }
 .three3x3 {
   grid-column: 3;
   grid-row: 1;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .four3x3 {
   grid-column: 1;
   grid-row: 2;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .five3x3 {
   grid-column: 2;
   grid-row: 2;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .six3x3 {
   grid-column: 3;
   grid-row: 2;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .seven3x3 {
   grid-column: 1;
   grid-row: 3;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .eight3x3 {
   grid-column: 2;
   grid-row: 3;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .nine3x3 {
   grid-column: 3;
   grid-row: 3;
-  background-color: lightblue;
+  background-color: ;
 }
 
 .wrapper2x2 {
@@ -146,22 +151,22 @@ div, .reveal div, .slides div, .slide div {
 .one2x2 {
   grid-column: 1;
   grid-row: 1;
-  background-color: pink;
+  background-color: ;
 }
 .two2x2 {
   grid-column: 2 / 2;
   grid-row: 1 / 2;
-  background-color: yellow;
+  background-color: ;
 }
 .three2x2 {
   grid-column: 1;
   grid-row: 2;
-  background-color: lightblue;
+  background-color: ;
 }
 .four2x2 {
   grid-column: 2;
   grid-row: 2;
-  background-color: lightblue;
+  background-color: ;
 }
 
 

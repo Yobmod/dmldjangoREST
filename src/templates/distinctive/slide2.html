@@ -1,6 +1,7 @@
 {% load staticfiles %}
 <section class="slide" id="slide2">
 	<section id="slide2a" data-menu-title="slide 2">
+		<header style="height:1.5rem;">This is a title of slide 2a</header>
 		<div class="wrapper2x2">
 			<div class="one2x2"><h1>Slide 1</h1></div>
 			<div class="two2x2"><p>This is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, woooo</p></div>
@@ -30,11 +31,13 @@
 	</section>
 
   	<section id="slide2b" data-menu-title="slide 2b">
+
 		<div class="wrapper3x3" style="">
 			<div class="one3x3"><h1>gfreg</h1></div>
 			<div class="five3x3"><h1>gerg</h1></div>
 			<div class="nine3x3"><h3>ge</h3></div>
 		</div>
+		<footer style="">This is a footer of slide 2b</footer>
 	</section>
 
 
@@ -89,15 +92,23 @@
 				//segmentStrokeColor: 'rgba(2,56,56,1)',
 				//segmentStrokeWidth: 10,
 				segmentShowStroke: false,
-			animation: {
-				easing: "linear",
-				duration: 1040,  //min 17 ms per step, 60 steps = 1020ms
-				animateScale: true,
-				animateRotate: true,
-			},
-			responsive:true,
-			maintainAspectRatio: true
-		}
+				//aspectRatio: 1, // default 2:1
+				legend: {
+					labels: {
+						usePointStyle: true,
+						//boxWidth: 40, //default 40, not compatible with use pointstyle
+						//boxHeight: 20, //not implmemented yet in 2.7.1
+					},
+				},
+				animation: {
+					easing: "linear",
+					duration: 1040,  //min 17 ms per step, 60 steps = 1020ms
+					animateScale: true,
+					animateRotate: true,
+				},
+				responsive:true,
+				maintainAspectRatio: true
+			}
 			});
 
 			if(prevslide < currslide){

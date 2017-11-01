@@ -77,13 +77,15 @@ div, .reveal div, .slides div, .slide div {
 .wrapper3x3 header {
 	grid-column: 1 / 4;
     grid-row: 1;
-	padding: 0.01rem;
+	line-height: 2.5rem; /*vertical centres*/
 }
 
 .wrapper3x3 footer {
 	grid-column: 1 / 4;
     grid-row: 5;
-	padding: 0.01rem;
+	line-height: 2.5rem; /*vertical centres*/
+	background-color: white;
+	border-top: 5px solid steelblue;
 }
 
 .one3x3 {
@@ -101,37 +103,31 @@ div, .reveal div, .slides div, .slide div {
   grid-row: 2;
   background-color: ;
 }
-
 .four3x3 {
   grid-column: 1;
   grid-row: 3;
   background-color: ;
 }
-
 .five3x3 {
   grid-column: 2;
   grid-row: 3;
   background-color: ;
 }
-
 .six3x3 {
   grid-column: 3;
   grid-row: 3;
   background-color: ;
 }
-
 .seven3x3 {
   grid-column: 1;
   grid-row: 4;
   background-color: ;
 }
-
 .eight3x3 {
   grid-column: 2;
   grid-row: 4;
   background-color: ;
 }
-
 .nine3x3 {
   grid-column: 3;
   grid-row: 4;
@@ -140,29 +136,48 @@ div, .reveal div, .slides div, .slide div {
 
 .wrapper2x2 {
   display: grid;
+  position: absolute;
+  top: 0;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(25rem, auto);
+  grid-gap: 2px;
+  /*grid-auto-rows: minmax(25rem, auto);*/
+  grid-template-rows: 2.5rem 30rem 30rem 2.5rem;
 
 }
+
+.wrapper2x2 header {
+	grid-column: 1 / 3;
+    grid-row: 1;
+	line-height: 2.5rem; /*vertical centres*/
+
+}
+
+.wrapper2x2 footer {
+	grid-column: 1 / 3;
+    grid-row: 4;
+	line-height: 2.5rem; /*vertical centres*/
+	background-color: white;
+	border-top: 5px solid steelblue;
+}
+
 .one2x2 {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 2;
   background-color: ;
 }
 .two2x2 {
-  grid-column: 2 / 2;
-  grid-row: 1 / 2;
+  grid-column: 2;
+  grid-row: 2;
   background-color: ;
 }
 .three2x2 {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
   background-color: ;
 }
 .four2x2 {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   background-color: ;
 }
 

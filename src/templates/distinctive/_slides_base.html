@@ -27,7 +27,7 @@
 					<a href='{% url "charts:chart1" %}'>charts</a>
 			</h1></nav></header>-->
 
-	  <div class="reveal">
+	  <article class="reveal">
 		  <header style="border-bottom: 5px solid steelblue; height: 2.5rem"></header>
 
 		  <div class="slides" style="">
@@ -36,13 +36,13 @@
 			  {% include 'distinctive/slide3.html' %}
 			  {% include 'distinctive/slide4.html' %}
 			  {% include 'distinctive/slide5.html' %}
-			  {% include 'distinctive/slide6.html' %}
 			  {% include 'distinctive/slideAcknowledgments.html' %}
+			  {% include 'distinctive/slideRefs.html' %}
 
 			</div><!--slides-->
 
 
-	</div><!--reveal-->
+	</article><!--reveal-->
 
 
 <script>
@@ -51,8 +51,9 @@
    		height: '100%',
 		margin: 0.00,
 		display: 'block',
+		//center: true,
 		slideNumber: "h.v" + 1, //true, "h.v", "h/v", "c", "c/t"
-
+		history: true,
 		transition: 'slide', // none/fade/slide/convex/concave/zoom
 		transitionSpeed: 'default', // default/fast/slow
 		//backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
@@ -65,7 +66,6 @@
 		menu: {
 			side: 'right',
 			numbers: true,
-			center: false,
 			useTextContentForMissingTitles: false,
 			transitions: true, //showpanel
 			themes: false,

@@ -5,7 +5,11 @@
 		<div class="wrapper2x2">
 			<header style="">This is a title of slide 2</header>
 
-			<div class="one2x2"><h1>Slide 1</h1></div>
+			<div class="one2x2"><h1>Slide 1</h1>
+				<p>Some text with a footnote.<sup><a href="#slideRefs" id="ref1">1</a></sup></p>
+				<br />
+				<p>Some more text with a footnote.<sup><a href="#slideRefs" id="ref2">2</a></sup></p>
+			</div>
 
 			<div class="two2x2"><p>This is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, wooooThis is a slide, woooo</p></div>
 
@@ -16,7 +20,6 @@
 					     \quad\quad \text{for $|q|<1$}.
 					\]
           		</p>
-
 			</div>
 
 			<div class="four2x2" ><p class="b">This is a slide, woooo</p>
@@ -27,7 +30,10 @@
 				</div>
 			</div>
 
-			<footer style="">This is a footer of slide 2</footer>
+			<footer style="">
+			<p><sup id="fn1">1. [Text of footnote 1]<a href="#ref1" title="Jump back to footnote 1">↩</a></sup>
+				<sup id="fn2">2. [Text of footnote 2]<a href="#ref2" title="Jump back to footnote 2">↩</a></sup><p>
+			</footer>
 	  	</div>
 
 
@@ -61,7 +67,9 @@
 	const ctx1 = document.getElementById("NestedChart").getContext("2d");
 
 	Reveal.addEventListener( 'slidechanged', function( event ) {
-			var prevslide = event.previousSlide.id
+			try {var prevslide = event.previousSlide.id}
+			catch(err){var prevslide = null}
+
 			var currslide = event.currentSlide.id
 			// Reveal.getPreviousSlide();
 			// Reveal.getCurrentSlide();
@@ -117,9 +125,9 @@
 			}
 			});
 
-			if(prevslide < currslide){
+			if(prevslide < currslide || prevslide == null){
 				var direction = "forward"
-									}
+													}
 			else{
 				var direction = "backward"
 			 //myChart1.destroy();
@@ -131,7 +139,8 @@
 			  //myChart1.render()
 
 		  	}
-			console.log(currslide)
+			//console.log(prevslide)
+			//console.log(currslide)
 			console.log(direction);
 		  })
 

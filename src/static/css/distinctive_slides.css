@@ -5,31 +5,14 @@ html, body {
 	padding:0;
 }
 
-header, footer {
+.reveal header, .reveal footer {
 	color: white;
 	background-color: steelblue;
-	padding:0.05rem;
-	clear: left;
+	/*padding:0.05rem;*/
+	/*clear: left;*/
 	text-align: center;
-	width: 100%;
+	/*width: 100%;*/
 }
-
-header {
-	grid-area: hd;
-}
-
-footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	grid-area: ft;
-
-}
-
-.reveal header {
-	line-height: 0.7rem;
-	}
-
 
 .reveal .slides .slide ul {
 	list-style: none;
@@ -50,7 +33,7 @@ div, .reveal div, .slides div, .slide div {
 }
 
 .reveal .slides>section {
-  min-height: 90%;
+  min-height: 100%;
   top: auto;
 }
 
@@ -83,61 +66,75 @@ div, .reveal div, .slides div, .slide div {
 }
 .wrapper3x3 {
   display: grid;
+  position: absolute;
+  top: 0;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 5px;
-  grid-auto-rows: minmax(20rem, auto);
+  grid-gap: 2px;
+  /*grid-auto-rows: minmax(20rem, auto); */
+  grid-template-rows: 2.5rem 20rem 20rem 20rem 2.5rem;
+}
 
+.wrapper3x3 header {
+	grid-column: 1 / 4;
+    grid-row: 1;
+	padding: 0.01rem;
+}
+
+.wrapper3x3 footer {
+	grid-column: 1 / 4;
+    grid-row: 5;
+	padding: 0.01rem;
 }
 
 .one3x3 {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 2;
   background-color: ;
 }
 .two3x3 {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
   background-color: ;
 }
 .three3x3 {
   grid-column: 3;
-  grid-row: 1;
+  grid-row: 2;
   background-color: ;
 }
 
 .four3x3 {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
   background-color: ;
 }
 
 .five3x3 {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   background-color: ;
 }
 
 .six3x3 {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 3;
   background-color: ;
 }
 
 .seven3x3 {
   grid-column: 1;
-  grid-row: 3;
+  grid-row: 4;
   background-color: ;
 }
 
 .eight3x3 {
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
   background-color: ;
 }
 
 .nine3x3 {
   grid-column: 3;
-  grid-row: 3;
+  grid-row: 4;
   background-color: ;
 }
 
@@ -145,7 +142,7 @@ div, .reveal div, .slides div, .slide div {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  grid-auto-rows: minmax(30rem, auto);
+  grid-auto-rows: minmax(25rem, auto);
 
 }
 .one2x2 {

@@ -38,9 +38,9 @@
 			  {% include 'distinctive/slide5.html' %}
 			  {% include 'distinctive/slide6.html' %}
 			  {% include 'distinctive/slideAcknowledgments.html' %}
+
 			</div><!--slides-->
 
-		  <!--<footer style="border-top: 5px solid steelblue; height: 5%"></footer>-->
 
 	</div><!--reveal-->
 
@@ -65,6 +65,7 @@
 		menu: {
 			side: 'right',
 			numbers: true,
+			center: false,
 			useTextContentForMissingTitles: false,
 			transitions: true, //showpanel
 			themes: false,
@@ -83,6 +84,8 @@
 					{ src: '{% static "vendor/revealjs/plugin/math/math.js" %}', async: true },
 					{ src: '{% static "vendor/revealjs/plugin/chalkboard/chalkboard.js" %}', async: true },
 					{ src: '{% static "vendor/revealjs/plugin/menu/menu.js" %}', async: true },
+					{ src: '{% static "vendor/revealjs/plugin/zoom-js/zoom.js" %}', async: true },
+					{ src: '{% static "vendor/revealjs/plugin/classlist/classList.js" %}', condition: function() { return !document.body.classList; } },
 
 		]  	});
 </script>

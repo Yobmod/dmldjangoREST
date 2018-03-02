@@ -6,6 +6,7 @@ from .views import (HomeView, #get_data,
 					ChartViewTwo, ChartDataTwo,
 					ChartViewLine, ChartDataLineOne, ChartDataLineTwo,
 					ChartViewBarFunnel,
+					ChartViewGamma, ChartDataGamma,
 									)
 
 app_name = 'charts'
@@ -29,8 +30,8 @@ urlpatterns = [
 	url(r'^chart_Bars_Radar/$', ChartViewTwo.as_view(), name='chart_Bars_Radar'),
 	url(r'^chart_Pi_Donut_Polar/$', ChartViewTwo.as_view(), name='chart_Pi_Donut_Polar'),
 	url(r'^chart_scatter_bubble/$', ChartViewTwo.as_view(), name='chart_scatter_bubble'),
-	url(r'^chart_scatter_bubble/$', ChartViewTwo.as_view(), name='chart_scatter_bubble'),
-	url(r'^chart_humidity/$', ChartViewTwo.as_view(), name='chart_humidity'),
 	url(r'^chart_temparature/$', ChartViewTwo.as_view(), name='chart_temparature'),
 
-	]
+	url(r'^chart_gamma/$', ChartViewGamma.as_view(), name='chart_gamma'),
+	url(r'^api/chart_gamma/data/$', ChartDataGamma.as_view()),
+]

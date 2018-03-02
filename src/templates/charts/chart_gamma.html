@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+
+
+{% block content %}
+
+	<div id="canvas-holder" class="col-sm-6">
+		<canvas id="chart-gamma" width="500" height="500"/></canvas>
+	</div>
+
+		<div id="canvas-holderbf2" class="col-sm-6">
+			<canvas id="chart-humid" width="500" height="500"/></canvas>
+		</div>
+
+<script>
+
+Chart.defaults.global.legend.display = true
+Chart.defaults.global.legend.position = 'right'
+// Chart.defaults.global.legend.onHover = function(){}
+// Chart.defaults.global.legend.onClick = function(){}
+Chart.defaults.global.legend.labels.usePointStyle = true
+Chart.defaults.global.legend.labels.fontsize = 12
+Chart.defaults.global.legend.labels.padding = 10
+
+
+var gammaChartData = {
+	datasets: [
+		{
+		label: 'Eu',
+		data: [{x: 10, y: 5}, {x: 15, y: 7}, {x: 12, y: 5},],
+		borderColor: "red",
+		},
+		{
+		label: 'Am',
+		data: [{x: 75, y: 65}, {x: 65, y: 7}, {x: 12, y: 35},],
+		borderColor: "blue",
+		},
+	]
+
+	}
+var options_gamma = {
+	elements: {
+		line: { fill: false,
+				borderWidth: 2,
+		},
+		point: { radius: 3,
+				pointStyle: 'circle',
+				borderWidth: 1,
+				hitRadius: 0,
+				// hoverBorderWidth: 13,
+				hoverRadius: 9,
+		},
+	},
+	responsive: true,
+	showLines: true,
+	hoverMode: 'single', // should always use single for a scatter chart
+	legend: {},
+	scales: {
+		yAxes: [{
+			display: true,
+			position: 'left',
+			id: 'y-axis',
+			ticks: {min: 0, 	//beginAtZero:true,
+					max: 200,
+					//display: true,
+					//fontColor: "black"
+			},
+			scaleLabel: {display: true,	labelString: 'Number'},
+			gridLines: {color: "black",
+						//display: true,
+						drawOnChartArea: false,
+						zeroLineColor: "black",
+						//drawTicks: true,
+			},
+		}],
+		xAxes: [{
+			display: true,
+			type: 'linear',
+			id: 'x-axis',
+			position: 'bottom',
+			ticks: {min: 0,
+					max: 100,
+					//display: true,
+					//fontColor: "black", 
+			},
+			scaleLabel: {display: true,	labelString: 'Volume'},
+			gridLines: {color: "black",
+						zeroLineColor: "black",
+						drawOnChartArea: false,
+			},
+		}],
+	},
+}
+var ctx_gamma = document.getElementById("chart-gamma").getContext("2d");
+
+var humidChartData = {
+	datasets: [
+		{
+		label: 'B',
+		data: [{x: 100, y: 5}, {x: 15, y: 70}, {x: 12, y: 50},],
+		borderColor: "red",
+		},
+		{
+		label: 'C',
+		data: [{x: 75, y: 5}, {x: 65, y: 70}, {x: 19, y: 35},],
+		borderColor: "blue",
+		},
+	]
+
+	}
+var options_humid = {
+	elements: {
+		line: { fill: false,
+				borderWidth: 2,
+		},
+		point: { radius: 3,
+				pointStyle: 'circle',
+				borderWidth: 1,
+				hitRadius: 0,
+				// hoverBorderWidth: 13,
+				hoverRadius: 9,
+		},
+	},
+	responsive: true,
+	showLines: true,
+	hoverMode: 'single', // should always use single for a scatter chart
+	legend: {labels: {usePointStyle: true}},
+		scales: {
+			yAxes: [{
+				display: true,
+				position: 'left',
+				id: 'y-axis',
+				ticks: {min: 0, 	//beginAtZero:true,
+						max: 200 },
+				scaleLabel: {display: true,	labelString: 'Number'},
+				gridLines: {zeroLineColor: "black", },
+			}],
+			xAxes: [{
+				display: true,
+				type: 'linear',
+				id: 'x-axis',
+				position: 'bottom',
+				ticks: {min: 0,
+						max: 100 },
+				scaleLabel: {display: true,	labelString: 'Month'},
+				gridLines: {zeroLineColor: "black", },
+			}],
+		},
+}
+var ctx_humid = document.getElementById("chart-humid").getContext("2d");
+
+window.onload = function() {
+	var humidChart = new Chart(ctx_humid, {
+		type: 'scatter',
+		data: humidChartData,
+		plugins: [{}],
+		options: options_humid,
+	});
+
+	var gamma_chart = new Chart(ctx_gamma, {
+		type: 'scatter',
+		data: gammaChartData,
+		plugins: [{}],
+		options: options_gamma,
+	});
+};
+</script>
+
+
+
+
+{% endblock content %}

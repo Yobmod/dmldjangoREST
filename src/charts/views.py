@@ -9,10 +9,11 @@ from rest_framework.response import Response
 
 User = get_user_model()
 
+
 class HomeView(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
-		data = {"customers": User.objects.all().count(),} #can use database info as the data
-		context = {'data':data}
+		data = {"customers": User.objects.all().count(), } #can use database info as the data
+		context = {'data': data}
 		return render(request, 'charts/charts_main.html', context)
 
 # def get_data(request, *args, **kwargs): #data is url, js on page finds it there
@@ -21,9 +22,12 @@ class HomeView(View):   #use context in html js tags
 # 		"customers": 10,
 # 	}
 # 	return JsonResponse(data) # http response
+
+
 class ChartView(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
 		return render(request, 'charts/charts.html')
+
 
 class ChartData(APIView):
 	authentication_classes = []
@@ -57,9 +61,11 @@ class ChartData(APIView):
 		}
 		return Response(data)
 
+
 class ChartViewTwo(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
 		return render(request, 'charts/charts2.html')
+
 
 class ChartDataTwo(APIView):
 	authentication_classes = []
@@ -92,7 +98,7 @@ class ChartDataLineOne(APIView):
 		return Response(data)
 
 #from rest_framework.views import RetrieveAPIView
-class ChartDataLineTwo(APIView):
+class ChartDataLineTwo(APIView): #scatter takes list of dicts
 	authentication_classes = []
 	permission_classes = []
 	def get(self, request, format=None):
@@ -111,3 +117,46 @@ class ChartDataLineTwo(APIView):
 class ChartViewBarFunnel(View):   #use context in html js tags
 	def get(self, request, *args, **kwargs):
 		return render(request, 'charts/chart_bar_funnel.html')
+
+
+class ChartViewGamma(View):   #use context in html js tags
+	def get(self, request, *args, **kwargs):
+		return render(request, 'charts/chart_gamma.html')
+
+class ChartDataGamma(APIView):
+	authentication_classes = []
+	permission_classes = []
+
+	def get(self, request, format=None):
+		x = [2, 4, 6, 8, 10]  #x values
+		y = [10, 20, 30, 40, 50]		#y values
+		y_err = [1, 2, 3, 4, 5]
+		clr_fill = []
+		clr_bord = []
+		pnt_size = []
+		pnt_shape = "xxx"
+		line1 = dict(zip(x, y))
+		line1_d = "["
+		for key, value in line1.items():
+			coord = "{x: " + str(key) + ", y: " + str(value) + "}, "
+			line1_d += coord
+
+		line1_d += "]"
+
+		line1_ld = []
+		for key, value in line1.items():
+			coord_d = {"x": key, "y": value}
+			line1_ld.append(coord_d)
+
+		data = {
+				"x": x,				#API veiw, data json object, access by data.key
+				"y": y,
+				"y_err": y_err,
+				"clr_fill": clr_fill,
+				"clr_bord": clr_bord,
+				"pnt_size": pnt_size,
+				"pnt_shape": pnt_shape,
+				"line1_d": line1_d,
+				"line1_ld": line1_ld,
+		}
+		return Response(data)

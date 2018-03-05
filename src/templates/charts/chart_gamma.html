@@ -5,6 +5,7 @@
 
 
 {% block content %}
+<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin.js' %}"></script>
 
 	<div id="canvas-holder" class="col-sm-6">
 		<canvas id="chart-gamma" width="500" height="500"/></canvas>
@@ -14,7 +15,8 @@
 			<canvas id="chart-humid" width="500" height="500"/></canvas>
 		</div>
 
-<script>
+
+<script defer>
 
 Chart.defaults.global.legend.display = true
 Chart.defaults.global.legend.position = 'right'
@@ -29,13 +31,15 @@ var gammaChartData = {
 	datasets: [
 		{
 		label: 'Eu',
-		data: [{x: 10, y: 5}, {x: 15, y: 7}, {x: 12, y: 5},],
+		data: [{x: 18, y: 5}, {x: 35, y: 17}, {x: 72, y: 5},],
 		borderColor: "red",
+		errors: [10, 28, 34],
 		},
 		{
 		label: 'Am',
-		data: [{x: 75, y: 65}, {x: 65, y: 7}, {x: 12, y: 35},],
+		data: [{x: 15, y: 65}, {x: 25, y: 7}, {x: 62, y: 135},],
 		borderColor: "blue",
+		errors: [14, 2, 18],
 		},
 	]
 
@@ -61,7 +65,7 @@ var options_gamma = {
 		yAxes: [{
 			display: true,
 			position: 'left',
-			id: 'y-axis',
+			id: 'y-axis-0',
 			ticks: {min: 0, 	//beginAtZero:true,
 					max: 200,
 					//display: true,
@@ -78,12 +82,12 @@ var options_gamma = {
 		xAxes: [{
 			display: true,
 			type: 'linear',
-			id: 'x-axis',
+			id: 'x-axis-0',
 			position: 'bottom',
 			ticks: {min: 0,
 					max: 100,
 					//display: true,
-					//fontColor: "black", 
+					//fontColor: "black",
 			},
 			scaleLabel: {display: true,	labelString: 'Volume'},
 			gridLines: {color: "black",
@@ -131,7 +135,7 @@ var options_humid = {
 			yAxes: [{
 				display: true,
 				position: 'left',
-				id: 'y-axis',
+				id: 'y-axis-0',
 				ticks: {min: 0, 	//beginAtZero:true,
 						max: 200 },
 				scaleLabel: {display: true,	labelString: 'Number'},
@@ -140,7 +144,7 @@ var options_humid = {
 			xAxes: [{
 				display: true,
 				type: 'linear',
-				id: 'x-axis',
+				id: 'x-axis-0',
 				position: 'bottom',
 				ticks: {min: 0,
 						max: 100 },
@@ -155,14 +159,14 @@ window.onload = function() {
 	var humidChart = new Chart(ctx_humid, {
 		type: 'scatter',
 		data: humidChartData,
-		plugins: [{}],
+		plugins: [errorbarPlugin],
 		options: options_humid,
 	});
 
 	var gamma_chart = new Chart(ctx_gamma, {
 		type: 'scatter',
 		data: gammaChartData,
-		plugins: [{}],
+		plugins: [errorbarPlugin],
 		options: options_gamma,
 	});
 };

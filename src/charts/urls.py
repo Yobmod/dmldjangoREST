@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from . import views
-from .views import (HomeView, #get_data,
+from .views import (HomeView, # get_data,
 					ChartView, ChartData,
 					ChartViewTwo, ChartDataTwo,
 					ChartViewLine, ChartDataLineOne, ChartDataLineTwo,

@@ -39,7 +39,7 @@ rcssmin==1.0.6
 requests==2.18.4
 rest-pandas==1.0.0
 django-pandas==0.5.1
-mpl3d==0.3
+mpld3==0.3
 rjsmin==1.0.12
 six==1.11.0
 tempora==1.10

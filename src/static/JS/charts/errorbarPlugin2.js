@@ -27,20 +27,17 @@ var errorbarPlugin = {
 		return xList
 	},
 
-	calcYPoints: function(chartInstance){
+	calcYPoints: function(chartInstance, dataList){
 		var ds = this.calcData(chartInstance)
 		var yScale = chartInstance.scales['y-axis-0'];
 		var yList = []
-
-		for(var ds_num = 0; ds_num < ds.length; ds_num++){
-			var data_list = ds[ds_num].data
 
 			for(var i = 0; i < data_list.length; i++){
 				var yValue = data_list[i].y
 				var yPixel = yScale.getPixelForValue(yValue)
 				yList.push(yPixel)
 			}
-		}
+
 		return yList
 	},
 
@@ -88,35 +85,35 @@ var errorbarPlugin = {
 		this.calcErrorbars(chartInstance)
 		var ctx = this.calcContext(chartInstance)
 		var xList = this.calcXPoints(chartInstance)
-		var yList = this.calcYPoints(chartInstance)
+
 		var errors = this.calcErrors(chartInstance)
 		var ds = this.calcData(chartInstance)
+		var showCap = true
+		var capLen = 3
 
 		for(var ds_num = 0; ds_num < ds.length; ds_num++){
-			data_list = ds[ds_num].data
+			var data_list = ds[ds_num].data
+			var isHiddenMeta = ds[ds_num]._meta[Object.keys(chartInstance.data.datasets[ds_num]._meta)[0]].hidden;
+			var yList = this.calcYPoints(chartInstance, data_list)
 
 
-		var isHiddenMeta = ds[ds_num]._meta[Object.keys(chartInstance.data.datasets[ds_num]._meta)[0]].hidden;
-
-		for(var i = 0; i < data_list.length; i++){
-			console.log(errors[i])
 			ctx.lineWidth = 3
 			ctx.strokeStyle = "rgba(0, 0, 0, 1)" //+ 1 + ")"
 
-			if(errors[i]){
-				ctx.beginPath();
-				ctx.moveTo(xList[i], yList[i]-errors[i]);
-				ctx.lineTo(xList[i], yList[i]+errors[i]);
+		for(var k = 0; k < xList.length; k++){
+			ctx.beginPath();
+			ctx.moveTo(xList[k], yList[k]-errors[k]);
+			ctx.lineTo(xList[k], yList[k]+errors[k]);
 
-				if(showCap){
-					ctx.moveTo(xList[i]-capLen, yList[i]+errors[i]);
-					ctx.lineTo(xList[i]+capLen, yList[i]+errors[i]);
-					ctx.moveTo(xList[i]-capLen, yList[i]-errors[i]);
-					ctx.lineTo(xList[i]+capLen, yList[i]-errors[i]);
-					ctx.stroke()
-				}
+			if(showCap){
+				ctx.moveTo(xList[k]-capLen, yList[k]+errors[k]);
+				ctx.lineTo(xList[k]+capLen, yList[k]+errors[k]);
+				ctx.moveTo(xList[k]-capLen, yList[k]-errors[k]);
+				ctx.lineTo(xList[k]+capLen, yList[k]-errors[k]);
 			}
-		}}
+			ctx.stroke()
+		}
+		}
 	},
 
 	afterRender: function(chartInstance) {

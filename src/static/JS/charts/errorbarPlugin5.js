@@ -171,6 +171,14 @@ var errorbarPlugin = {
 							ctx.moveTo(xList[k], yList[k]-errList[k]);
 							ctx.lineTo(xList[k], yList[k]+errList[k]);
 							ctx.stroke()
+							if(showCap){
+								ctx.beginPath();
+								ctx.moveTo(xList[k]-capLen, yList[k]+errList[k]);
+								ctx.lineTo(xList[k]+capLen, yList[k]+errList[k]);
+								ctx.moveTo(xList[k]-capLen, yList[k]-errList[k]);
+								ctx.lineTo(xList[k]+capLen, yList[k]-errList[k]);
+								ctx.stroke()
+							}
 						} else
 						if (errShape == "circle"){
 							ctx.beginPath();
@@ -190,15 +198,6 @@ var errorbarPlugin = {
 
 						}
 					//}
-
-					if(showCap){
-						ctx.beginPath();
-						ctx.moveTo(xList[k]-capLen, yList[k]+errList[k]);
-						ctx.lineTo(xList[k]+capLen, yList[k]+errList[k]);
-						ctx.moveTo(xList[k]-capLen, yList[k]-errList[k]);
-						ctx.lineTo(xList[k]+capLen, yList[k]-errList[k]);
-						ctx.stroke()
-					}
 				}
 			}
 		}

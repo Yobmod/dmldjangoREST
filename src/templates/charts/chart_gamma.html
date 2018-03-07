@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin4.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin5.js' %}"></script>
 
 	<div id="canvas-holder" class="col-sm-6">
 		<canvas id="chart-gamma" width="500" height="500"/></canvas>
@@ -31,10 +31,11 @@ var gammaChartData = {
 	datasets: [
 		{
 		label: 'Eu',
-		data: [{x: 15, y: 30}, {x: 35, y: 17}, {x: 72, y: 45},],
+		data: [{x: 15, y: 0}, {x: 35, y: 17}, {x: 72, y: 45},],
 		borderColor: "red",
-		errors: [10, 28, 34],
+		errors: [20, 28, 34],
 		errColor: "border",
+		errShape: "ellipse",
 		errWidth: 2,
 		showCap: true,
 		capLen: 3,
@@ -42,9 +43,8 @@ var gammaChartData = {
 		},
 		{
 		label: 'Am',
-		data: [{x: 15, y: 65}, {x: 25, y: 7}, {x: 62, y: 135},],
+		data: [{x: 15, y: 65, r: 14}, {x: 25, y: 7, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
-		errors: [14, 2, 18],
 		errColor: "border",
 		//errWidth: 2,
 		//showCap: false,
@@ -174,7 +174,7 @@ var ctx_humid = document.getElementById("chart-humid").getContext("2d");
 
 window.onload = function() {
 	var humidChart = new Chart(ctx_humid, {
-		type: 'scatter',
+		type: 'line',
 		data: humidChartData,
 		plugins: [errorbarPlugin],
 		options: options_humid,

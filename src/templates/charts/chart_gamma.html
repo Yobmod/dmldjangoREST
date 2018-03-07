@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin3.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin4.js' %}"></script>
 
 	<div id="canvas-holder" class="col-sm-6">
 		<canvas id="chart-gamma" width="500" height="500"/></canvas>
@@ -31,20 +31,37 @@ var gammaChartData = {
 	datasets: [
 		{
 		label: 'Eu',
-		data: [{x: 18, y: 5}, {x: 35, y: 17}, {x: 72, y: 5},],
+		data: [{x: 15, y: 30}, {x: 35, y: 17}, {x: 72, y: 45},],
 		borderColor: "red",
 		errors: [10, 28, 34],
+		errColor: "border",
+		errWidth: 2,
+		showCap: true,
+		capLen: 3,
+
 		},
 		{
 		label: 'Am',
 		data: [{x: 15, y: 65}, {x: 25, y: 7}, {x: 62, y: 135},],
 		borderColor: "blue",
 		errors: [14, 2, 18],
+		errColor: "border",
+		//errWidth: 2,
+		//showCap: false,
+		//capLen: 2,
 		},
 	]
 
 	}
 var options_gamma = {
+	animation: {
+		duration: 1000,
+	},
+	plugins: {
+		errorBar: {
+			marginsOfError: [100, 50, 10]
+			},
+		},
 	elements: {
 		line: { fill: false,
 				borderWidth: 2,

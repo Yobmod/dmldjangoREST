@@ -7,6 +7,8 @@ var errorbarPlugin = {
 
 	calcContext: function(chartInstance){
 		var ctx = chartInstance.chart.ctx
+		var type = chartInstance.chart.type
+
 		return ctx
 	},
 
@@ -149,8 +151,10 @@ var errorbarPlugin = {
 	},
 
 	afterDraw: function(chartInstance) {
-		this.drawErrorbars(chartInstance)
+		var type = chartInstance.chart.config.type
+		if(type == "line" || type == "scatter"){
+			this.drawErrorbars(chartInstance)
+		}
 	 },
-
 }
 //Chart.pluginService.register(errorbarPlugin);

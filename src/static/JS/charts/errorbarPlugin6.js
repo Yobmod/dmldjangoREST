@@ -251,8 +251,8 @@ var errorbarPlugin = {
 
 			if(ds.errStyle == "circle")
 				{var errStyle = "circle"}
-			else if(ds.errStyle == "ovel" || ds.errStyle == "ellipse")
-				{errStyle = "ovel"}
+			else if(ds.errStyle == "oval" || ds.errStyle == "ellipse")
+				{errStyle = "oval"}
 			else {errStyle = "T"}
 
 			if (!meta.hidden && showErrors) {

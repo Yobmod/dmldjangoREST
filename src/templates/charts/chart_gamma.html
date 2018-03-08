@@ -35,20 +35,17 @@ var gammaChartData = {
 		borderColor: "red",
 		errors: [20, 28, 34],
 		errColor: "border",
-		errShape: "ellipse",
+		errStyle: "circle",
 		errWidth: 2,
 		showCap: true,
 		capLen: 3,
-
+		//showErrors: false,
 		},
 		{
 		label: 'Am',
 		data: [{x: 15, y: 65, r: 14}, {x: 25, y: 7, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
 		errColor: "border",
-		//errWidth: 2,
-		//showCap: false,
-		//capLen: 2,
 		},
 	]
 
@@ -57,11 +54,10 @@ var options_gamma = {
 	animation: {
 		duration: 1000,
 	},
-	plugins: {
-		errorBar: {
-			marginsOfError: [100, 50, 10]
-			},
-		},
+	errorBarPlugin: {
+					//showErrors: false,
+					marginsOfError: [100, 50, 10],
+	},
 	elements: {
 		line: { fill: false,
 				borderWidth: 2,
@@ -173,12 +169,12 @@ var options_humid = {
 var ctx_humid = document.getElementById("chart-humid").getContext("2d");
 
 window.onload = function() {
-	var humidChart = new Chart(ctx_humid, {
-		type: 'line',
-		data: humidChartData,
-		plugins: [errorbarPlugin],
-		options: options_humid,
-	});
+	// var humidChart = new Chart(ctx_humid, {
+	// 	type: 'line',
+	// 	data: humidChartData,
+	// 	plugins: [errorbarPlugin],
+	// 	options: options_humid,
+	// });
 
 	var gamma_chart = new Chart(ctx_gamma, {
 		type: 'scatter',

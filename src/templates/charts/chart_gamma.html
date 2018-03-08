@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin5.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin0.7.js' %}"></script>
 
 	<div id="canvas-holder" class="col-sm-6">
 		<canvas id="chart-gamma" width="500" height="500"/></canvas>
@@ -14,7 +14,6 @@
 		<div id="canvas-holderbf2" class="col-sm-6">
 			<canvas id="chart-humid" width="500" height="500"/></canvas>
 		</div>
-
 
 <script defer>
 
@@ -31,7 +30,7 @@ var gammaChartData = {
 	datasets: [
 		{
 		label: 'Eu',
-		data: [{x: 15, y: 0}, {x: 35, y: 17}, {x: 72, y: 45},],
+		data: [{x: 15, y: 20}, {x: 35, y: 37}, {x: 72, y: 65},],
 		borderColor: "red",
 		errors: [20, 28, 34],
 		errColor: "border",
@@ -43,7 +42,7 @@ var gammaChartData = {
 		},
 		{
 		label: 'Am',
-		data: [{x: 15, y: 65, r: 14}, {x: 25, y: 7, r: 8}, {x: 62, y: 135, r: 44},],
+		data: [{x: 15, y: 85, r: 14}, {x: 25, y: 37, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
 		errColor: "border",
 		},
@@ -54,20 +53,20 @@ var options_gamma = {
 	animation: {
 		duration: 1000,
 	},
-	errorBarPlugin: {
+	errorbarPlugin: {
 					//showErrors: false,
 					marginsOfError: [100, 50, 10],
 	},
 	elements: {
 		line: { fill: false,
-				borderWidth: 2,
+				borderWidth: 4,
 		},
-		point: { radius: 3,
+		point: { radius: 0,
 				pointStyle: 'circle',
 				borderWidth: 1,
-				hitRadius: 0,
+				hitRadius: 18, //size if should hover
 				// hoverBorderWidth: 13,
-				hoverRadius: 9,
+				hoverRadius: 10, //size when hovered
 		},
 	},
 	responsive: true,
@@ -116,8 +115,11 @@ var humidChartData = {
 	datasets: [
 		{
 		label: 'B',
-		data: [{x: 100, y: 5}, {x: 15, y: 70}, {x: 12, y: 50},],
-		borderColor: "red",
+		data: [{x: 90, y: 45}, {x: 15, y: 170}, {x: 12, y: 50},],
+		borderColor: "green",
+		errors: [15, 20, 30],
+		xErrors: [3, 7, 16],
+		errStyle: "oval",
 		},
 		{
 		label: 'C',
@@ -169,12 +171,12 @@ var options_humid = {
 var ctx_humid = document.getElementById("chart-humid").getContext("2d");
 
 window.onload = function() {
-	// var humidChart = new Chart(ctx_humid, {
-	// 	type: 'line',
-	// 	data: humidChartData,
-	// 	plugins: [errorbarPlugin],
-	// 	options: options_humid,
-	// });
+	var humidChart = new Chart(ctx_humid, {
+		type: 'line',
+		data: humidChartData,
+		plugins: [errorbarPlugin],
+		options: options_humid,
+	});
 
 	var gamma_chart = new Chart(ctx_gamma, {
 		type: 'scatter',

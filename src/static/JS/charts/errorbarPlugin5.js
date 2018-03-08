@@ -203,7 +203,7 @@ var errorbarPlugin = {
 		}
 	},
 
-	afterDraw: function(chartInstance) {
+	afterDatasetsDraw: function(chartInstance) {
 		var type = chartInstance.chart.config.type
 		if(["line", "scatter"].includes(type)){  //if(type == "line" || type == "scatter"){
 			this.drawErrorbars(chartInstance)
@@ -214,3 +214,37 @@ var errorbarPlugin = {
 	},
 }
 //Chart.pluginService.register(errorbarPlugin);
+
+Chart.plugins.register({
+	afterDatasetsDraw: function(chart) {
+		var ctx = chart.ctx;
+		chart.data.datasets.forEach(function(dataset, i) {
+			var meta = chart.getDatasetMeta(i);
+			if (!meta.hidden) {
+				meta.data.forEach(function(element, index) {
+					// Draw the text in black, with the specified font
+					ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+					var fontSize = 16;
+					var fontStyle = 'normal';
+					var fontFamily = 'Helvetica Neue';
+					ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+					// Just naively convert to string for now
+					var dataString = dataset.data[index].toString();
+					// Make sure alignment settings are correct
+					ctx.textAlign = 'center';
+					ctx.textBaseline = 'middle';
+					var padding = 5;
+					var position = element.tooltipPosition();
+					ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+					ctx.beginPath();
+					ctx.arc(position.x, position.y, 10, 0, 2 * Math.PI, false);
+					ctx.fillStyle = 'rgba(0, 0, 0, 0)';
+					ctx.fill();
+					ctx.stroke();
+
+
+				});
+			}
+		});
+	}
+});

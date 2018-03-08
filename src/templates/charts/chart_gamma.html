@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin0.7.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin0.76.js' %}"></script>
 
 	<div id="canvas-holder" class="col-sm-6">
 		<canvas id="chart-gamma" width="500" height="500"/></canvas>
@@ -54,7 +54,7 @@ var options_gamma = {
 		duration: 1000,
 	},
 	errorbarPlugin: {
-					//showErrors: false,
+					showErrors: true,
 					marginsOfError: [100, 50, 10],
 	},
 	elements: {

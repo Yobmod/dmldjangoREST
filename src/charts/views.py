@@ -18,7 +18,7 @@ class HomeView(View):   # use context in html js tags
 		context = {'data': data}
 		return render(request, 'charts/charts_main.html', context)
 
-# def get_data(request, *args, **kwargs): #data is url, js on page finds it there
+# def get_data(request, *args, **kwargs): # data is url, js on page finds it there
 # 	data = {
 # 		"sales": 100,
 # 		"customers": 10,

@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+		"outFile": "./tsc.js",
+        "sourceMap": true,
+		"target": "es6",
+		"module": "commonjs",
+		"jsx": "react",
+"moduleResolution": "classic",
+"lib": [ "es2015", "dom",  "es2017" ],
+"typeRoots" : ["./typings"]
+    },
+    "files": [
+        "core.ts",
+		"sys.ts"
+    ],
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
+}

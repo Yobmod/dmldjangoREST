@@ -823,7 +823,7 @@ var errorbarPlugin = {
 
 
     scatterErrorbars: function(chart: Chart) {
-        var ctx = chart.ctx;
+        const ctx = chart.ctx;
 
         chart.data.datasets.forEach(function(dataset, i: number) {
             var ds = dataset

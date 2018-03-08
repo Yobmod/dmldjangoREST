@@ -21,10 +21,10 @@ var errorbarPlugin = {
         }
     },
     scatterErrorbars: function (chart) {
-        var ctx = chart.ctx;
+        const ctx = chart.ctx;
         chart.data.datasets.forEach(function (dataset, i) {
-            var ds = dataset;
-            var meta = chart.getDatasetMeta(i);
+            let ds = dataset;
+            let meta = chart.getDatasetMeta(i);
             if (ds.showErrors == false) {
                 var showErrors = false;
             }
@@ -38,8 +38,8 @@ var errorbarPlugin = {
             (ds.errStyle) ? errStyle = ds.errStyle : errStyle = "T";
             if (!meta.hidden && showErrors) {
                 meta.data.forEach(function (element, index) {
-                    var x_point = element._model.x;
-                    var y_point = element._model.y;
+                    const x_point = element._model.x;
+                    const y_point = element._model.y;
                     var errColor = element._view.borderColor;
 					var dataPoint = ds.data[index]
 

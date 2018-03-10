@@ -4,7 +4,7 @@
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-		"outFile": "./tsc.js",
+		"outFile": "./src/static/JS/charts/errorbarPlugin0.78.js",
         "sourceMap": true,
 		"target": "es5",
 		"module": "commonjs",

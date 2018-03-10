@@ -7,7 +7,7 @@ declare class Chart {
         options: Chart.ChartConfiguration
     );
     config: Chart.ChartConfiguration;
-	options: Chart.ChartOptions;
+	//options: Chart.ChartOptions;			//plugin defs
     data: Chart.ChartData;
     destroy: () => {};
     update: (duration?: any, lazy?: any) => {};
@@ -23,6 +23,7 @@ declare class Chart {
     ctx: CanvasRenderingContext2D|null;
     canvas: HTMLCanvasElement|null;
     chartArea: Chart.ChartArea;
+	getDatasetMeta: (i: number) => Chart.ChartDSMeta;			//plugin defs
     static pluginService: PluginServiceStatic;
 
     static defaults: {
@@ -102,6 +103,33 @@ declare namespace Chart {
         left: number;
     }
 
+	interface ChartDSMeta {			//plugin defs
+		hidden: boolean;
+		data: MetaPoints[]
+	}
+
+	interface MetaPoints {			//plugin defs
+		tooltipPosition: () => {x: number, y: number, padding: number};
+		_datasetIndex: number;
+		_index: number;
+	 	_model: {
+	 		x: number;
+	 		y: number;
+			skip: boolean;
+			radius: number;
+			xScale: object;
+			yScale: object;
+		}
+		_view: {
+			x: number;
+			y: number;
+			skip: boolean;
+			radius: number;
+			borderColor: string;
+		}
+		_chart: object;
+	}
+
     interface ChartLegendItem {
         text?: string;
         fillStyle?: string;
@@ -151,9 +179,12 @@ declare namespace Chart {
     interface ChartPoint {
         x?: number | string | Date;
         y?: number;
-        r?: number;
-		e?: number;
     }
+
+	interface ChartPoint { 		//plugin defs
+		r?: number;
+		e?: number;
+	}
 
     interface ChartConfiguration {
         type?: ChartType | string;
@@ -188,12 +219,15 @@ declare namespace Chart {
         cutoutPercentage?: number;
         circumference?: number;
         rotation?: number;
-		errorbarPlugin?: errorBarPlug;
+	}
 
+
+	interface ChartOptions {
+		errorbarPlugin?: errorBarPlug;		//plugin defs
    }
 
 	interface errorBarPlug {
-		showErrors?: string | boolean | any;
+		showErrors?: boolean;			//plugin defs
 	}
 
     interface ChartFontOptions {
@@ -478,12 +512,17 @@ declare namespace Chart {
         showLine?: boolean;
         stack?: string;
         spanGaps?: boolean;
-		showErrors?: boolean;
+	}
+
+
+	interface kChartDataSets extends ChartDataSets {
+		showErrors?: boolean;		//plugin defs
 		showCap?: boolean;
 		capLen?: number;
-		errStyle: string;
-		errors: number[];
-		xErrors: number[];
+		errStyle?: "circle" | "oval" | "ellipse" | "line"| "T" | "rect";
+		errors?: number[];
+		xErrors?: number[];
+		yErrors?: number[];
     }
 
     interface ChartScales {
@@ -580,86 +619,6 @@ declare namespace Chart {
     }
 }
 
-// var errorbarPlugin = {
-//
-//     // beforeInit: function(chartInstance){
-//     //     var ctx = chartInstance.chart.ctx
-//     //     return ctx
-//     // },
-//
-//     calcContext: function(chartInstance){
-//         var ctx = chartInstance.chart.ctx
-//         var type = chartInstance.chart.type
-//
-//         return ctx
-//     },
-//
-//     calcData: function(chartInstance){
-//         var ds = chartInstance.data.datasets
-//         return ds
-//     },
-//
-//     calcXPoints: function(chartInstance, dataList){
-//         var ds = this.calcData(chartInstance)
-//         var xScale = chartInstance.scales['x-axis-0'];
-//         var xList = []
-//             for(var i = 0; i < dataList.length; i++){
-//                 var xValue = dataList[i].x
-//                 var xPixel = xScale.getPixelForValue(xValue)
-//                 xList.push(xPixel)
-//             }
-//         return xList
-//     },
-//
-//     calcYPoints: function(chartInstance, dataList){
-//         var ds = this.calcData(chartInstance)
-//         var yScale = chartInstance.scales['y-axis-0'];
-//         var yList = []
-//             for(var i = 0; i < dataList.length; i++){
-//                 var yValue = dataList[i].y
-//                 var yPixel = yScale.getPixelForValue(yValue)
-//                 yList.push(yPixel)
-//             }
-//         //console.log(yList)
-//         return yList
-//     },
-//
-//     calcYErrors: function(chartInstance, dataList, errors){
-//         var ds = this.calcData(chartInstance)
-//         var type = chartInstance.chart.config.type
-//         var yScale = chartInstance.scales['y-axis-0'];
-//         var errList;
-//
-//         if(errors){
-//             errList = errors;
-//         } else
-//         if(type == "scatter"){
-//             errList = []
-//                 for(var i = 0; i < dataList.length; i++){
-//                     var errValue = dataList[i].r
-//                     var maxValue = errValue + dataList[i].y
-//                     var maxPixel = yScale.getPixelForValue(maxValue)
-//                     var yPixel = this.calcYPoints(chartInstance, dataList)
-//                     var errPixel = maxPixel - yPixel[i]
-//                     errList.push(errPixel)
-//                 }
-//         } else {errList = 0}
-//         //console.log(errors)
-//         return errList
-//     },
-//
-//     calcErrorbars: function(chartInstance, ds_num){
-//         var ds = this.calcData(chartInstance)
-//         var data_list = ds[ds_num].data
-//         var errors = ds[ds_num].errors
-//         var isHidden = ds[ds_num]._meta[Object.keys(chartInstance.data.datasets[ds_num]._meta)[0]].hidden;
-//         var yList = this.calcYPoints(chartInstance, data_list)
-//         var xList = this.calcXPoints(chartInstance, data_list)
-//         var errList = this.calcYErrors(chartInstance, data_list, errors)
-//
-//         return [xList, yList, errList, isHidden]
-//     },
-//
 //     formatErrorbars: function(chartInstance, ds_num){
 //         var ds = this.calcData(chartInstance);
 //         var ctx = this.calcContext(chartInstance)
@@ -710,26 +669,9 @@ declare namespace Chart {
 //                 capLen:capLen,
 //                 }
 //     },
-//
-//     sleep: function(milliseconds) {
-//           var start = new Date().getTime();
-//           for (var i = 0; i < 1e7; i++) {
-//                 if ((new Date().getTime() - start) > milliseconds){
-//                   break;
-//                 }
-//           }
-//     },
-//
-//     drawErrorbars: function(chartInstance){
-//         var ctx = this.calcContext(chartInstance)
-//         var ds = this.calcData(chartInstance)
-//         var animSet = chartInstance.chart.options.animation.duration
-//
-//         for(var ds_num = 0; ds_num < ds.length; ds_num++){
-//             var errCalc = this.calcErrorbars(chartInstance, ds_num)
+////             var errCalc = this.calcErrorbars(chartInstance, ds_num)
 //             var errForm = this.formatErrorbars(chartInstance, ds_num)
-//
-//             var isHidden = errCalc[3]
+///             var isHidden = errCalc[3]
 //             var yList = errCalc[1]
 //             var xList = errCalc[0]
 //             var errList = errCalc[2]
@@ -740,69 +682,12 @@ declare namespace Chart {
 //             var capLen = errForm.capLen
 //             var errShape = errForm.errShape
 //
-//             if(!isHidden && showErrors == true){
-//                 for(var k = 0; k < xList.length; k++){
-//                     ctx.strokeStyle = errColor
-//                     ctx.lineWidth = errWidth
-//                     ctx.fillStyle = "rgba(1,1,1,0)";
-//
-//                     //for(i = 0; i < 100; i++){
-//                     //    ctx.strokeStyle = "rgba(0,0,0," + i/100 + ")"
-//                         if (errShape == "T"){
-//                             ctx.beginPath();
-//                             ctx.moveTo(xList[k], yList[k]-errList[k]);
-//                             ctx.lineTo(xList[k], yList[k]+errList[k]);
-//                             ctx.stroke()
-//                             if(showCap){
-//                                 ctx.beginPath();
-//                                 ctx.moveTo(xList[k]-capLen, yList[k]+errList[k]);
-//                                 ctx.lineTo(xList[k]+capLen, yList[k]+errList[k]);
-//                                 ctx.moveTo(xList[k]-capLen, yList[k]-errList[k]);
-//                                 ctx.lineTo(xList[k]+capLen, yList[k]-errList[k]);
-//                                 ctx.stroke()
-//                             }
-//                         } else
-//                         if (errShape == "circle"){
-//                             ctx.beginPath();
-//                             ctx.arc(xList[k], yList[k], errList[k], 0, 2 * Math.PI, false);
-//                               ctx.fill();
-//                               ctx.stroke();
-//                         } else
-//                         if (errShape == "oval"){
-//                             var scaleFac = 10/errList[k]
-//                             ctx.beginPath();
-//                             ctx.save()
-//                             ctx.scale(scaleFac, 1);
-//                             ctx.arc(xList[k]/scaleFac, yList[k], errList[k], 0, 2 * Math.PI, false);
-//                             ctx.restore()
-//                               ctx.fill();
-//                               ctx.stroke();
-//
-//                         }
-//                     //}
-//                 }
-//             }
-//         }
-//     },
-//
-//     afterDatasetsDraw: function(chartInstance) {
-//         var type = chartInstance.chart.config.type
-//         if(["line", "scatter"].includes(type)){  //if(type == "line" || type == "scatter"){
-//             this.drawErrorbars(chartInstance)
-//         } else
-//         if (type == "bar"){
-//             console.log("Bar charts not supported yet")
-//         }
-//     },
-// }
-// //Chart.pluginService.register(errorbarPlugin);
-
 var errorbarPlugin = {
 //Chart.plugins.register({
 
-    afterDatasetsDraw: function(chart: Chart) {
+    afterDatasetsDraw: (chart: Chart) => {
         var type = chart.config.type
-		var plugConfig = chart.options.errorbarPlugin
+		var plugConfig = chart.config.options.errorbarPlugin
 		var showErrors
 		if (plugConfig) {
 			if (plugConfig.showErrors) {
@@ -813,7 +698,7 @@ var errorbarPlugin = {
 
         if(showErrors != false){
             if(["line", "scatter"].includes(type)){  //if(type == "line" || type == "scatter"){
-                this.scatterErrorbars(chart)
+                errorbarPlugin.scatterErrorbars(chart)
             } else
             if (type == "bar"){
                 console.log("Bar charts not supported yet")
@@ -822,10 +707,10 @@ var errorbarPlugin = {
     },
 
 
-    scatterErrorbars: function(chart: Chart) {
+    scatterErrorbars: (chart: Chart) => {
         const ctx = chart.ctx;
 
-        chart.data.datasets.forEach(function(dataset, i: number) {
+        chart.data.datasets.forEach((dataset: Chart.ChartDataSets, i: number) => {
             var ds = dataset
             var meta = chart.getDatasetMeta(i);
 
@@ -842,8 +727,7 @@ var errorbarPlugin = {
             (ds.errStyle) ? errStyle = ds.errStyle : errStyle = "T"
 
             if (!meta.hidden && showErrors) {
-                meta.data.forEach(function(element: any, index: number) {
-                    // Draw the text in black, with the specified font
+                meta.data.forEach((element, index: number) => {
                     var x_point = element._model.x
                     var y_point = element._model.y
                     var errColor = element._view.borderColor
@@ -865,7 +749,7 @@ var errorbarPlugin = {
                     console.log(x_point, y_point, yError, xError, errColor)
 
                     var position = element.tooltipPosition();
-                    // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+					// ctx.fillStyle = 'rgba(0, 0, 0, 1)';
                     // var fontSize = 16;
                     // var fontStyle = 'normal';
                     // var fontFamily = 'Helvetica Neue';

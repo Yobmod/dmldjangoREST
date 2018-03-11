@@ -11,14 +11,11 @@
 		"jsx": "react",
 "moduleResolution": "classic",
 "lib": [ "es2015", "dom",  "es2017" ],
-"typeRoots" : ["./typings"]
+"typeRoots" : ["./typings/*"]
     },
-    "files": [
-        "core.ts",
-		"sys.ts"
-    ],
 	"include": [
-		"src/**/*"
+		"src/**/*",
+		"./typings/*"
 	],
 	"exclude": [
 		"node_modules",

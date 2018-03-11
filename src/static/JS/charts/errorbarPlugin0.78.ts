@@ -515,7 +515,7 @@ declare namespace Chart {
 	}
 
 
-	interface kChartDataSets extends ChartDataSets {
+	interface ChartDataSets {
 		showErrors?: boolean;		//plugin defs
 		showCap?: boolean;
 		capLen?: number;

@@ -126,6 +126,7 @@ declare namespace Chart {
 			skip: boolean;
 			radius: number;
 			borderColor: string;
+			fillColor: string;
 		}
 		_chart: object;
 	}
@@ -486,7 +487,7 @@ declare namespace Chart {
         borderDashOffset?: number;
         borderJoinStyle?: string;
         borderSkipped?: PositionType;
-        data?: number[] | ChartPoint[];
+        data?: ChartPoint[];
         fill?: boolean | number | string;
         hoverBackgroundColor?: string | string[];
         hoverBorderColor?: string | string[];
@@ -714,7 +715,8 @@ var errorbarPlugin = {
             var ds = dataset
             var meta = chart.getDatasetMeta(i);
 
-            if (ds.showErrors == false){var showErrors = false
+            if (ds.showErrors === false){
+				var showErrors = false
             } else showErrors = true
 
             var showCap: boolean
@@ -731,6 +733,7 @@ var errorbarPlugin = {
                     var x_point = element._model.x
                     var y_point = element._model.y
                     var errColor = element._view.borderColor
+					var errFillColor = "rgba(0,0,0,0)"  // element._view.fillColor
 					var dataPoint: Chart.ChartPoint = ds.data[index]
 
                     if (dataPoint.r) {
@@ -761,13 +764,17 @@ var errorbarPlugin = {
                     // var dataString = dataset.data[index].toString();
                     // // Make sure alignment settings are correct
                     // ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+					if (meta.hidden === false){
+						ctx.strokeStyle = errColor;
+					} else ctx.strokeStyle = "rgba(0,0,0,0)"
 
+					
                     if (errStyle == "circle"){
                         ctx.beginPath();
                         ctx.arc(position.x, position.y, yError, 0, 2 * Math.PI, false);
-                        ctx.fillStyle = 'rgba(0, 0, 0, 0)';
-                        ctx.fill();
-                        ctx.strokeStyle = errColor
+                        ctx.fillStyle = errFillColor;
+						ctx.fill();
+                        //ctx.strokeStyle = errColor
                         ctx.stroke();
                     }
                     else if (errStyle == "oval" || errStyle == "ellipse"){
@@ -779,14 +786,15 @@ var errorbarPlugin = {
                         ctx.scale(scaleFac, 1);
                         ctx.arc(position.x/scaleFac, position.y, yError, 0, 2 * Math.PI, false);
                         ctx.restore()
-                          ctx.fill();
-                          ctx.stroke();
+						ctx.fillStyle = errFillColor;
+                        ctx.fill();
+                        ctx.stroke();
                     }
                     else {
                         ctx.beginPath();
                         ctx.moveTo(position.x, position.y - yError);
                         ctx.lineTo(position.x, position.y + yError);
-                        ctx.strokeStyle = errColor
+                        //ctx.strokeStyle = errColor
                         ctx.stroke();
                         if(showCap){
                             ctx.beginPath();

@@ -25,14 +25,15 @@ Chart.defaults.global.legend.labels.usePointStyle = true
 Chart.defaults.global.legend.labels.fontsize = 12
 Chart.defaults.global.legend.labels.padding = 10
 
-
 var gammaChartData = {
 	datasets: [
 		{
 		label: 'Eu',
-		data: [{x: 15, y: 20}, {x: 35, y: 37}, {x: 72, y: 65},],
+		data: [{x: 5, y: 45}, {x: 10, y: 100}, {x: 25, y: 120}, {x: 50, y: 125}, {x: 100, y: 150}, {x: 120, y: 250},],
 		borderColor: "red",
-		errors: [20, 28, 34],
+		errors: [15, 20, 30, 12, 10, 10],
+		xErrors: [3, 7, 16, 12, 12, 30, 10],
+		//hidden: true,
 		errColor: "border",
 		errStyle: "circle",
 		errWidth: 2,
@@ -59,7 +60,7 @@ var options_gamma = {
 	},
 	elements: {
 		line: { fill: false,
-				borderWidth: 4,
+				borderWidth: 1,
 		},
 		point: { radius: 0,
 				pointStyle: 'circle',
@@ -114,17 +115,63 @@ var ctx_gamma = document.getElementById("chart-gamma").getContext("2d");
 var humidChartData = {
 	datasets: [
 		{
-		label: 'B',
-		data: [{x: 90, y: 45}, {x: 15, y: 170}, {x: 12, y: 50},],
+		label: 'B errors',
+		data: [{x: 5, y: 45}, {x: 10, y: 100}, {x: 25, y: 120}, {x: 50, y: 125}, {x: 100, y: 150}, {x: 120, y: 250},],
 		borderColor: "green",
-		errors: [15, 20, 30],
-		xErrors: [3, 7, 16],
+		errors: [15, 20, 30, 12, 10, 10],
+		xErrors: [3, 7, 16, 12, 12, 30, 10],
 		errStyle: "oval",
+		showLine: false,
+		errColor: "border",
+		//pointBackgroundColor: "white",
+		//pointBordercolor: "white",
+		backgroundColor: "rgba(0,0,0,0)",
+		hidden: true,
+		errWidth: 2,
+		showCap: true,
+		capLen: 3,
+		radius: 0,
 		},
 		{
-		label: 'C',
-		data: [{x: 75, y: 5}, {x: 65, y: 70}, {x: 19, y: 35},],
+			label: 'B trend',
+			data: [{x: 5, y: 45}, {x: 10, y: 100}, {x: 25, y: 120}, {x: 50, y: 125}, {x: 100, y: 150}, {x: 120, y: 250},],
+			borderColor: "green",
+			errors: [15, 20, 30, 12, 10, 10],
+			xErrors: [3, 7, 16, 12, 12, 30, 10],
+			pointStyle: "line",
+			showErrors: false,
+		radius: 0,
+		},
+		{
+			label: 'B data',
+			data: [{x: 5, y: 45}, {x: 10, y: 100}, {x: 25, y: 120}, {x: 50, y: 125}, {x: 100, y: 150}, {x: 120, y: 250},],
+			borderColor: "green",
+			backgroundColor: "green",
+			errors: [15, 20, 30, 12, 10, 10],
+			xErrors: [3, 7, 16, 12, 12, 30, 10],
+			showErrors: false,
+			showLine: false,
+		},
+		{
+		label: '',
+		data: [],
+		borderColor: "rgba(0,0,0,0)",
+		backgroundColor: "rgba(0,0,0,0)",
+		},
+		{
+		label: 'C data',
+		data: [{x: 15, y: 85, r: 14}, {x: 25, y: 37, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
+		backgroundColor: "rgba(0,0,0,0)",
+		showLine: false,
+		showErrors: false,
+		},
+		{
+		label: 'C trend',
+		data: [{x: 75, y: 5}, {x: 65, y: 70}, {x: 19, y: 35},],
+		showErrors: false,
+		borderColor: "blue",
+		backgroundColor: "rgba(0,0,0,0)",
 		},
 	]
 
@@ -145,14 +192,19 @@ var options_humid = {
 	responsive: true,
 	showLines: true,
 	hoverMode: 'single', // should always use single for a scatter chart
-	legend: {labels: {usePointStyle: true}},
+	legend: {
+		labels: {
+			usePointStyle: true,
+			// generateLabels: function() {	}
+		}
+	},
 		scales: {
 			yAxes: [{
 				display: true,
 				position: 'left',
 				id: 'y-axis-0',
 				ticks: {min: 0, 	//beginAtZero:true,
-						max: 200 },
+						max: 300 },
 				scaleLabel: {display: true,	labelString: 'Number'},
 				gridLines: {zeroLineColor: "black", },
 			}],
@@ -162,7 +214,7 @@ var options_humid = {
 				id: 'x-axis-0',
 				position: 'bottom',
 				ticks: {min: 0,
-						max: 100 },
+						max: 200 },
 				scaleLabel: {display: true,	labelString: 'Month'},
 				gridLines: {zeroLineColor: "black", },
 			}],

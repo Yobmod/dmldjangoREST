@@ -290,11 +290,10 @@ var errorbarPlugin = {
                     // var dataString = dataset.data[index].toString();
                     // // Make sure alignment settings are correct
                     // ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
-
+					ctx.fillStyle = 'rgba(0, 0, 0, 0)';
                     if (errStyle == "circle"){
                         ctx.beginPath();
                         ctx.arc(position.x, position.y, yError, 0, 2 * Math.PI, false);
-                        ctx.fillStyle = 'rgba(0, 0, 0, 0)';
                         ctx.fill();
                         ctx.strokeStyle = errColor
                         ctx.stroke();
@@ -304,10 +303,14 @@ var errorbarPlugin = {
                             var scaleFac = (xError)/yError
                         } else scaleFac = 10/yError //10 should be based on xScale?
                         ctx.beginPath();
+						ctx.fillStyle = 'pink';
                         ctx.save()
+						ctx.fillStyle = 'pink';
                         ctx.scale(scaleFac, 1);
-                        ctx.arc(position.x/scaleFac, position.y, yError, 0, 2 * Math.PI, false);
+						ctx.fillStyle = 'pink';
+                        ctx.arc(position.x/scaleFac, position.y, yError, 0, 2 * Math.PI, true);
                         ctx.restore()
+						ctx.fillStyle = 'pink';
                           ctx.fill();
                           ctx.stroke();
                     }

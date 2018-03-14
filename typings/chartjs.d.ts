@@ -11,6 +11,7 @@
 //                 Sergey Rubanov <https://github.com/chicoxyzzy>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.3
+
 declare class Chart {
     static readonly Chart: typeof Chart;
     constructor(
@@ -33,6 +34,7 @@ declare class Chart {
     ctx: CanvasRenderingContext2D|null;
     canvas: HTMLCanvasElement|null;
     chartArea: Chart.ChartArea;
+	getDatasetMeta: (i: number) => Chart.ChartDSMeta
     static pluginService: PluginServiceStatic;
 
     static defaults: {
@@ -47,6 +49,8 @@ declare class Chart {
     // Tooltip Static Options
     static Tooltip: Chart.ChartTooltipsStaticConfiguration;
 }
+
+
 declare class PluginServiceStatic {
     register(plugin: PluginServiceRegistrationOptions): void;
     unregister(plugin: PluginServiceRegistrationOptions): void;
@@ -575,6 +579,74 @@ declare namespace Chart {
         x: number;
         y: number;
     }
+
+	interface ChartMeta {
+		colour_background?: string[];
+		colour_border?: string[];
+		default?: number[];
+		labels?: string[] | number[];
+	}
+
+	interface ChartDSMeta {			//plugin defs
+		hidden?: boolean;
+		type: string;
+		xAxisID?: string;
+		yAxisID?: string;
+		data?: MetaPoints[];
+		dataset: ChartDSMeta;
+	}
+
+
+	interface MetaPoints {			//plugin defs
+		tooltipPosition: () => {x: number, y: number, padding: number};
+		_datasetIndex: number;
+		_index: number;
+		_model: {
+			x: number;
+			y: number;
+			skip: boolean;
+			radius: number;
+			xScale: object;
+			yScale: object;
+		}
+		_view: {
+			x: number;
+			y: number;
+			skip: boolean;
+			radius: number;
+			borderColor: string;
+			fillColor: string;
+		}
+		_chart: object;
+		_children: MetaPoints[];
+	}
+
+	interface ChartDataSets {
+		data?: number[] | ChartPoint[];
+	}
+
+	interface ChartPoint { 		//plugin defs
+		r?: number;
+		e?: number;
+	}
+
+	interface ChartOptions {
+		errorbarPlugin?: errorBarPlug;		//plugin defs
+	}
+
+	interface errorBarPlug {
+		showErrors?: boolean;			//plugin defs
+	}
+
+	interface ChartDataSets {
+		showErrors?: boolean;		//plugin defs
+		showCap?: boolean;
+		capLen?: number;
+		errStyle?: "circle" | "oval" | "ellipse" | "line"| "T" | "rect";
+		errors?: number[];
+		xErrors?: number[];
+		yErrors?: number[];
+	}
 }
 
 export = Chart;

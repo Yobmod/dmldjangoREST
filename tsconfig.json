@@ -4,18 +4,18 @@
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-		"outFile": "./src/static/JS/charts/errorbarPlugin0.78.js",
+		"outFile": "./src/static/JS/charts/errorbarPlugin008.js",
         "sourceMap": true,
 		"target": "es5",
 		"module": "commonjs",
 		"jsx": "react",
 "moduleResolution": "classic",
 "lib": [ "es2015", "dom",  "es2017" ],
-"typeRoots" : ["./typings/*"]
+"typeRoots" : ["typings/*"]
     },
 	"include": [
 		"src/**/*",
-		"./typings/*"
+		"typings/*"
 	],
 	"exclude": [
 		"node_modules",

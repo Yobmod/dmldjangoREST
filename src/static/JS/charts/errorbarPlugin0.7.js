@@ -242,6 +242,10 @@ var errorbarPlugin = {
         chart.data.datasets.forEach(function(dataset, i) {
             var ds = dataset
             var meta = chart.getDatasetMeta(i);
+			//var yScale = chartInstance.scales[meta.yAxisID];
+		  	//var xScale = chartInstance.scales[meta.xAxisID];
+
+
 
             if (ds.showErrors == false){var showErrors = false
             } else showErrors = true

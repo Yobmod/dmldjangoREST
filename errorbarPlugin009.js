@@ -4,7 +4,6 @@ var errorbarPlugin = {
         var type = chart.config.type;
         var plugConfig = chart.config.options.errorbarPlugin;
         var showErrors;
-
         if (plugConfig) {
             if (plugConfig.showErrors) {
                 showErrors = plugConfig.showErrors;
@@ -26,7 +25,6 @@ var errorbarPlugin = {
         chart.data.datasets.forEach(function (dataset, i) {
             var ds = dataset;
             var meta = chart.getDatasetMeta(i);
-			console.log(meta)
             if (ds.showErrors === false) {
                 var showErrors = false;
             }
@@ -45,25 +43,26 @@ var errorbarPlugin = {
                     var errColor = element._view.borderColor;
                     var errFillColor = "rgba(0,0,0,0)";
                     var dataPoint = ds.data[index];
-                    if (dataPoint.r) {
-                        var yError = dataPoint.r;
+                    var yError;
+                    var xError;
+                    if (typeof (dataPoint) === "object" && 'r' in dataPoint) {
+                        yError = dataPoint.r;
                     }
                     else if (ds.errors) {
                         yError = ds.errors[index];
                     }
                     else {
-                        yError = 0;
+                        yError = null;
                     }
-                    if (dataPoint.e) {
-                        var xError = dataPoint.e;
+                    if (typeof (dataPoint) === "object" && dataPoint.e) {
+                        xError = dataPoint.e;
                     }
                     else if (ds.xErrors) {
                         xError = ds.xErrors[index];
                     }
                     else {
-                        xError = 0;
+                        xError = null;
                     }
-                    console.log(x_point, y_point, yError, xError, errColor);
                     var position = element.tooltipPosition();
                     if (errStyle == "circle") {
                         ctx.beginPath();
@@ -79,7 +78,7 @@ var errorbarPlugin = {
                         ctx.stroke();
                     }
                     else if (errStyle == "oval" || errStyle == "ellipse") {
-                        if (xError != 0) {
+                        if (xError) {
                             var scaleFac = (xError) / yError;
                         }
                         else
@@ -101,6 +100,10 @@ var errorbarPlugin = {
                         ctx.beginPath();
                         ctx.moveTo(position.x, position.y - yError);
                         ctx.lineTo(position.x, position.y + yError);
+                        if (xError) {
+                            ctx.moveTo(position.x - xError, position.y);
+                            ctx.lineTo(position.x + xError, position.y);
+                        }
                         if (ds.hidden === true && meta.hidden === null) {
                             ctx.strokeStyle = "rgba(0,0,0,0)";
                         }
@@ -114,6 +117,12 @@ var errorbarPlugin = {
                             ctx.lineTo(position.x + capLen, position.y - yError);
                             ctx.moveTo(position.x - capLen, position.y + yError);
                             ctx.lineTo(position.x + capLen, position.y + yError);
+                            if (xError) {
+                                ctx.moveTo(position.x - xError, position.y - capLen);
+                                ctx.lineTo(position.x - xError, position.y + capLen);
+                                ctx.moveTo(position.x + xError, position.y - capLen);
+                                ctx.lineTo(position.x + xError, position.y + capLen);
+                            }
                             ctx.stroke();
                         }
                     }
@@ -122,4 +131,3 @@ var errorbarPlugin = {
         });
     }
 };
-//# sourceMappingURL=errorbarPlugin008.js.map

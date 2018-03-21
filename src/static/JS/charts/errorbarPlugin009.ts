@@ -1,6 +1,7 @@
 "use strict";
-//import * as Chart from "typings/chartjs";
-//import "typings/EBPlugin"
+//// <reference path="typings/chartjs" />
+//import * as Chart from "./chartjs";
+
 
 //     formatErrorbars: function(chartInstance, ds_num){
 //         var ds = this.calcData(chartInstance);
@@ -64,11 +65,11 @@
 //             var showCap = errForm.showCap
 //             var capLen = errForm.capLen
 //             var errShape = errForm.errShape
-//
+
 var errorbarPlugin = {
 //Chart.plugins.register({
 
-    afterDatasetsDraw: (chart: Chart) => {
+    afterDraw: (chart: Chart) => {
         var type = chart.config.type
 		var plugConfig = chart.config.options.errorbarPlugin
 		var showErrors
@@ -95,7 +96,9 @@ var errorbarPlugin = {
 
         chart.data.datasets.forEach((dataset: Chart.ChartDataSets, i: number) => {
             var ds = dataset
-            var meta: Chart.ChartDSMeta = chart.getDatasetMeta(i);
+			var meta = chart.getDatasetMeta(i);
+			//var yScale = chartInstance.scales[meta.yAxisID];
+		  	//var xScale = chartInstance.scales[meta.xAxisID];
 
             if (ds.showErrors === false){
 				var showErrors = false
@@ -116,22 +119,54 @@ var errorbarPlugin = {
                     var y_point = element._model.y
                     var errColor = element._view.borderColor
 					var errFillColor = "rgba(0,0,0,0)"  // element._view.fillColor
-					var dataPoint = <Chart.ChartPoint>ds.data[index]
-
-                    if (dataPoint.r) {
-                        var yError = dataPoint.r
-                    } else
+					var dataPoint = ds.data[index] //<Chart.ChartPoint>ds.data[index]
+					let yError: number;
+					let xError: number;
+					// if (typeof(dataPoint) === "object"){
+					// 	if ('r' in dataPoint){
+					// 		var yError = dataPoint.r
+					// 	} else								//for scatter or line
+					// 	if (ds.errors){
+					// 		yError = ds.errors[index]
+					// 	} else								//for scatter or line
+					// 	if (ds.yErrors){
+					// 		yError = ds.yErrors[index]
+					// 	} else {yError = 0}
+					//
+					// 	if ('e' in dataPoint){
+					// 		var xError = dataPoint.e
+					// 	} else								//for scatter or line
+					// 	if (ds.xErrors){
+					// 		xError = ds.xErrors[index]
+					// 	} else {xError = 0}
+					// } else
+					// if (typeof(dataPoint) === "number"){
+					// 	if (ds.errors){
+					// 		yError = ds.errors[index]
+					// 	} else								//for scatter or line
+					// 	if (ds.yErrors){
+					// 		yError = ds.yErrors[index]
+					// 	} else {yError = 0}
+					//
+					// 	if (ds.xErrors){
+					// 		xError = ds.xErrors[index]
+					// 	} else {xError = 0}
+					// }
+					//
+                    if (typeof(dataPoint) === "object" && 'r' in dataPoint) { //for scatter with r, bubble
+                        yError = dataPoint.r
+                    } else								//for scatter or line
                     if (ds.errors){
                         yError = ds.errors[index]
-                    } else {yError = 0}
+                    } else {yError = null}
 
-                    if (dataPoint.e){
-                        var xError = dataPoint.e
+                    if (typeof(dataPoint) === "object" && dataPoint.e){
+                        xError = dataPoint.e
                     } else
                     if (ds.xErrors){
                         xError = ds.xErrors[index]
-                    } else {xError = 0}
-                    console.log(x_point, y_point, yError, xError, errColor)
+                    } else {xError = null}
+                    // console.log(x_point, y_point, yError, xError, errColor)
 
                     var position = element.tooltipPosition();
 					// ctx.fillStyle = 'rgba(0, 0, 0, 1)';
@@ -160,7 +195,7 @@ var errorbarPlugin = {
                         ctx.stroke();
                     }
                     else if (errStyle == "oval" || errStyle == "ellipse"){
-                        if(xError != 0){
+                        if(xError){
                             var scaleFac = (xError)/yError
                         } else scaleFac = 10/yError //10 should be based on xScale?
                         ctx.beginPath();
@@ -180,6 +215,10 @@ var errorbarPlugin = {
                         ctx.beginPath();
                         ctx.moveTo(position.x, position.y - yError);
                         ctx.lineTo(position.x, position.y + yError);
+						if (xError) {
+							ctx.moveTo(position.x - xError, position.y);
+							ctx.lineTo(position.x + xError, position.y);
+						}
 						if (ds.hidden === true && meta.hidden === null){
 							ctx.strokeStyle = "rgba(0,0,0,0)";
 						} else {
@@ -192,9 +231,14 @@ var errorbarPlugin = {
                             ctx.lineTo(position.x+capLen, position.y - yError);
                             ctx.moveTo(position.x-capLen, position.y + yError);
                             ctx.lineTo(position.x+capLen, position.y + yError);
+							if (xError) {
+								ctx.moveTo(position.x - xError, position.y-capLen);
+								ctx.lineTo(position.x - xError, position.y+capLen);
+								ctx.moveTo(position.x + xError, position.y-capLen);
+								ctx.lineTo(position.x + xError, position.y+capLen);
+							}
                             ctx.stroke()
                         }
-
                 	}
                 });
             }

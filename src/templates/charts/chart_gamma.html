@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin008.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/charts/errorbarPlugin009.js' %}"></script>
 
 	<div id="canvas-holder" class="col-sm-6">
 		<canvas id="chart-gamma" width="500" height="500"/></canvas>
@@ -33,9 +33,9 @@ var gammaChartData = {
 		borderColor: "red",
 		errors: [15, 20, 30, 12, 10, 10],
 		xErrors: [3, 7, 16, 12, 12, 30, 10],
-		hidden: true,
+		//hidden: true,
 		errColor: "border",
-		errStyle: "circle",
+		errStyle: "T",
 		errWidth: 2,
 		showCap: true,
 		capLen: 3,
@@ -46,6 +46,7 @@ var gammaChartData = {
 		data: [{x: 15, y: 85, r: 14}, {x: 25, y: 37, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
 		errColor: "border",
+		errStyle: "circle",
 		},
 	]
 

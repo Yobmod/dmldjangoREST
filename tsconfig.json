@@ -1,24 +1,23 @@
 {
     "compilerOptions": {
         "module": "commonjs",
+		"diagnostics": true,
+		"noEmitOnError": true,
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-		"outFile": "./src/static/JS/charts/errorbarPlugin008.js",
-        "sourceMap": true,
+		"sourceMap": false,
+		"outDir": "./src/static/JS/charts",
 		"target": "es5",
-		"module": "commonjs",
 		"jsx": "react",
-"moduleResolution": "classic",
-"lib": [ "es2015", "dom",  "es2017" ],
-"typeRoots" : ["typings/*"]
-    },
+		"moduleResolution": "classic",
+		"lib": [ "es2015", "es6", "dom",  "es2017" ],
+	},
+	"compileOnSave": true,
 	"include": [
 		"src/**/*",
-		"typings/*"
 	],
 	"exclude": [
 		"node_modules",
-		"**/*.spec.ts"
 	]
 }

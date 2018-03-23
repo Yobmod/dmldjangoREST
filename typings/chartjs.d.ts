@@ -621,10 +621,6 @@ declare namespace Chart {
 		_children: MetaPoints[];
 	}
 
-	interface ChartDataSets {
-		data?: number[] | ChartPoint[];
-	}
-
 	interface ChartPoint { 		//plugin defs
 		r?: number;
 		e?: number;
@@ -645,7 +641,11 @@ declare namespace Chart {
 		errStyle?: "circle" | "oval" | "ellipse" | "line"| "T" | "rect";
 		errors?: number[];
 		xErrors?: number[];
-		yErrors?: number[];
+        yErrors?: number[];
+        errColor?: string;
+        errFillColor?: string;
+        errWidth?: number;
+        capWidth?: number;
 	}
 }
 

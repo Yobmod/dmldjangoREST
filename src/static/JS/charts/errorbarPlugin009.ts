@@ -1,81 +1,17 @@
 "use strict";
-//// <reference path="typings/chartjs" />
-//import * as Chart from "./chartjs";
-
-
-//     formatErrorbars: function(chartInstance, ds_num){
-//         var ds = this.calcData(chartInstance);
-//         var ctx = this.calcContext(chartInstance)
-//         var showErrors = ds[ds_num].showErrors
-//         var errColor = ds[ds_num].errColor
-//         var errWidth = ds[ds_num].errWidth
-//         var capLen = ds[ds_num].capLen
-//         var showCap = ds[ds_num].showCap
-//         var errShape = ds[ds_num].errShape
-//
-//         if(errColor == "border"){
-//                errColor = ds[ds_num].borderColor
-//         } else if(typeof(errColor) === "string"){
-//                 errColor = errColor
-//         } else errColor = "rgba(169,169,169, 1)"
-//
-//         if(errWidth == "border"){
-//              errWidth = ds[ds_num].borderWidth
-//          } else if(typeof(errColor) === "number"){
-//                  errWidth = errWidth
-//         } else errWidth = 1
-//
-//         if(capLen == "border"){
-//              capLen = ds[ds_num].borderWidth
-//         } else if(typeof(capLen) === "number"){
-//                  capLen = capLen
-//         } else capLen = 3
-//
-//         if(showCap === false){
-//             showCap = false
-//         } else {showCap = true}
-//
-//         if(showErrors === false){
-//             showErrors = false
-//         } else if(showErrors === true || errColor || showCap)
-//             showErrors = true
-//
-//         if(["circle", "oval", "ellipse",].includes(errShape)){
-//              errShape = "oval"
-//         } else errShape = "T"
-//
-//
-//         return {showErrors: showErrors,
-//                 errColor:errColor,
-//                 errWidth:errWidth,
-//                 errShape:errShape,
-//                 showCap:showCap,
-//                 capLen:capLen,
-//                 }
-//     },
-////             var errCalc = this.calcErrorbars(chartInstance, ds_num)
-//             var errForm = this.formatErrorbars(chartInstance, ds_num)
-///             var isHidden = errCalc[3]
-//             var yList = errCalc[1]
-//             var xList = errCalc[0]
-//             var errList = errCalc[2]
-//             var showErrors = errForm.showErrors
-//             var errColor = errForm.errColor
-//             var errWidth = errForm.errWidth
-//             var showCap = errForm.showCap
-//             var capLen = errForm.capLen
-//             var errShape = errForm.errShape
+/// <reference types="./chartjs" />
+//import * as Chart from "typings/chartjs";
 
 var errorbarPlugin = {
 //Chart.plugins.register({
 
     afterDraw: (chart: Chart) => {
-        var type = chart.config.type
-		var plugConfig = chart.config.options.errorbarPlugin
-		var showErrors
+        const type = chart.config.type
+		const plugConfig = chart.config.options.errorbarPlugin
+
 		if (plugConfig) {
 			if (plugConfig.showErrors) {
-				showErrors = plugConfig.showErrors
+				var showErrors = plugConfig.showErrors
 			}
 		} else showErrors = true
 		//console.log(showErrors)
@@ -93,66 +29,44 @@ var errorbarPlugin = {
 
     scatterErrorbars: (chart: Chart) => {
         const ctx = chart.ctx;
+        const plugConfig = chart.config.options.errorbarPlugin
+        //var yScale = chartInstance.scales[meta.yAxisID];
+		//var xScale = chartInstance.scales[meta.xAxisID];
 
         chart.data.datasets.forEach((dataset: Chart.ChartDataSets, i: number) => {
-            var ds = dataset
-			var meta = chart.getDatasetMeta(i);
-			//var yScale = chartInstance.scales[meta.yAxisID];
-		  	//var xScale = chartInstance.scales[meta.xAxisID];
+            let ds = dataset
+			let meta = chart.getDatasetMeta(i);
 
-            if (ds.showErrors === false){
-				var showErrors = false
-            } else showErrors = true
+            let showErrors: boolean;
+            (ds.showErrors === false) ? showErrors = false : showErrors = true
 
-            var showCap: boolean
+            let errWidth: number;
+            (ds.errWidth) ? errWidth = ds.errWidth : errWidth = 1
+
+            let errFillColor: string;
+            (ds.errFillColor) ? errFillColor = ds.errFillColor : errFillColor = "rgba(0,0,0,0)" //element._view.fillColor
+
+            let showCap: boolean;
             (ds.showCap) ? showCap = ds.showCap : showCap = true
 
-            var capLen: number
+            let capLen: number;
             (ds.capLen) ? capLen = ds.capLen : capLen = 3
 
-            var errStyle: string
+            let errStyle: string;
             (ds.errStyle) ? errStyle = ds.errStyle : errStyle = "T"
 
             if (!meta.hidden && showErrors) {
                 meta.data.forEach((element: Chart.MetaPoints, index: number) => {
-                    var x_point = element._model.x
-                    var y_point = element._model.y
-                    var errColor = element._view.borderColor
-					var errFillColor = "rgba(0,0,0,0)"  // element._view.fillColor
-					var dataPoint = ds.data[index] //<Chart.ChartPoint>ds.data[index]
+                    let x_point = element._model.x
+                    let y_point = element._model.y
+
+                    let errColor: string;
+                    (ds.errColor) ? errColor = ds.errColor : errColor = element._view.borderColor
+
+					let dataPoint = ds.data[index] //<Chart.ChartPoint>ds.data[index]
 					let yError: number;
 					let xError: number;
-					// if (typeof(dataPoint) === "object"){
-					// 	if ('r' in dataPoint){
-					// 		var yError = dataPoint.r
-					// 	} else								//for scatter or line
-					// 	if (ds.errors){
-					// 		yError = ds.errors[index]
-					// 	} else								//for scatter or line
-					// 	if (ds.yErrors){
-					// 		yError = ds.yErrors[index]
-					// 	} else {yError = 0}
-					//
-					// 	if ('e' in dataPoint){
-					// 		var xError = dataPoint.e
-					// 	} else								//for scatter or line
-					// 	if (ds.xErrors){
-					// 		xError = ds.xErrors[index]
-					// 	} else {xError = 0}
-					// } else
-					// if (typeof(dataPoint) === "number"){
-					// 	if (ds.errors){
-					// 		yError = ds.errors[index]
-					// 	} else								//for scatter or line
-					// 	if (ds.yErrors){
-					// 		yError = ds.yErrors[index]
-					// 	} else {yError = 0}
-					//
-					// 	if (ds.xErrors){
-					// 		xError = ds.xErrors[index]
-					// 	} else {xError = 0}
-					// }
-					//
+
                     if (typeof(dataPoint) === "object" && 'r' in dataPoint) { //for scatter with r, bubble
                         yError = dataPoint.r
                     } else								//for scatter or line
@@ -168,7 +82,7 @@ var errorbarPlugin = {
                     } else {xError = null}
                     // console.log(x_point, y_point, yError, xError, errColor)
 
-                    var position = element.tooltipPosition();
+                    let position = element.tooltipPosition();
 					// ctx.fillStyle = 'rgba(0, 0, 0, 1)';
                     // var fontSize = 16;
                     // var fontStyle = 'normal';

@@ -6,9 +6,11 @@
 
 {% block content %}
 <script type="text/javascript" src="{% static 'js/charts/errorbarPlugin009.js' %}"></script>
+<!--
 <script type="text/javascript" src="{% static 'vendor/chartjs/chartjs-plugin-annotation.js' %}" defer></script>
 <script type="text/javascript" src="{% static 'vendor/chartjs/chartjs-lines-plugin.js' %}"></script>
 <script type="text/javascript" src="{% static 'vendor/chartjs/fillBetweenLinesPlugin.js' %}" defer></script>
+-->
 
 
 	<div id="canvas-holder" class="col-sm-6">
@@ -35,22 +37,26 @@ var gammaChartData = {
 		label: 'Eu',
 		data: [{x: 5, y: 45}, {x: 10, y: 100}, {x: 25, y: 120}, {x: 50, y: 125}, {x: 100, y: 150}, {x: 120, y: 250},],
 		borderColor: "red",
+		//fillColor: "pink",
 		errors: [15, 20, 30, 12, 10, 10],
 		xErrors: [3, 7, 16, 12, 12, 30, 10],
 		//hidden: true,
-		errColor: "border",
-		errStyle: "T",
+		errColor: "blue",
+		errStyle: "circle",
+		errFillColor: "pink",
+		hidden: true,
 		errWidth: 2,
 		showCap: true,
 		capLen: 3,
-		//showErrors: false,
+		showErrors: true,
 		},
 		{
 		label: 'Am',
 		data: [{x: 15, y: 85, r: 14}, {x: 25, y: 37, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
-		errColor: "border",
+		errColor: "red",
 		errStyle: "circle",
+		showErrors: true,
 		},
 	]
 
@@ -168,6 +174,7 @@ var humidChartData = {
 		showCap: true,
 		capLen: 3,
 		radius: 0,
+		showErrors: true,
 		},
 		{
 			label: 'B trend',
@@ -200,8 +207,8 @@ var humidChartData = {
 		data: [{x: 15, y: 85, r: 14}, {x: 25, y: 37, r: 8}, {x: 62, y: 135, r: 44},],
 		borderColor: "blue",
 		backgroundColor: "rgba(0,0,0,0)",
-		showLine: false,
-		showErrors: false,
+		showLine: true,
+		showErrors: true,
 		},
 		{
 		label: 'C trend',

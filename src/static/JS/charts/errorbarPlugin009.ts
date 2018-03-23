@@ -15,8 +15,8 @@ var errorbarPlugin = {
 			}
 		} else showErrors = true
 		//console.log(showErrors)
-
-        if(showErrors != false){
+        
+        if(showErrors !== false){
             if(["line", "scatter"].includes(type)){  //if(type == "line" || type == "scatter"){
                 errorbarPlugin.scatterErrorbars(chart)
             } else
@@ -39,12 +39,9 @@ var errorbarPlugin = {
 
             let showErrors: boolean;
             (ds.showErrors === false) ? showErrors = false : showErrors = true
-
+           
             let errWidth: number;
             (ds.errWidth) ? errWidth = ds.errWidth : errWidth = 1
-
-            let errFillColor: string;
-            (ds.errFillColor) ? errFillColor = ds.errFillColor : errFillColor = "rgba(0,0,0,0)" //element._view.fillColor
 
             let showCap: boolean;
             (ds.showCap) ? showCap = ds.showCap : showCap = true
@@ -55,6 +52,9 @@ var errorbarPlugin = {
             let errStyle: string;
             (ds.errStyle) ? errStyle = ds.errStyle : errStyle = "T"
 
+            let errFillColor: string;
+            (ds.errFillColor) ? errFillColor = ds.errFillColor : errFillColor = "rgba(0,0,0,0)"
+
             if (!meta.hidden && showErrors) {
                 meta.data.forEach((element: Chart.MetaPoints, index: number) => {
                     let x_point = element._model.x
@@ -63,7 +63,7 @@ var errorbarPlugin = {
                     let errColor: string;
                     (ds.errColor) ? errColor = ds.errColor : errColor = element._view.borderColor
 
-					let dataPoint = ds.data[index] //<Chart.ChartPoint>ds.data[index]
+    				let dataPoint = ds.data[index] //<Chart.ChartPoint>ds.data[index]
 					let yError: number;
 					let xError: number;
 
@@ -99,13 +99,16 @@ var errorbarPlugin = {
                     if (errStyle == "circle"){
                         ctx.beginPath();
                         ctx.arc(position.x, position.y, yError, 0, 2 * Math.PI, false);
-                        ctx.fillStyle = errFillColor;
-						ctx.fill();
+                        						
 						if (ds.hidden === true && meta.hidden === null){
-							ctx.strokeStyle = "rgba(0,0,0,0)";
+                            ctx.strokeStyle = "rgba(0,0,0,0)";
+                            ctx.fillStyle = "rgba(0,0,0,0)"
 						} else {
-							ctx.strokeStyle = errColor
-						}
+                            ctx.strokeStyle = errColor
+                            ctx.fillStyle = errFillColor;
+                        }
+                        console.log(meta.hidden)
+                        ctx.fill();
                         ctx.stroke();
                     }
                     else if (errStyle == "oval" || errStyle == "ellipse"){

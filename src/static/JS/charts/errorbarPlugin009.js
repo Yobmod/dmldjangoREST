@@ -76,7 +76,6 @@ var errorbarPlugin = {
                             ctx.strokeStyle = errColor;
                             ctx.fillStyle = errFillColor;
                         }
-                        console.log(meta.hidden);
                         ctx.fill();
                         ctx.stroke();
                     }
@@ -93,10 +92,13 @@ var errorbarPlugin = {
                         ctx.restore();
                         if (ds.hidden === true && meta.hidden === null) {
                             ctx.strokeStyle = "rgba(0,0,0,0)";
+                            ctx.fillStyle = "rgba(0,0,0,0)";
                         }
                         else {
                             ctx.strokeStyle = errColor;
+                            ctx.fillStyle = errFillColor;
                         }
+                        ctx.fill();
                         ctx.stroke();
                     }
                     else {

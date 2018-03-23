@@ -107,12 +107,11 @@ var errorbarPlugin = {
                             ctx.strokeStyle = errColor
                             ctx.fillStyle = errFillColor;
                         }
-                        console.log(meta.hidden)
                         ctx.fill();
                         ctx.stroke();
                     }
-                    else if (errStyle == "oval" || errStyle == "ellipse"){
-                        if(xError){
+                    else if (errStyle == "oval" || errStyle == "ellipse") {
+                        if (xError) {
                             var scaleFac = (xError)/yError
                         } else scaleFac = 10/yError //10 should be based on xScale?
                         ctx.beginPath();
@@ -120,12 +119,14 @@ var errorbarPlugin = {
                         ctx.scale(scaleFac, 1);
                         ctx.arc(position.x/scaleFac, position.y, yError, 0, 2 * Math.PI, false);
                         ctx.restore()
-						if (ds.hidden === true && meta.hidden === null){
-							ctx.strokeStyle = "rgba(0,0,0,0)";
-						} else {
-							ctx.strokeStyle = errColor
-						}
-                        //ctx.fill();
+                        if (ds.hidden === true && meta.hidden === null) {
+                            ctx.strokeStyle = "rgba(0,0,0,0)";
+                            ctx.fillStyle = "rgba(0,0,0,0)"
+                        } else {
+                            ctx.strokeStyle = errColor
+                            ctx.fillStyle = errFillColor;
+                        }
+                        ctx.fill();
                         ctx.stroke();
                     }
                     else {

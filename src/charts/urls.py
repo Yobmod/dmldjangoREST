@@ -7,7 +7,7 @@ from .views import (HomeView, # get_data,
                     ChartViewLine, ChartDataLineOne, ChartDataLineTwo,
                     ChartViewBarFunnel,
                     ChartViewGamma, ChartDataGamma,
-                                    )
+)
 
 app_name = 'charts'
 urlpatterns = [

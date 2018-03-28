@@ -3,9 +3,10 @@ var errorbarPlugin = {
     afterDraw: function (chart) {
         var type = chart.config.type;
         var plugConfig = chart.config.options.errorbarPlugin;
+        var showErrors;
         if (plugConfig) {
             if (plugConfig.showErrors) {
-                var showErrors = plugConfig.showErrors;
+                showErrors = plugConfig.showErrors;
             }
         }
         else
@@ -80,8 +81,9 @@ var errorbarPlugin = {
                         ctx.stroke();
                     }
                     else if (errStyle == "oval" || errStyle == "ellipse") {
+                        var scaleFac = void 0;
                         if (xError) {
-                            var scaleFac = (xError) / yError;
+                            scaleFac = (xError) / yError;
                         }
                         else
                             scaleFac = 10 / yError;

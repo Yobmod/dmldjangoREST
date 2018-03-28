@@ -7,4 +7,6 @@
     "python.linting.pydocstyleEnabled": false,
 
     "python.linting.lintOnSave": true,
+
+    "editor.fontSize": 16,
 }

@@ -32,8 +32,8 @@ class ChartView(View):   # use context in html js tags
 
 
 class ChartData(APIView):
-	authentication_classes = []
-	permission_classes = []
+	authentication_classes: List = []
+	permission_classes: List = []
 
 	def get(self, request, format=None):
 		qs_count = User.objects.all().count()
@@ -69,8 +69,8 @@ class ChartViewTwo(View):   # use context in html js tags
 
 
 class ChartDataTwo(APIView):
-	authentication_classes = []
-	permission_classes = []
+	authentication_classes: List = []
+	permission_classes: List = []
 
 	def get(self, request, format=None):
 		qs_count = User.objects.all().count()
@@ -88,8 +88,8 @@ class ChartViewLine(View):   # use context in html js tags
 
 
 class ChartDataLineOne(APIView):
-	authentication_classes = []
-	permission_classes = []
+	authentication_classes: List = []
+	permission_classes: List = []
 
 	def get(self, request, format=None):
 		labels = [0, 1, 2, 3, 4, 5]
@@ -104,8 +104,8 @@ class ChartDataLineOne(APIView):
 
 # from rest_framework.views import RetrieveAPIView
 class ChartDataLineTwo(APIView):  # scatter takes list of dicts
-	authentication_classes = []
-	permission_classes = []
+	authentication_classes: List = []
+	permission_classes: List = []
 
 	def get(self, request, format=None):
 		line1 = "[{x:-10, y:10}, {x:7, y:5}, {x:-3, y:7}, {x:-8, y:9}, {x:6, y:6}, {x:-5, y:8}]"
@@ -132,8 +132,8 @@ class ChartViewGamma(View):   # use context in html js tags
 
 
 class ChartDataGamma(APIView):
-	authentication_classes = []
-	permission_classes = []
+	authentication_classes: List = []
+	permission_classes: List = []
 
 	def get(self, request: HttpRequest, format: Any=None) -> JsonResponse:
 		x = [2, 4, 6, 8, 10]  # x values

@@ -3,8 +3,8 @@ bin/
 include/
 lib/
 pip-selfcheck.json
-.mypy_cache/*
-*/.mypy_cache 
+.mypy_cache/
+/.mypy_cache 
 .mypy_cache
 
 # Byte-compiled / optimized / DLL files

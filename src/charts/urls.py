@@ -1,18 +1,18 @@
 from django.conf.urls import url
 
 # from . import views
-from .views import (HomeView, # get_data,
+from .views import (HomeView,  # get_data,
                     ChartView, ChartData,
                     ChartViewTwo, ChartDataTwo,
                     ChartViewLine, ChartDataLineOne, ChartDataLineTwo,
                     ChartViewBarFunnel,
                     ChartViewGamma, ChartDataGamma,
-)
+                    )
 
 app_name = 'charts'
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
-#	url(r'^api/data/$', get_data, name='api-data'), in html can use <url-endpoint="{url 'api-data'}">
+    # url(r'^api/data/$', get_data, name='api-data'), in html can use <url-endpoint="{url 'api-data'}">
     url(r'^api/chart/data/$', ChartData.as_view()),
 
     url(r'^chart1/$', ChartView.as_view(), name='chart1'),

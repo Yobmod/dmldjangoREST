@@ -19,7 +19,7 @@ handle = "@Codecademy"
 
 statuses = twitter_api.GetUserTimeline(screen_name=handle, count=200, include_rts=False)
 
-text = ""
+text: str = ""
 
 for status in statuses:
     if (status.lang =='en'): #English tweets

@@ -9,4 +9,12 @@
     "python.linting.lintOnSave": true,
 
     "editor.fontSize": 16,
+
+    "workbench.colorTheme": "Default High Contrast",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "[python]": {
+        
+    }
 }

@@ -26,12 +26,13 @@ from accounts.views import (login_view, register_view, logout_view, main_view)
 
 urlpatterns = [
 
-	url(r'^$', main_view, name='main'),
+    url(r'^$', main_view, name='main'),
     url(r'^admin/', admin.site.urls),
-	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-	url(r'^api/auth/token/', obtain_jwt_token),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/auth/token/', obtain_jwt_token),
 
-	url(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'), permanent=False), name="favicon"),
+    url(r'^favicon.ico$', RedirectView.as_view(
+                url=staticfiles_storage.url('favicon.ico'), permanent=False), name="favicon"),
 
 
     url(r'^comments/', include("comments.urls", namespace='comments')),
@@ -40,11 +41,11 @@ urlpatterns = [
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
     url(r'^posts/', include("posts.urls", namespace='posts')),
-	url(r'^charts/', include("charts.urls", namespace='charts')),
-	url(r'^trials/', include("trials.urls", namespace='trials')),
-	url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
-	url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
-	url(r'^api/accounts/', include("accounts.api.urls", namespace='accounts-api')),
+    url(r'^charts/', include("charts.urls", namespace='charts')),
+    url(r'^trials/', include("trials.urls", namespace='trials')),
+    url(r'^api/posts/', include("posts.api.urls", namespace='posts-api')),
+    url(r'^api/comments/', include("comments.api.urls", namespace='comments-api')),
+    url(r'^api/accounts/', include("accounts.api.urls", namespace='accounts-api')),
 
 ]
 

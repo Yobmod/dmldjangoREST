@@ -3,9 +3,10 @@ var errorbarPlugin = {
     afterDraw: function (chart) {
         var type = chart.config.type;
         var plugConfig = chart.config.options.errorbarPlugin;
+        var showErrors;
         if (plugConfig) {
             if (plugConfig.showErrors) {
-                var showErrors = plugConfig.showErrors;
+                showErrors = plugConfig.showErrors;
             }
         }
         else
@@ -76,13 +77,13 @@ var errorbarPlugin = {
                             ctx.strokeStyle = errColor;
                             ctx.fillStyle = errFillColor;
                         }
-                        console.log(meta.hidden);
                         ctx.fill();
                         ctx.stroke();
                     }
                     else if (errStyle == "oval" || errStyle == "ellipse") {
+                        var scaleFac = void 0;
                         if (xError) {
-                            var scaleFac = (xError) / yError;
+                            scaleFac = (xError) / yError;
                         }
                         else
                             scaleFac = 10 / yError;
@@ -93,10 +94,13 @@ var errorbarPlugin = {
                         ctx.restore();
                         if (ds.hidden === true && meta.hidden === null) {
                             ctx.strokeStyle = "rgba(0,0,0,0)";
+                            ctx.fillStyle = "rgba(0,0,0,0)";
                         }
                         else {
                             ctx.strokeStyle = errColor;
+                            ctx.fillStyle = errFillColor;
                         }
+                        ctx.fill();
                         ctx.stroke();
                     }
                     else {

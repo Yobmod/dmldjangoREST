@@ -2,16 +2,17 @@
 /// <reference types="./chartjs" />
 //import * as Chart from "typings/chartjs";
 
-var errorbarPlugin = {
+const errorbarPlugin = {
 //Chart.plugins.register({
 
     afterDraw: (chart: Chart) => {
         const type = chart.config.type
 		const plugConfig = chart.config.options.errorbarPlugin
+        let showErrors: boolean;
 
 		if (plugConfig) {
 			if (plugConfig.showErrors) {
-				var showErrors = plugConfig.showErrors
+				showErrors = plugConfig.showErrors
 			}
 		} else showErrors = true
 		//console.log(showErrors)
@@ -30,8 +31,8 @@ var errorbarPlugin = {
     scatterErrorbars: (chart: Chart) => {
         const ctx = chart.ctx;
         const plugConfig = chart.config.options.errorbarPlugin
-        //var yScale = chartInstance.scales[meta.yAxisID];
-		//var xScale = chartInstance.scales[meta.xAxisID];
+        //const yScale = chartInstance.scales[meta.yAxisID];
+		//const xScale = chartInstance.scales[meta.xAxisID];
 
         chart.data.datasets.forEach((dataset: Chart.ChartDataSets, i: number) => {
             let ds = dataset
@@ -84,15 +85,15 @@ var errorbarPlugin = {
 
                     let position = element.tooltipPosition();
 					// ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-                    // var fontSize = 16;
-                    // var fontStyle = 'normal';
-                    // var fontFamily = 'Helvetica Neue';
+                    // let fontSize = 16;
+                    // let fontStyle = 'normal';
+                    // let fontFamily = 'Helvetica Neue';
                     // ctx.textAlign = 'center';
                     // ctx.textBaseline = 'middle';
-                    // var padding = 5;
+                    // let padding = 5;
                     // ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
                     // // Just naively convert to string for now
-                    // var dataString = dataset.data[index].toString();
+                    // let dataString = dataset.data[index].toString();
                     // // Make sure alignment settings are correct
                     // ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
 
@@ -107,25 +108,27 @@ var errorbarPlugin = {
                             ctx.strokeStyle = errColor
                             ctx.fillStyle = errFillColor;
                         }
-                        console.log(meta.hidden)
                         ctx.fill();
                         ctx.stroke();
                     }
-                    else if (errStyle == "oval" || errStyle == "ellipse"){
-                        if(xError){
-                            var scaleFac = (xError)/yError
+                    else if (errStyle == "oval" || errStyle == "ellipse") {
+                        let scaleFac: number;
+                        if (xError) {
+                            scaleFac = (xError)/yError
                         } else scaleFac = 10/yError //10 should be based on xScale?
                         ctx.beginPath();
                         ctx.save()
                         ctx.scale(scaleFac, 1);
                         ctx.arc(position.x/scaleFac, position.y, yError, 0, 2 * Math.PI, false);
                         ctx.restore()
-						if (ds.hidden === true && meta.hidden === null){
-							ctx.strokeStyle = "rgba(0,0,0,0)";
-						} else {
-							ctx.strokeStyle = errColor
-						}
-                        //ctx.fill();
+                        if (ds.hidden === true && meta.hidden === null) {
+                            ctx.strokeStyle = "rgba(0,0,0,0)";
+                            ctx.fillStyle = "rgba(0,0,0,0)"
+                        } else {
+                            ctx.strokeStyle = errColor
+                            ctx.fillStyle = errFillColor;
+                        }
+                        ctx.fill();
                         ctx.stroke();
                     }
                     else {

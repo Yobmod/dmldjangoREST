@@ -1,9 +1,9 @@
-#import qrcode
-from io import StringIO
+# import qrcode
+# from io import StringIO
 
-from django.db import models
-from django.urls import reverse
-from django.core.files.uploadedfile import InMemoryUploadedFile
+# from django.db import models
+# from django.urls import reverse
+# from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 # class Event(models.Model):

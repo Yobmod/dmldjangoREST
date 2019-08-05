@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "74c0527d073f7b32d80f4c71c237a4691105211621df3cc9965438057ad98cd5"
+            "sha256": "b2ff79f13d1afc1bab5532ced6640e919650996586717342b6c8006090892bac"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -218,11 +218,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:1a41831eace203fd1939edf899e07d7abd12ce9bafc3d9a5a63a24a8d1d12bd5",
-                "sha256:305b6c4fce9e03bb746e35780c2c4d52f29ea1669f15633cfd41bc8821c74c76"
+                "sha256:16a5d54411599780ac9dfe3b9b38f90f785c51259a584e0b24b6f14a7f69aae8",
+                "sha256:9a2f98211ab474c710fcdad29c82f30fc14ce9917c7a70c3682162a624de4035"
             ],
             "index": "pypi",
-            "version": "==2.1.11"
+            "version": "==2.2.4"
         },
         "django-allauth": {
             "hashes": [
@@ -302,41 +302,42 @@
         },
         "django-embed-video": {
             "hashes": [
-                "sha256:caa7b4c3d277bc20ce0ceab371aab33a4374b1ac6b406106d47f97953b033c51"
+                "sha256:a90f7de88528fd1bc155400dc23ea207884fa0d0514afe711f0703b2e7fa6208"
             ],
             "index": "pypi",
-            "version": "==1.1.2"
+            "version": "==1.2.0"
         },
         "django-emoji": {
             "hashes": [
-                "sha256:a8620d9a6be6b57253366f8b1f919e2e72c2f1be5b85baa6e7b4f85843f1d413",
-                "sha256:d8ac422ed2c53b0ce4be2a586632e5568fbcc154839272209478ec9c4394c024"
+                "sha256:9eb1c9c417a0cf1a2a6aba42a580937282970b347ef49ec42409f07396e64227",
+                "sha256:c6e4d4eef45c834aa9205190cda6a2b7cbd72f44e3af2dcc5fc097943e738327"
             ],
             "index": "pypi",
-            "version": "==2.2.0"
+            "version": "==2.2.2"
         },
         "django-environ": {
             "hashes": [
-                "sha256:70cf521f87e64f4dd2aeb87ced006dc98f621e2cdb38134fbcbcf6309fde6244"
+                "sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde",
+                "sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.4.5"
         },
         "django-extensions": {
             "hashes": [
-                "sha256:308e4aa61b6accc249c67a0fb99daef6f8b233179dd50a52f408fae4f58b71ee",
-                "sha256:7c0db3b1a249bcfdd50c4314a617f8fb0aec979e2c01466e68ec0d60337313a9"
+                "sha256:4aafdb865104eaa5d681b9976b36c52c9d441be89b7d782e40808f1c5c0c8f93",
+                "sha256:8a2552fdeb222b23895ef52cdc28fc56efba976f6da07ca92937f6f5e626e345"
             ],
             "index": "pypi",
-            "version": "==2.0.0"
+            "version": "==2.2.1"
         },
         "django-filter": {
             "hashes": [
-                "sha256:6ef1611aeacfda8f13a075a992ff65687afbd5cc8fcb0f3f1563a9ad4fe2d1b0",
-                "sha256:e44620d4e707beaff7396ac8df765dc015a07467df813b9c1663fe4017934b58"
+                "sha256:558c727bce3ffa89c4a7a0b13bc8976745d63e5fd576b3a9a851650ef11c401b",
+                "sha256:c3deb57f0dd7ff94d7dce52a047516822013e2b441bed472b722a317658cfd14"
             ],
             "index": "pypi",
-            "version": "==1.0.4"
+            "version": "==2.2.0"
         },
         "django-form-utils": {
             "hashes": [
@@ -347,26 +348,26 @@
         },
         "django-haystack": {
             "hashes": [
-                "sha256:54f6aa03770aa11de30b7052cdbdfdb102f8d5be4342033a89e538b4bdc86d9b",
-                "sha256:995ad32a42befcc07b9e3416320b818a3ad12ca6cc4de34af65ab4ffa09391da"
+                "sha256:8b54bcc926596765d0a3383d693bcdd76109c7abb6b2323b3984a39e3576028c"
             ],
             "index": "pypi",
-            "version": "==2.5.0"
+            "version": "==2.8.1"
         },
         "django-hitcount": {
             "hashes": [
-                "sha256:131fa8e67ff1d896b5124df55951346c57b47c0960f3534f9595eb667fe71c7f"
+                "sha256:4747cecf72305d98e9a87c71d763b6078fd9e53d8771d0e1237be72523681cdf",
+                "sha256:7d8a83eaf2d1c92c229772bd15131e50613f013cdb0f2d4057acdca3b178fd48"
             ],
             "index": "pypi",
-            "version": "==1.2.2"
+            "version": "==1.3.1"
         },
         "django-jchart": {
             "hashes": [
-                "sha256:3462fc1cd26b0e168f020736c33073410062421902dce40e541ee5e0496ea810",
-                "sha256:bdada16d5ab28227a7b7a11b8e63d5c10600be2db4539414bc67ce8273b7b640"
+                "sha256:1a0acd545f24924ab953eec703cbaa9f3bff1eb8240d14f5c0b66ae74fdbe6cd",
+                "sha256:c9503a025092f63f870f83d773311d9c67090f1843b4bb99ef24959ab1877736"
             ],
             "index": "pypi",
-            "version": "==0.4.1"
+            "version": "==0.4.2"
         },
         "django-jquery": {
             "hashes": [
@@ -990,6 +991,13 @@
             "index": "pypi",
             "version": "==12.5.0"
         },
+        "sqlparse": {
+            "hashes": [
+                "sha256:40afe6b8d4b1117e7dff5504d7a8ce07d9a1b15aeeade8a2d10f130a834f8177",
+                "sha256:7c3dca29c022744e95b547e867cee89f4fce4373f3549ccd8797d8eb52cdb873"
+            ],
+            "version": "==0.3.0"
+        },
         "tempora": {
             "hashes": [
                 "sha256:cb60b1d2b1664104e307f8e5269d7f4acdb077c82e35cd57246ae14a3427d2d6",
@@ -1009,14 +1017,6 @@
                 "sha256:b6b235d432cc58ffe111b43e337db71a5caa5d3eaa88f0eacf60b431c7626ef5"
             ],
             "version": "==18.8.1"
-        },
-        "typing": {
-            "hashes": [
-                "sha256:38566c558a0a94d6531012c8e917b1b8518a41e418f7f15f00e129cc80162ad3",
-                "sha256:53765ec4f83a2b720214727e319607879fec4acde22c4fbb54fa2604e79e44ce",
-                "sha256:84698954b4e6719e912ef9a42a2431407fe3755590831699debda6fba92aac55"
-            ],
-            "version": "==3.7.4"
         },
         "unidecode": {
             "hashes": [

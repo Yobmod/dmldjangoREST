@@ -1,23 +1,20 @@
--i https://pypi.org/simple
-asgiref==3.2.1
-asn1crypto==0.24.0
-attrs==19.1.0
-autobahn==19.8.1
-automat==0.7.0
-backports.functools-lru-cache==1.5
+-i https://pypi.org/simple/
+asgiref==3.2.2
+attrs==19.3.0
+autobahn==19.10.1
+automat==0.8.0
 beautifulsoup4==4.6.0
 boto3==1.9.200
-botocore==1.12.200
-certifi==2019.6.16
-cffi==1.12.3
+botocore==1.12.253
+certifi==2019.9.11
+cffi==1.13.1
 channels==2.2.0
 chardet==3.0.4
-cheroot==6.5.5
+cheroot==8.2.1
 cherrypy==18.1.2
 click==7.0
-colorama==0.4.1 ; platform_system == 'Windows'
 constantly==15.1.0
-cryptography==2.7
+cryptography==2.8
 daphne==2.3.0
 defusedxml==0.6.0
 dj-database-url==0.5.0
@@ -57,11 +54,11 @@ django-treebeard==4.3
 django==2.2.4
 djangorestframework-jwt==1.11.0
 djangorestframework==3.10.2
-docutils==0.14
-draftjs-exporter==2.1.6
+docutils==0.15.2
+draftjs-exporter==2.1.7
 flask==1.1.1
-future==0.17.1
-geographiclib==1.49
+future==0.18.1
+geographiclib==1.50
 geopy==1.20.0
 gunicorn==19.9.0
 html5lib==1.0.1
@@ -78,10 +75,10 @@ markdown2==2.3.8
 markdown==3.1.1
 markupsafe==1.1.1
 more-itertools==7.2.0
-numpy==1.17.0
-oauthlib==3.0.2
-pandas==0.25.0
-pillow==6.1.0
+numpy==1.17.3
+oauthlib==3.1.0
+pandas==0.25.2
+pillow==6.2.0
 portend==2.5
 psycopg2==2.8.3
 pycparser==2.19
@@ -94,12 +91,11 @@ pytest-runner==5.1
 python-dateutil==2.8.0 ; python_version >= '2.7'
 python-twitter==3.5
 python3-openid==3.1.0
-pytz==2019.2
-pywin32==224 ; sys_platform == 'win32'
+pytz==2019.3
 pyyaml==5.1.2
 qrcode==6.1
 rcssmin==1.0.6
-reportlab==3.5.23
+reportlab==3.5.31
 requests-oauthlib==1.2.0
 requests==2.22.0
 rest-pandas==1.1.0
@@ -109,15 +105,15 @@ six==1.12.0
 sorl-thumbnail==12.5.0
 sqlparse==0.3.0
 tempora==1.14.1
-twisted==19.2.1
+twisted==19.7.0
 txaio==18.8.1
 unidecode==1.1.1
-urllib3==1.25.3 ; python_version >= '3.4'
+urllib3==1.25.6 ; python_version >= '3.4'
 wagtail==2.6.1
 webencodings==0.5.1
 werkzeug==0.15.5
 whitenoise==3.0
 willow==1.1
 xhtml2pdf==0.2.3
-zc.lockfile==1.4
+zc.lockfile==2.0
 zope.interface==4.6.0

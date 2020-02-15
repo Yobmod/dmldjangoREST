@@ -44,6 +44,6 @@
     "@types/lodash": ">=4",
     "minimatch": ">=3.0.4",
     "typescript": ">=3.5.3",
-    "yarn": ">=1.17.3"
+    "yarn": ">=1.22.0"
   }
 }

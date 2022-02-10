@@ -10,7 +10,7 @@ verify_ssl = true
 boto3 = "*"
 channels = "*"
 CherryPy = "*"
-Django = "==2.2.4"
+Django = "==2.2.27"
 
 dj-database-url = "*"
 django-allauth = "*"
